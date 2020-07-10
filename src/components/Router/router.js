@@ -1,17 +1,21 @@
-import React from 'react';
-import { Switch, BrowserRouter } from 'react-router-dom';
-import Login from '../pages/Login/Login';
-import Users from '../pages/Users/Users';
+import React from "react";
+import { Switch, BrowserRouter } from "react-router-dom";
+import Login from "../pages/Login/Login";
+import Dashboard from "../pages/Dashboard/Dashboard";
+import Users from "../pages/Users/Users";
 
-import PrivateRoute from './PrivateRoute';
+import PrivateRoute from "./PrivateRoute";
 
 const routesConfig = [
-  { path: '/login', component: Login, requireAuthentication: false },
-  { path: '/users', component: Users, requireAuthentication: true },
+  { path: "/login", component: Login, requireAuthentication: false },
+  { path: "/users", component: Users, requireAuthentication: true },
+  { path: "/", component: Dashboard, requireAuthentication: true },
 ];
 
 export const Router = () => {
-  const routes = routesConfig.map((route, index) => <PrivateRoute key={index} {...route} />);
+  const routes = routesConfig.map((route, index) => (
+    <PrivateRoute key={index} {...route} />
+  ));
   return (
     <div className="AppContainer">
       <div className="MainContent">

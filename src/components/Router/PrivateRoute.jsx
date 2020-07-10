@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Route, Redirect } from 'react-router-dom';
 //import { UserContext } from '../../services/providers/user-context.jsx';
 //import Header from '../molecules/header/header';
-//import { LOGIN_URL, HOME_URL } from '../../utils/constants';
+import { LOGIN_URL } from '../../utils/constants';
 
 const PrivateRoute = ({ component: Component, requireAuthentication, ...rest }) => {
   //const { user } = useContext(UserContext);
@@ -22,6 +22,7 @@ const PrivateRoute = ({ component: Component, requireAuthentication, ...rest }) 
   }
 
   //return user.accessToken ? getComponent() : <Redirect to={LOGIN_URL} />;
+  return <Redirect to={LOGIN_URL} />;
 };
 
 PrivateRoute.propTypes = {
