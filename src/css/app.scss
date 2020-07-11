@@ -1,0 +1,14 @@
+@import './_general_styling.scss';
+
+button {
+  background-color: transparent;
+  border: none;
+}
+
+.mainSection {
+  .backAndUser {
+    button {
+      color: $white;
+    }
+  }
+}

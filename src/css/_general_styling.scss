@@ -1,0 +1,58 @@
+// Colors
+$background: #222222;
+$primary-color: #08185c;
+$yellow:#F49C00;
+$green: #819613;
+$light-blue:#6BA5FA;
+
+$hover: #050f97;
+
+$grey: grey;
+$medium-grey:#363636;
+$dark-grey: #474747;
+$light-grey:#ADA7A7;
+
+$white: #d4d4d4;
+$black: black;
+
+$SectionWhite: #F0F0F0;
+
+$border-bottom: 1px solid $light-grey;
+
+// Typographic Scale
+$title-main: 26px;
+$title-secondary:20px;
+$subtitle: 15px;
+$button: 10px;
+$body: 12px;
+$label: 9px;
+
+//Text
+
+@mixin primary-text($font-size, $font-color, $font-weight) {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: $font-size;
+  font-weight: $font-weight;
+  @if $font-color {
+    color: $font-color;
+  }
+}
+
+@mixin primary-title($font-size, $font-color, $font-weight) {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: $font-size;
+  font-weight: $font-weight;
+  @if $font-color {
+    color: $font-color;
+  }
+}
+
+// Container
+
+@mixin container($color, $border, $radius) {
+  background: #3d3737;
+  border: 1px solid black;
+  border-radius: $radius;
+}
