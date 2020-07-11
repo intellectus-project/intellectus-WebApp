@@ -3,8 +3,9 @@
 ## Installation
 ```js
 nvm install 12.18.2 && nvm alias default 12.18.2
+npm install
 ```
 ## Run
 ```js
-npm i && npm start
+npm start
 ```
