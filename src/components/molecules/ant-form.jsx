@@ -58,18 +58,18 @@ const AntFormInputs = React.forwardRef((p, r) => {
   // }));
 
   const submitButton = () => !noSubmitButton ? (
-      <div className={submitButtonClass}>
-        <Form.Item>
-          <ButtonPrimary
-            type="primary"
-            htmlType="submit"
-            text={submitText}
-            disabled={disabled}
-            theme={submitTheme}
-          />
-        </Form.Item>
-      </div>
-    ) : (
+    <div className={submitButtonClass}>
+      <Form.Item>
+        <ButtonPrimary
+          type="primary"
+          htmlType="submit"
+          text={submitText}
+          disabled={disabled}
+          theme={submitTheme}
+        />
+      </Form.Item>
+    </div>
+  ) : (
       undefined
     );
 
@@ -86,7 +86,6 @@ const AntFormInputs = React.forwardRef((p, r) => {
         </div>
       )} */}
       {!topSubmitButton && submitButton()}
-      {extraGenericButton ? extraGenericButton : ''}
     </Form>
   );
 });
@@ -104,8 +103,7 @@ AntFormInputs.propTypes = {
   submitButtonClass: PropTypes.string,
   submitText: PropTypes.string,
   submitTheme: PropTypes.string,
-  topSubmitButton: PropTypes.bool,
-  extraGenericButton: PropTypes.object
+  topSubmitButton: PropTypes.bool
 };
 
 AntFormInputs.defaultProps = {
@@ -114,12 +112,11 @@ AntFormInputs.defaultProps = {
   disabled: false,
   submitText: 'aceptar',
   submitTheme: undefined,
-  handleErrorSubmit: () => {},
-  handleSubmit: () => {},
+  handleErrorSubmit: () => { },
+  handleSubmit: () => { },
   //RECAPTCHA_SITE_KEY: undefined,
   resetOnSubmit: false,
-  topSubmitButton: false,
-  extraGenericButton: undefined
+  topSubmitButton: false
 };
 
 const AntForm = Form.create()(AntFormInputs);
