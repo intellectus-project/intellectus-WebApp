@@ -1,0 +1,89 @@
+@import './css/general_styling';
+
+body {
+
+  * {
+    outline: none;
+  }
+
+  background-color: $background;
+  -webkit-font-smoothing: antialiased !important;
+  -moz-osx-font-smoothing: grayscale !important;
+
+  scrollbar-color: $dark-grey $light-grey;
+  scrollbar-width: thin;
+
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: $dark-grey;
+    border-radius: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px $dark-grey;
+    border-radius: 20px;
+  }
+}
+
+.App {
+  background-image: url(img/map.svg);
+  background-position: center top;
+  background-repeat: no-repeat;
+  background-size: 60%;
+  position: relative;
+  width: 100% !important;
+  margin: 0 auto;
+  padding: 2em 3.5em;
+  display: flex;
+  flex-direction: column;
+
+  .loadingComponent {
+    position: absolute;
+    top:25em;
+    width: 87%;
+    margin:0 2em;
+    display: flex;
+    justify-content: center;
+    .ant-spin-dot {
+      height: 1.5em;
+      width: 1.5em;
+      .ant-spin-dot-item {
+        width: 0.7em;
+        height: 0.7em;
+        background-color: $light-blue;
+      }
+    }
+    .ant-spin-text{
+      font-size: $subtitle;
+      font-weight: bold;
+      color:$light-blue;
+      margin-top: 0.5em;
+    }
+  }
+}
+
+
+@media only screen and (max-width: 768px) {
+  .App {
+    width: 100%;
+  }
+}
+@media only screen and (max-width: 600px) {
+  .App {
+    padding: 2em;
+    background-size: 90%;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .App {
+    padding: 2em;
+  }
+}
+
+@media only screen and (max-width: 360px) {
+  .App {
+    background-size: 130%;
+  }
+}

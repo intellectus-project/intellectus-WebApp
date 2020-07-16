@@ -12,10 +12,10 @@ const Error404 = () => (
                     <h2>We sincerely apologize.</h2>
                     <p>
                         Please, go back to the previous page or go to the main page.
-            <br />
-            if you are searching for information about an event, a exhibition, an artwork or
-            something else, please try searching for this.
-          </p>
+                        <br />
+                        if you are searching for information about an event, a exhibition, an artwork or
+                        something else, please try searching for this.
+                    </p>
                     <a href={HOME_URL}> > Go Home</a>
                 </div>
             </div>
