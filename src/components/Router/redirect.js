@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-import { Redirect } from "react-router-dom";
-import { createQueryString } from "../../services/api-calls/helpers";
+import React, { useState } from 'react';
+import { Redirect } from 'react-router-dom';
+import { createQueryString } from '../../services/api-calls/helpers';
 
 export const useRedirect = () => {
   const [urlToRedirect, setUrlToRedirect] = useState();
@@ -12,10 +12,14 @@ export const useRedirect = () => {
         <Redirect
           to={{
             pathname: urlToRedirect,
-            search: processedQueryParameters,
+            search: processedQueryParameters
           }}
         />
       );
     }
   };
+
+  return { redirect, setUrlToRedirect };
 };
+
+export default useRedirect;

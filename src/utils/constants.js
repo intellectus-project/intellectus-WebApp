@@ -1,5 +1,6 @@
 module.exports = {
-    HOME_URL: '/home',
-    LOGIN_URL: '/login'
+    HOME_URL: '/dashboard',
+    LOGIN_URL: '/login',
+    USER: 'user',
   };
   

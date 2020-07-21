@@ -3,13 +3,15 @@ import { Switch, BrowserRouter } from "react-router-dom";
 import Login from "../pages/Login/Login";
 import Dashboard from "../pages/Dashboard/Dashboard";
 import Users from "../pages/Users/Users";
+import Error404 from '../pages/Error404/Error404';
 
 import PrivateRoute from "./PrivateRoute";
 
 const routesConfig = [
   { path: "/login", component: Login, requireAuthentication: false },
   { path: "/users", component: Users, requireAuthentication: true },
-  { path: "/", component: Dashboard, requireAuthentication: true },
+  { path: "/dashboard", component: Dashboard, requireAuthentication: true },
+  { component: Error404, requireAuthentication: false }
 ];
 
 export const Router = () => {
