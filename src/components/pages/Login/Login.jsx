@@ -24,7 +24,6 @@ const Login = () => {
     delete Object.assign(values, { username: values.email }).email;
     try {
       const response = await loginRequest(values);
-      console.log(response);
       setUser(response.data);
     } catch (error) {
       const errorMessage = processedErrorMessage(error);

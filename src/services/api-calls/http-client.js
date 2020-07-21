@@ -10,8 +10,6 @@ const configureAxios = ({ onError, onResponse }) => {
     timeout: 18000000,
     responseType: 'json',
     headers: { [HEADERS.ACCEPT]: HEADERS.JSON, Authorization }
-    // withCredentials: true,
-    // credentials: HEADERS.CREDENTIALS
   });
   // TODO localStorage to cookies
   instance.interceptors.request.use(config => {

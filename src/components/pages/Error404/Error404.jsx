@@ -9,14 +9,12 @@ const Error404 = () => (
             <div className="textSection">
                 <h1>404</h1>
                 <div className="text">
-                    <h2>We sincerely apologize.</h2>
+                    <h2>Lo sentimos.</h2>
                     <p>
-                        Please, go back to the previous page or go to the main page.
+                        Por favor, vuelva a la pagina anterior o al inicio.
                         <br />
-                        if you are searching for information about an event, a exhibition, an artwork or
-                        something else, please try searching for this.
                     </p>
-                    <a href={HOME_URL}> > Go Home</a>
+                    <a href={HOME_URL}> > Ir al inicio</a>
                 </div>
             </div>
             <div className="errorImage">
