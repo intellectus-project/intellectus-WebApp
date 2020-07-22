@@ -1,0 +1,101 @@
+@import '../../../css/general_styling';
+
+body .ant-menu-submenu-popup {
+  background-color: $dark-grey;
+}
+
+body .ant-menu-submenu-popup:hover {
+  border: none;
+}
+
+body .ant-menu-submenu > .ant-menu {
+  background-color: $dark-grey;
+  border-radius: 4px;
+  .ant-menu-item:hover {
+    background-color: grey;
+  }
+  button {
+    background-color: transparent;
+    border-color: transparent;
+    color: $white;
+  }
+  button:hover {
+    color: $white;
+  }
+
+}
+
+.anticon-download {
+  color: #d4d4d4!important;
+}
+
+button:focus-within {
+  outline-color:transparent;
+}
+
+button {
+  cursor: pointer!important;
+}
+
+.ant-menu-vertical .ant-menu-item {
+  margin:0!important;
+}
+
+.NavBar {
+  position: relative;
+  .ant-menu-horizontal > .ant-menu-item:hover,
+  .ant-menu-horizontal > .ant-menu-submenu:hover,
+  .ant-menu-horizontal > .ant-menu-item-active,
+  .ant-menu-horizontal > .ant-menu-submenu-active,
+  .ant-menu-horizontal > .ant-menu-item-open,
+  .ant-menu-horizontal > .ant-menu-submenu-open,
+  .ant-menu-horizontal > .ant-menu-item-selected,
+  .ant-menu-horizontal > .ant-menu-submenu-selected {
+    color: transparent;
+    border-bottom: 2px solid transparent;
+  }
+  .ant-menu {
+    background-color: transparent;
+    border-bottom: transparent;
+    .ant-menu-item:hover {
+      border-bottom: 2px solid transparent;
+      transition: background-color 0.1s ease!important;
+    }
+    li {
+      button {
+        background-color: transparent;
+        padding: 0;
+        border: transparent;
+        color: $white;
+      }
+    }
+  }
+  .ant-menu-horizontal > .ant-menu-submenu:hover {
+    border-bottom: 2px solid transparent !important;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  body .ant-menu:not(.ant-menu-inline) .ant-menu-submenu-open,
+  .ant-menu-submenu-active {
+    color: #d1c4c3;
+    border-bottom: none;
+    z-index: -1;
+  }
+
+  body .ant-menu:not(.ant-menu-inline) .ant-menu-submenu-open,
+  .ant-menu-submenu {
+    color: #d1c4c3;
+    border-bottom: none;
+    z-index: 1;
+  }
+
+  .NavBar {
+    ul {
+      width: 50px;
+      //background-image: url(../../../img/menu.png) !important;
+      background-repeat: no-repeat !important;
+      background-position: center center !important;
+    }
+  }
+}
