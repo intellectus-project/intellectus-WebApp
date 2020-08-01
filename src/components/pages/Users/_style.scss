@@ -1,0 +1,78 @@
+@import "../../../css/general_styling";
+
+  .descriptionContainer {
+    @include primary-text(18px, $white, bold);
+    line-height: 8px;
+  }
+  .mainSectionAdmin {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 0;
+    .SearchSection {
+      width: 100%;
+      height: 100%;
+      padding-right: 1.5em;
+      margin:0em auto;
+      .titleSection {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        img {
+          margin-right: 1em;
+        }
+        h2 {
+          @include primary-text(1.5em, lightgrey, 600);
+        }
+      }
+    }
+    .FilterSection {
+      display: flex;
+      padding: 2em 0;
+      border-bottom: $border-bottom;
+      .imgFilter {
+        text-align: right;
+        display: block;
+        justify-content: flex-end;
+        width: 20%;
+        .btnFilter {
+          background-color: transparent;
+          border: transparent;
+        }
+
+        .btnFilter:hover {
+          background-color: transparent;
+          border: transparent;
+        }
+        img {
+          padding: 0 0.5em;
+          float: right;
+        }
+      }
+      .imgPlus {
+        img {margin-right: 1em;}
+        width:80%;
+        display: flex;
+        button {
+          color:$white;
+          background-color: transparent;
+          border-color: transparent;
+        }
+        p {
+          color: $white;
+        }
+      }
+    }
+    .dataSection {
+      display: flex;
+      flex-direction: row;
+    }
+  }
+
+@media only screen and (max-width: 860px) {
+  .mainSection .dataSection {
+    display: flex;
+    flex-direction: column;
+  }
+}
+

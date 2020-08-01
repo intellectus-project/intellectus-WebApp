@@ -24,12 +24,12 @@ const Users = () => {
   const findUsersPaginated = async () => {
     try {
       // TODO: sacarle este filters a la api call
-      const pageContent = await findAllUsersPaginated(
-        criuseRedirectteria,
-        page - 1,
-        PAGE_SIZE,
-        filters
-      );
+      // const pageContent = await findAllUsersPaginated(
+      //   criteria,
+      //   page - 1,
+      //   PAGE_SIZE,
+      //   filters
+      // );
       const newUserList = pageContent.content;
       setTotalPages(pageContent.totalPages * 10);
       const processedUserList = Object.values(newUserList).sort((a, b) =>
@@ -41,7 +41,7 @@ const Users = () => {
       message.error(errorMessage);
     }
   };
-  Users;
+
   useEffect(() => {
     findUsersPaginated();
   }, [criteria, page]);

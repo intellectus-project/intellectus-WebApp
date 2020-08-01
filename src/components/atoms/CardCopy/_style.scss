@@ -1,0 +1,60 @@
+@import "../../../css/general_styling";
+
+.CardCopyContainer {
+  display: flex;
+  width: 30%;
+  background-color: $white;
+  border-radius: 5px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1em;
+  margin:1em;
+  .iconSection {
+    display: flex;
+    flex-direction: row;
+    img {
+      padding:0 0.5em;
+    }
+  }
+  .textSection {
+    width: 50%;
+    p {
+      @include primary-text ($body, $grey, 100);
+      margin:0;
+    }
+    h2 {
+      @include primary-text (1em, $background, 600);
+      margin:0;
+    }
+    .subtitle {
+      @include primary-text ($body, $background, 100);
+     font-style: italic;
+    }
+  }
+}
+
+//THEME
+
+.disableCard {
+  background-color:$grey;
+  .textSection {
+    .label, .title, .subtitle {
+      color:$dark-grey;
+    }
+  }
+}
+
+
+@media only screen and (max-width: 860px) {
+  .CardCopyContainer {
+    width: 48%;
+    margin:2em 0 1em 0;
+  } 
+}
+
+@media only screen and (max-width: 644px) {
+  .CardCopyContainer {
+    width: 90%;
+    margin:1em auto;
+  } 
+}

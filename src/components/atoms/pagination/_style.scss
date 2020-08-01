@@ -1,0 +1,38 @@
+@import "../../../css/general_styling";
+
+.ant-pagination-prev:hover {
+  border:1px solid white;
+}
+
+.pagination { 
+  display: flex;
+  justify-content: center;
+  padding: 1em 0;
+  .ant-pagination-options-quick-jumper {
+    color: $white!important;
+  }
+  .ant-pagination-item-ellipsis {
+    color: $white!important;
+  }
+}
+
+.ant-pagination-item:hover {
+  background: transparent;
+  border: 1px solid #d4d4d4;
+  a {color: #d4d4d4;}
+}
+
+.ant-pagination-item {
+  background: transparent;
+  border: 1px solid #d4d4d4;
+  a {color: #d4d4d4;}
+}
+
+.ant-pagination-prev .ant-pagination-item-link, .ant-pagination-next .ant-pagination-item-link{
+  background: transparent;
+  color: #d4d4d4;
+}
+
+.ant-pagination-options-quick-jumper {
+  display: none;
+}

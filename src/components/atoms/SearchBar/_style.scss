@@ -1,0 +1,49 @@
+@import "../../../css/general_styling";
+
+.ant-input:focus {
+  border-color: $white;
+  box-shadow: none;
+} 
+
+.ant-input-affix-wrapper:hover .ant-input:not(.ant-input-disabled) {
+  border-color: 
+  $white;
+}
+
+.anticon-search {
+  color:white!important;
+  font-size: 1.5em;
+}
+
+.SearchBar {
+  display: flex;
+  flex-direction: row;
+  padding:1em 0;
+  justify-content: center;
+  input {
+    height: 50px;
+    background-color: transparent;
+    color:$white;
+  }
+  ::-webkit-input-placeholder { /* Edge */
+    color: #555555;
+  }
+  
+  :-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color: #555555;
+  }
+  
+  ::placeholder {
+    color: #555555;
+  }
+}
+
+.BlackTheme {
+  input {
+    border-color: $dark-grey;
+    height: 30px;
+  }
+  i {
+    color:$dark-grey;
+  }
+}
