@@ -23,18 +23,18 @@
   input {
     height: 50px;
     background-color: transparent;
-    color:$white;
+    color:$black;
   }
   ::-webkit-input-placeholder { /* Edge */
-    color: #555555;
+    color: $light-grey;
   }
   
   :-ms-input-placeholder { /* Internet Explorer 10-11 */
-    color: #555555;
+    color: $light-grey;
   }
   
   ::placeholder {
-    color: #555555;
+    color: $light-grey;
   }
 }
 

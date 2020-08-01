@@ -6,25 +6,16 @@ import "../../../css/app.scss";
 
 const Header = () => {
   const { user } = useContext(UserContext);
-  //const { menus } = user.navbar;
-  const menus = [
-    {
-      description: "Dashboard",
-      icon: "bar-chart",
-      items: [],
-      key: "VIEW_DASHBOARD",
-      order: 0,
-      url: "/home",
-    },
-  ];
+  const { menus } = user.navbar;
+  
   // TODO: definir imagenes para logos
 
   return (
     <div>
       <div className="header">
-        {/* <div className="logo">
+        <div className="logo">
           <img src="img/logo.png" alt="logo" />
-        </div> */}
+        </div>
         <div className="NavBar">
           <Navbar navbarEntries={menus} />
         </div>

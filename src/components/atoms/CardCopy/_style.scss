@@ -23,11 +23,11 @@
       margin:0;
     }
     h2 {
-      @include primary-text (1em, $background, 600);
+      @include primary-text (1em, $light-black, 600);
       margin:0;
     }
     .subtitle {
-      @include primary-text ($body, $background, 100);
+      @include primary-text ($body, $light-black, 100);
      font-style: italic;
     }
   }

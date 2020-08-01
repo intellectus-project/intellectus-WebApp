@@ -22,7 +22,7 @@
           margin-right: 1em;
         }
         h2 {
-          @include primary-text(1.5em, lightgrey, 600);
+          @include primary-text(1.5em, $light-black, 600);
         }
       }
     }
