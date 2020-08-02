@@ -3,6 +3,8 @@ import { Switch, BrowserRouter } from "react-router-dom";
 import Login from "../pages/Login/Login";
 import Dashboard from "../pages/Dashboard/Dashboard";
 import Users from "../pages/Users/Users";
+import EditUser from "../pages/EditUser/EditUser";
+import CreateUser from "../pages/CreateUser/CreateUser";
 import Error404 from '../pages/Error404/Error404';
 
 import PrivateRoute from "./PrivateRoute";
@@ -11,6 +13,8 @@ const routesConfig = [
   { path: "/login", component: Login, requireAuthentication: false },
   { path: "/users", component: Users, requireAuthentication: true },
   { path: "/dashboard", component: Dashboard, requireAuthentication: true },
+  { path: '/edit-user', component: EditUser, requireAuthentication: true },
+  { path: '/create-user', component: CreateUser, requireAuthentication: true },
   { component: Error404, requireAuthentication: false }
 ];
 

@@ -13,7 +13,7 @@ const AvatarSection = ({ users, switchStatus }) => (
         firstName={item.name}
         role={item.role.description}
         active={item.active}
-        type={item.type}
+        zone={item.zone}
         switchStatus={id => switchStatus(id)}
       />
     ))}

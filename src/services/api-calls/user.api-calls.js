@@ -8,8 +8,10 @@ const findAllUser = makeGetRequest => searchCriteria => makeGetRequest('users/fi
 
 const findAllUsersPaginated = makeGetRequest => (searchCriteria, page, size, filters) => makeGetRequest('users/filters', { searchCriteria, page, size, ...filters });
 
-const createUser = makePostRequest => data => makePostRequest('users', data);
-
+const createUser = makePostRequest => data => {
+  console.log('data ',data);
+  makePostRequest('users', data);
+}
 const disableUser = makeGetRequest => id => makeGetRequest(`users/disable/${id}`);
 
 const enableUser = makeGetRequest => id => makeGetRequest(`users/enable/${id}`);
