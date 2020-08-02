@@ -25,16 +25,17 @@
 
 .ant-radio-button-wrapper:last-child {
   border-radius: 5em !important;
+  
 }
 .ant-radio-button-wrapper:first-child {
   border-radius: 5em !important;
 }
 .ant-radio-group-large .ant-radio-button-wrapper:hover {
-  color: white;
+  color: green;
 }
 
 .ant-radio-button-wrapper-checked {
-  background-color: $yellow !important;
+  background-color: green !important;
   border: none!important;
 }
 
@@ -45,13 +46,13 @@
 }
 
 .mainSection {
-  // .backAndUser {
-  //   button {
-  //     color: $white;
-  //     background-color: transparent;
-  //     border:none;
-  //   }
-  // }
+  .backAndUser {
+    button {
+      color: $primary-color;
+      background-color: transparent;
+      border:none;
+    }
+  }
   .userDetails {
     padding: 2em 10em 8em 10em;
     background-color: $white;
@@ -90,37 +91,16 @@
         float: left;
         margin-left: 1em;
       }
-      .ssoUser {
-        width: 10%;
-        float: left;
-        position: relative;
-        .ant-form-item {
-          display: flex;
-          align-items: center;
-          justify-content: flex-start;
-          margin-left: 1em;
-          position: absolute;
-          top:2.5em;
-        }
-      }
       .newPassword {
         width: 40%;
         float: left;
-      }
-      .InputRoleLabel {
-        margin-top: -1em;
-        width: 50%;
-        margin-bottom: 1em;
-      }
-      .ant-select {
-        width: 50%;
       }
     }
     .buttonSection {
       position: relative;
       .ant-form-item-control {
         position: absolute;
-        bottom: -10em;
+        bottom: -5em;
         width: 100%;
         justify-content: flex-end;
         display: flex;
@@ -219,13 +199,6 @@
           width: 100%;  
           margin:0;
         }
-        .InputRoleLabel {
-          margin-top: 0em;
-          width: 100%;
-          margin-bottom: 0em;
-          position: absolute;
-          bottom:3em;
-        }
         .ant-select {
           position: absolute;
           bottom:0em;
@@ -286,9 +259,6 @@
         }
         .ant-select {
           bottom:2em;
-        }
-        .InputRoleLabel {
-          bottom:5em;
         }
       }
       .buttonSection {

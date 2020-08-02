@@ -1,7 +1,6 @@
 import client from './http-client';
 import auth from './auth.api-calls';
 import user from './user.api-calls';
-import localization from './localization.api-calls';
 
 const defaultClient = client({});
 
@@ -12,8 +11,7 @@ export default () =>
     }
     : {
       ...auth(defaultClient),
-      ...user(defaultClient),
-      ...localization(defaultClient)
+      ...user(defaultClient)
     };
 
 
