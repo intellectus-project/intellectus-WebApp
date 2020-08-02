@@ -4,7 +4,7 @@ import { Switch, Icon } from 'antd';
 import './_style.scss';
 import { EDIT_USER } from '../../../utils/constants';
 
-const CardCopy = ({ id, lastName, firstName, role, zone, active, switchStatus }) => (
+const CardCopy = ({ id, lastName, firstName, role, active, switchStatus }) => (
   <div
     className={active ? 'CardCopyContainer' : 'CardCopyContainer disableCard'}
     theme={active ? '' : 'disableCard'}
@@ -13,7 +13,6 @@ const CardCopy = ({ id, lastName, firstName, role, zone, active, switchStatus })
       <img src="img/avatarBlack.png" alt="avatar" />
     </div>
     <div className="textSection">
-      <p className="label">{zone}</p>
       <h2 className="title">
         {firstName} {lastName}
       </h2>
@@ -41,8 +40,7 @@ CardCopy.propTypes = {
   id: PropTypes.number.isRequired,
   lastName: PropTypes.string.isRequired,
   role: PropTypes.string.isRequired,
-  switchStatus: PropTypes.func.isRequired,
-  type: PropTypes.string.isRequired
+  switchStatus: PropTypes.func.isRequired
 };
 
 export default CardCopy;

@@ -18,10 +18,6 @@
   }
   .textSection {
     width: 50%;
-    p {
-      @include primary-text ($body, $grey, 100);
-      margin:0;
-    }
     h2 {
       @include primary-text (1em, $light-black, 600);
       margin:0;
