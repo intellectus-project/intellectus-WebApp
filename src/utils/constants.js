@@ -1,8 +1,8 @@
 module.exports = {
   HOME_URL: "/dashboard",
   LOGIN_URL: "/login",
-  USERS_URL: "/users",
+  USERS_URL: "/administration",
   EDIT_USER: "/edit-user",
   CREATE_USER_URL: "/create-user",
-  PAGE_SIZE: 10
+  PAGE_SIZE: 3
 };

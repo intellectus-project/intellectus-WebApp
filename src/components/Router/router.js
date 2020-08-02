@@ -11,10 +11,11 @@ import PrivateRoute from "./PrivateRoute";
 
 const routesConfig = [
   { path: "/login", component: Login, requireAuthentication: false },
-  { path: "/users", component: Users, requireAuthentication: true },
+  { path: "/administration", component: Users, requireAuthentication: true },
   { path: "/dashboard", component: Dashboard, requireAuthentication: true },
   { path: '/edit-user', component: EditUser, requireAuthentication: true },
   { path: '/create-user', component: CreateUser, requireAuthentication: true },
+  { path: '/', component: Dashboard, requireAuthentication: true, exact: true},
   { component: Error404, requireAuthentication: false }
 ];
 
