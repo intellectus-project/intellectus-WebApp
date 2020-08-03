@@ -52,10 +52,9 @@ const AntFormInputs = React.forwardRef((p, r) => {
   //   return {true}
   // };
 
-  // useImperativeHandle(r, () => ({
-  //   form,
-  //   preSubmit
-  // }));
+  useImperativeHandle(r, () => ({
+    form
+  }));
 
   const submitButton = () => !noSubmitButton ? (
     <div className={submitButtonClass}>

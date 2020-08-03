@@ -13,13 +13,10 @@ import { useRedirect } from "../../Router/redirect";
 import { USERS_URL } from "../../../utils/constants";
 import { processedErrorMessage } from "../../../services/api-calls/helpers";
 import {
-  type,
   newPassword,
   confirmNewPassword
 } from "../../../utils/form_inputs/inputs-texts";
-import {
-  getUrlParam as getUrlParameter,
-} from "../../../utils/func-helpers";
+import { getUrlParam as getUrlParameter } from "../../../utils/func-helpers";
 
 const createUserInputs = [
   ...inputsUserDetails,
@@ -27,14 +24,11 @@ const createUserInputs = [
   ...inputSetUserRole
 ];
 
-const {
-  updateUserById,
-  getUserById,
-} = apiCalls();
+const { updateUserById, getUserById } = apiCalls();
 
 const EditUser = () => {
   const userId = getUrlParameter("id");
-  const formReference = useRef(null);
+  const formReference = useRef();
   const { redirect, setUrlToRedirect } = useRedirect();
   const [user, setUser] = useState({});
   const [selectedKey, setSelectedKey] = useState();
@@ -47,7 +41,7 @@ const EditUser = () => {
       const passwordMatch =
         formReference.current.form.getFieldValue(newPassword.name) &&
         value !== formReference.current.form.getFieldValue(newPassword.name);
-      passwordMatch ? callback("The passwords do not match.") : callback();
+      passwordMatch ? callback("Las contraseñas no coinciden.") : callback();
     }
   };
 
@@ -125,9 +119,7 @@ const EditUser = () => {
     <div className="mainSection">
       {redirect()}
       <div className="backAndUser">
-        <button
-          onClick={() => setUrlToRedirect(USERS_URL)}
-        >
+        <button onClick={() => setUrlToRedirect(USERS_URL)}>
           <Icon type="left" /> Volver
         </button>
       </div>
