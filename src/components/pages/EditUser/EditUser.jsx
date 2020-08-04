@@ -49,7 +49,6 @@ const EditUser = () => {
     if (userId) {
       try {
         const gettingUser = await getUserById(userId);
-        setUser(gettingUser);
         return gettingUser;
       } catch (error) {
         const errorMessage = processedErrorMessage(error);
@@ -59,8 +58,9 @@ const EditUser = () => {
   };
 
   useEffect(() => {
-    async function loadPage() {
+    async function loadData() {
       const us = await getBaseUser();
+      setUser(us);
       const processedCreateUserInputs = createUserInputs.map((input) => {
         if (input.name === confirmNewPassword.name) {
           input.rules = [...input.rules, { validator: compareToFirstPassword }];
@@ -69,7 +69,7 @@ const EditUser = () => {
       });
       setFormInputs(processedCreateUserInputs);
     }
-    loadPage();
+    loadData();
   }, []);
 
   useEffect(() => {
@@ -77,14 +77,6 @@ const EditUser = () => {
   }, [formInputs]);
 
   useEffect(() => {
-    formInputs.map((input) => {
-      if (
-        input.name === newPassword.name ||
-        input.name === confirmNewPassword.name
-      )
-        input.disabled = true;
-      return input;
-    });
     const list = formInputs.map((input) => ({
       [input.name]: user[input.name],
     }));
