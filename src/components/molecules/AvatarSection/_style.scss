@@ -1,0 +1,10 @@
+@import "../../../css/general_styling";
+
+.AvatarSection {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  width: 100%;
+  justify-content: flex-start;
+  padding: 0.5em 1em;
+}

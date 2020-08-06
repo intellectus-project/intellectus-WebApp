@@ -18,7 +18,7 @@ const Login = () => {
 
   useEffect(() => {
     if (user.accessToken) setUrlToRedirect(HOME_URL);
-  }, [user, setUrlToRedirect]);
+  }, [user]);
 
   const login = async values => {
     delete Object.assign(values, { username: values.email }).email;

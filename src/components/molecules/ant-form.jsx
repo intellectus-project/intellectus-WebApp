@@ -1,6 +1,5 @@
 import React, { useState, useImperativeHandle } from 'react';
 import { Form } from 'antd';
-//import ReCAPTCHA from 'react-google-recaptcha';
 import PropTypes from 'prop-types';
 import ButtonPrimary from '../atoms/ButtonPrimary/button-primary';
 import { inputRenderer } from '../../utils/form-helper';
@@ -15,16 +14,12 @@ const AntFormInputs = React.forwardRef((p, r) => {
     submitTheme,
     disabled,
     noSubmitButton,
-    //RECAPTCHA_SITE_KEY,
     submitButtonClass,
     resetOnSubmit,
-    topSubmitButton,
-    extraGenericButton
+    topSubmitButton
   } = p;
 
   const [submittedCount, setSubmittedCount] = useState(0);
-  const [captchaResult, setCaptchaResult] = useState();
-  //const [captchaWarning, setCaptchaWarning] = useState(false);
 
   const formItems = inputRenderer(inputs, form, submittedCount);
 
@@ -36,26 +31,14 @@ const AntFormInputs = React.forwardRef((p, r) => {
   const processEventValues = event => {
     setSubmittedCount(submittedCount + 1);
     if (event) event.preventDefault();
-    //if (RECAPTCHA_SITE_KEY && !captchaResult) return setCaptchaWarning(true);
-    //setCaptchaWarning(false);
     form.validateFieldsAndScroll((error, values) =>
-      error ? handleErrorSubmit(values) : onSubmit({ ...values, captchaResult })
+      error ? handleErrorSubmit(values) : onSubmit({ ...values })
     );
   };
 
-  // const preSubmit = () => {
-  //   const validCaptcha = !(RECAPTCHA_SITE_KEY && !captchaResult);
-  //   setSubmittedCount(submittedCount + 1);
-  //   // eslint-disable-next-line no-unused-expressions
-  //   validCaptcha ? setCaptchaWarning(false) : setCaptchaWarning(true);
-  //   return { validCaptcha, captchaResult };
-  //   return {true}
-  // };
-
-  // useImperativeHandle(r, () => ({
-  //   form,
-  //   preSubmit
-  // }));
+  useImperativeHandle(r, () => ({
+    form
+  }));
 
   const submitButton = () => !noSubmitButton ? (
     <div className={submitButtonClass}>
@@ -77,14 +60,6 @@ const AntFormInputs = React.forwardRef((p, r) => {
     <Form onSubmit={processEventValues} colon={false} from={form}>
       {topSubmitButton && submitButton()}
       {formItems}
-      {/* {RECAPTCHA_SITE_KEY && (
-        <div className="captcha">
-          <Form.Item>
-            <ReCAPTCHA sitekey={RECAPTCHA_SITE_KEY} onChange={value => setCaptchaResult(value)} />
-            {captchaWarning && <p className="CaptchaText">*Complete la verificacion por captcha</p>}
-          </Form.Item>
-        </div>
-      )} */}
       {!topSubmitButton && submitButton()}
     </Form>
   );
@@ -114,7 +89,6 @@ AntFormInputs.defaultProps = {
   submitTheme: undefined,
   handleErrorSubmit: () => { },
   handleSubmit: () => { },
-  //RECAPTCHA_SITE_KEY: undefined,
   resetOnSubmit: false,
   topSubmitButton: false
 };

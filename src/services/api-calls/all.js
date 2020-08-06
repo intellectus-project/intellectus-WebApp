@@ -1,5 +1,6 @@
 import client from './http-client';
 import auth from './auth.api-calls';
+import user from './user.api-calls';
 
 const defaultClient = client({});
 
@@ -10,6 +11,7 @@ export default () =>
     }
     : {
       ...auth(defaultClient),
+      ...user(defaultClient)
     };
 
 

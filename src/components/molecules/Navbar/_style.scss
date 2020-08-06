@@ -7,7 +7,9 @@ body .ant-menu-submenu-popup {
 body .ant-menu-submenu-popup:hover {
   border: none;
 }
-
+.ant-menu-submenu-title .anticon{
+  color: black;
+}
 body .ant-menu-submenu > .ant-menu {
   background-color: $dark-grey;
   border-radius: 4px;
@@ -66,7 +68,7 @@ button {
         background-color: transparent;
         padding: 0;
         border: transparent;
-        color: $white;
+        color: black;
       }
     }
   }
