@@ -1,0 +1,22 @@
+@import "../../../css/general_styling";
+
+.titleSection {
+  text-align: center;
+}
+.ant-btn.ant-btn {
+  padding: 0 10px;
+}
+.searchContainer {
+  button {
+    background: #344086;
+  }
+  span {
+    color: white;
+  }
+  float: right;
+}
+
+.contentSectionContainer {
+  margin-top: 2em;
+  padding: 0 2em 0 2em;
+}
