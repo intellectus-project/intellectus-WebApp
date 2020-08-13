@@ -1,8 +1,9 @@
 import React from "react";
 import Chart from "react-apexcharts";
-import "./_style.scss";
 
-const CustomRingChart = ({ text, theme, percentage }) => {
+const CustomRingChart = ({ id, emotionProps, percentage }) => {
+  const { text, position, theme } = emotionProps;
+  const { offsetY, offsetX } = position;
   const series = [percentage];
   const options = {
     chart: {
@@ -11,34 +12,39 @@ const CustomRingChart = ({ text, theme, percentage }) => {
     },
     plotOptions: {
       radialBar: {
-        fill: "#1cbd00",
+        offsetX,
+        offsetY,
         hollow: {
           size: "50%",
         },
         track: {
-          background: "#ADA7A7",
+          background: theme.track,
         },
       },
     },
     fill: {
-        opacity: 1.5,
-        colors: ['#ff9966'],
-        type: 'gradient',
-        gradient: {
-            gradientToColors: ['#ff5e62'],
-            shadeIntensity: 1,
-            opacityFrom: 1,
-            opacityTo: 2,
-            stops: [0, 50, 100],
-            inverseColors: false
-        },
+      opacity: 1.5,
+      colors: [theme.from],
+      type: "gradient",
+      gradient: {
+        gradientToColors: [theme.to],
+        shadeIntensity: 1,
+        opacityFrom: 1,
+        opacityTo: 2,
+        stops: [0, 50, 100],
+        inverseColors: false,
+      },
     },
     labels: [text],
   };
   return (
-    <div >
-      <Chart options={options} series={series} type="radialBar" width="500" />
-    </div>
+    <Chart
+      id={id}
+      options={options}
+      series={series}
+      type="radialBar"
+      width="200"
+    />
   );
 };
 

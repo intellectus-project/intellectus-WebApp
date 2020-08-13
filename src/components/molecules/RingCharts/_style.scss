@@ -1,0 +1,27 @@
+.ringsContainer {
+  width: 100%;
+  .UpTerm {
+    #anguish {
+      float: left;
+    }
+    #happiness {
+      float: left;
+    }
+    display: flex;
+    justify-content: center;
+  }
+  .DownTerm {
+    display: flex;
+    justify-content: center;
+    #anger {
+      float: left;
+      clear: left;
+    }
+    #neutral {
+      float: left;
+    }
+    #fear {
+      float: left;
+    }
+  }
+}

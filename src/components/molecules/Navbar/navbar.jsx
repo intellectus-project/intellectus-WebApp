@@ -30,6 +30,7 @@ const Navbar = ({ navbarEntries }) => {
   };
 
   const itemClick = (path) => {
+    console.log("path ", path);
     if (path === LOGIN_URL) signOut();
     else setUrlToRedirect(path);
   };
