@@ -20,7 +20,26 @@ const CustomRingChart = ({ id, emotionProps, percentage }) => {
         track: {
           background: theme.track,
         },
+        dataLabels: {
+          name: {
+            show: true,
+            fontSize: "1em",
+            fontFamily: undefined,
+            fontWeight: 600,
+            color: "#2d2a2a",
+            offsetY: 0,
+          },
+          value: {
+            show: true,
+            fontSize: "1em",
+            fontFamily: undefined,
+            fontWeight: 400,
+            color: "#2d2a2a",
+            offsetY: 5,
+          },
+        },
       },
+      
     },
     fill: {
       opacity: 1.5,

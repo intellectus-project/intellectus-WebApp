@@ -3,7 +3,7 @@ export const fear = {
   theme: {
     from: "#6b0455",
     to: "#3a022e",
-    track: "#6f576a",
+    track: "#8b7086",
   },
   position: {
     offsetX: -43,

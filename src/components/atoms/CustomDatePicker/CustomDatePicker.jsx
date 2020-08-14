@@ -1,26 +1,31 @@
-import React from 'react';
+import React from "react";
 import { DatePicker } from "antd";
 import PropTypes from "prop-types";
 import "./_style.scss";
 
-const CustomDatePicker = ({ actionTo, actionFrom }) => (
-  <>
-    <DatePicker
-      onChange={actionTo}
-      placeholder="Desde"
-      className="datePicker"
-    />
-    <DatePicker
-      onChange={actionFrom}
-      placeholder="Hasta"
-      className="datePicker"
-    />
-  </>
-);
+const CustomDatePicker = ({ changeFromDate, changeToDate }) => {
+  const handleFromDateChange = (date, dateString) => changeFromDate(dateString);
+  const handleToDateChange = (date, dateString) => changeToDate(dateString);
+
+  return (
+    <>
+      <DatePicker
+        onChange={handleFromDateChange}
+        placeholder="Desde"
+        className="datePicker"
+      />
+      <DatePicker
+        onChange={handleToDateChange}
+        placeholder="Hasta"
+        className="datePicker"
+      />
+    </>
+  );
+};
 
 CustomDatePicker.propTypes = {
-  actionTo: PropTypes.func.isRequired,
-  actionFrom: PropTypes.func.isRequired,
+  changeFromDate: PropTypes.func.isRequired,
+  changeToDate: PropTypes.func.isRequired,
 };
 
 export default CustomDatePicker;

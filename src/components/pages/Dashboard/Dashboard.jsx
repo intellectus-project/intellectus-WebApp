@@ -1,44 +1,55 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./_style.scss";
 import { Button, Icon } from "antd";
-import { useState } from "react";
 import CustomDatePicker from "../../atoms/CustomDatePicker/CustomDatePicker";
 import CustomDropdown from "../../atoms/CustomDropdown/CustomDropdown";
-import { useEffect } from "react";
-import RingCharts from '../../molecules/RingCharts/RingCharts';
+import apiCalls from "../../../services/api-calls/all";
+
+import RingCharts from "../../molecules/RingCharts/RingCharts";
+
+const { getRingChartValues } = apiCalls();
 
 const Dashboard = () => {
   const [operators, setOperators] = useState();
   const [dateFrom, setDateFrom] = useState();
   const [dateTo, setDateTo] = useState();
-  const [operatorValue, setOperatorValue] = useState();
- 
+  const [operatorValue, setOperatorValue] = useState(1);
+  const [ringChartValues, setRingChartValues] = useState();
+
   useEffect(() => {
     // TODO: read operators and setOperators
   }, []);
 
-  const handleSearch = () => {
-    // TODO: call functions necessary to get charts and tables
+  const handleSearch = async () => {
+    const ringsQuery = { dateFrom, dateTo };
+    if (operatorValue) ringsQuery.operatorId = operatorValue;
+    const ringsValues = await getRingChartValues(ringsQuery);
+    setRingChartValues(ringsValues);
   };
+
   return (
     <div className="mainSectionContainer">
       <div className="titleSection">
         <h2>Dashboard</h2>
       </div>
       <div className="contentSectionContainer">
-        <CustomDatePicker actionTo={setDateTo} actionFrom={setDateFrom} />
+        <CustomDatePicker
+          changeFromDate={setDateFrom}
+          changeToDate={setDateTo}
+        />
         <CustomDropdown
           placeholder="Operador"
           action={setOperatorValue}
           content={operators}
         />
         <div className="searchContainer">
+          {/* TODO: make this button disabled if no dates are picked, and create a theme for that */}
           <Button onClick={handleSearch}>
             <Icon type="search" />
             <span>Buscar</span>
           </Button>
         </div>
-        <RingCharts/>
+        <RingCharts values={ringChartValues} />
       </div>
     </div>
   );
