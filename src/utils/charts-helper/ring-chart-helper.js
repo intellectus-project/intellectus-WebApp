@@ -1,10 +1,11 @@
 const fear = {
-  text: "Miedo",
-  id: "fear",
+  key: 'fear',
+  text: 'Miedo',
+  id: 'fear',
   theme: {
-    from: "#6b0455",
-    to: "#3a022e",
-    track: "#8b7086",
+    from: '#6b0455',
+    to: '#3a022e',
+    track: '#8b7086',
   },
   position: {
     offsetX: -43,
@@ -12,12 +13,13 @@ const fear = {
   },
 };
 const anguish = {
-  text: "Angustia",
-  id: "sadness",
+  key: 'sadness',
+  text: 'Angustia',
+  id: 'sadness',
   theme: {
-    from: "#eaec17",
-    to: "#a8a90f",
-    track: "#dde599",
+    from: '#eaec17',
+    to: '#a8a90f',
+    track: '#dde599',
   },
   position: {
     offsetX: 25,
@@ -25,21 +27,23 @@ const anguish = {
   },
 };
 const happiness = {
-  text: "Felicidad",
-  id: "happiness",
-  theme: { from: "#43db06", to: "#31900b", track: "#9ce599" },
+  key: 'happiness',
+  text: 'Felicidad',
+  id: 'happiness',
+  theme: { from: '#43db06', to: '#31900b', track: '#9ce599' },
   position: {
     offsetX: -25,
     offsetY: 0,
   },
 };
 const anger = {
-  text: "Enojo",
-  id: "anger",
+  key: 'anger',
+  text: 'Enojo',
+  id: 'anger',
   theme: {
-    from: "#ee4217",
-    to: "#b0300f",
-    track: "#e599a1",
+    from: '#ee4217',
+    to: '#b0300f',
+    track: '#e599a1',
   },
   position: {
     offsetX: 43,
@@ -47,12 +51,13 @@ const anger = {
   },
 };
 const neutrality = {
-  text: "Neutralidad",
-  id: "neutrality",
+  key: 'neutrality',
+  text: 'Neutralidad',
+  id: 'neutrality',
   theme: {
-    from: "#0f87d0",
-    to: "#0e5683",
-    track: "#99c8e5",
+    from: '#0f87d0',
+    to: '#0e5683',
+    track: '#99c8e5',
   },
   position: { offsetX: 0, offsetY: -25 },
 };
