@@ -1,5 +1,6 @@
-export const fear = {
+const fear = {
   text: "Miedo",
+  id: "fear",
   theme: {
     from: "#6b0455",
     to: "#3a022e",
@@ -10,8 +11,9 @@ export const fear = {
     offsetY: -25,
   },
 };
-export const anguish = {
+const anguish = {
   text: "Angustia",
+  id: "sadness",
   theme: {
     from: "#eaec17",
     to: "#a8a90f",
@@ -22,16 +24,18 @@ export const anguish = {
     offsetY: 0,
   },
 };
-export const happiness = {
+const happiness = {
   text: "Felicidad",
+  id: "happiness",
   theme: { from: "#43db06", to: "#31900b", track: "#9ce599" },
   position: {
     offsetX: -25,
     offsetY: 0,
   },
 };
-export const anger = {
+const anger = {
   text: "Enojo",
+  id: "anger",
   theme: {
     from: "#ee4217",
     to: "#b0300f",
@@ -42,8 +46,9 @@ export const anger = {
     offsetY: -25,
   },
 };
-export const neutral = {
+const neutrality = {
   text: "Neutralidad",
+  id: "neutrality",
   theme: {
     from: "#0f87d0",
     to: "#0e5683",
@@ -51,3 +56,6 @@ export const neutral = {
   },
   position: { offsetX: 0, offsetY: -25 },
 };
+
+export const upTermRings = [anguish, happiness];
+export const downTermRings = [anger, neutrality, fear];

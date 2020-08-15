@@ -1,8 +1,8 @@
 import React from "react";
 import Chart from "react-apexcharts";
 
-const CustomRingChart = ({ id, emotionProps, percentage }) => {
-  const { text, position, theme } = emotionProps;
+const CustomRingChart = ({ emotionProps, percentage }) => {
+  const { text, position, theme, id } = emotionProps;
   const { offsetY, offsetX } = position;
   const series = [percentage];
   const options = {

@@ -1,20 +1,20 @@
-import React, { useState, useContext } from "react";
-import { Menu, Icon, message } from "antd";
-import "./_style.scss";
-import PropTypes from "prop-types";
-import { UserContext } from "../../../services/providers/user-context";
-import { compare } from "../../../utils/func-helpers";
-import { LOGIN_URL } from "../../../utils/constants";
-import { useRedirect } from "../../Router/redirect";
-import { processedErrorMessage } from "../../../services/api-calls/helpers";
-import apiCalls from "../../../services/api-calls/all";
+import React, { useState, useContext } from 'react';
+import { Menu, Icon, message } from 'antd';
+import './_style.scss';
+import PropTypes from 'prop-types';
+import { UserContext } from '../../../services/providers/user-context';
+import { compare } from '../../../utils/func-helpers';
+import { LOGIN_URL } from '../../../utils/constants';
+import { useRedirect } from '../../Router/redirect';
+import { processedErrorMessage } from '../../../services/api-calls/helpers';
+import apiCalls from '../../../services/api-calls/all';
 
 const { logoutRequest } = apiCalls();
 
 const { SubMenu } = Menu;
 
 const Navbar = ({ navbarEntries }) => {
-  const [current, setCurrent] = useState("");
+  const [current, setCurrent] = useState('');
   const { setUser } = useContext(UserContext);
   const { redirect, setUrlToRedirect } = useRedirect();
 
@@ -36,7 +36,7 @@ const Navbar = ({ navbarEntries }) => {
 
   const menuItemsRenderer = (items) =>
     items
-      .sort((a, b) => compare(a, b, "order"))
+      .sort((a, b) => compare(a, b, 'order'))
       .map((item) => (
         <Menu.Item key={item.key}>
           <button onClick={() => itemClick(item.url)}>
@@ -47,7 +47,7 @@ const Navbar = ({ navbarEntries }) => {
       ));
 
   const menuItems = navbarEntries
-    .sort((a, b) => compare(a, b, "order"))
+    .sort((a, b) => compare(a, b, 'order'))
     .map((entry) =>
       entry.items ? (
         <SubMenu
@@ -75,7 +75,7 @@ const Navbar = ({ navbarEntries }) => {
         onClick={({ key }) => setCurrent(key)}
         selectedKeys={[current]}
         mode="horizontal"
-        className={"ulMain"}
+        className={'ulMain'}
       >
         {menuItems}
       </Menu>

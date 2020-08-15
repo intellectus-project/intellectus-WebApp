@@ -1,49 +1,17 @@
-import React from "react";
-import CustomRingChart from "../../atoms/CustomRingChart/CustomRingChart";
-import "./_style.scss";
-import {
-  fear,
-  anguish,
-  happiness,
-  neutral,
-  anger,
-} from "../../../utils/charts-helper/ring-chart-helper";
+import React from 'react';
+import CustomRingChart from '../../atoms/CustomRingChart/CustomRingChart';
+import './_style.scss';
+import { upTermRings, downTermRings } from '../../../utils/charts-helper/ring-chart-helper';
 
 const RingCharts = ({ values }) => {
-  const {
-    sadness: sadnessPerc,
-    happiness: happinessPerc,
-    fear: fearPerc,
-    neutrality: neutralPerc,
-    anger: angerPerc,
-  } = values;
+  const createRings = (rings) =>
+    rings.map((emotion) => (
+      <CustomRingChart emotionProps={emotion} percentage={values[emotion.id]} />
+    ));
   return (
     <div className="ringsContainer">
-      <div className="UpTerm">
-        <CustomRingChart
-          id="anguish"
-          emotionProps={anguish}
-          percentage={sadnessPerc}
-        />
-        <CustomRingChart
-          id="happiness"
-          emotionProps={happiness}
-          percentage={happinessPerc}
-        />
-      </div>
-      <div className="DownTerm">
-        <CustomRingChart
-          id="anger"
-          emotionProps={anger}
-          percentage={angerPerc}
-        />
-        <CustomRingChart
-          id="neutral"
-          emotionProps={neutral}
-          percentage={neutralPerc}
-        />
-        <CustomRingChart id="fear" emotionProps={fear} percentage={fearPerc} />
-      </div>
+      <div className="UpTerm">{createRings(upTermRings)}</div>
+      <div className="DownTerm">{createRings(downTermRings)}</div>
     </div>
   );
 };
