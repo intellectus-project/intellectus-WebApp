@@ -13,7 +13,7 @@ const Dashboard = () => {
   const [operators, setOperators] = useState();
   const [dateFrom, setDateFrom] = useState();
   const [dateTo, setDateTo] = useState();
-  const [operatorValue, setOperatorValue] = useState(1);
+  const [operatorValue, setOperatorValue] = useState();
   const [ringChartValues, setRingChartValues] = useState();
 
   useEffect(() => {
