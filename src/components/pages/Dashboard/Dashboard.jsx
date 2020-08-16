@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from "react";
-import "./_style.scss";
-import { Button, Icon } from "antd";
-import CustomDatePicker from "../../atoms/CustomDatePicker/CustomDatePicker";
-import CustomDropdown from "../../atoms/CustomDropdown/CustomDropdown";
-import apiCalls from "../../../services/api-calls/all";
-
-import RingCharts from "../../molecules/RingCharts/RingCharts";
+import React, { useState, useEffect } from 'react';
+import './_style.scss';
+import { Button, Icon } from 'antd';
+import CustomDatePicker from '../../atoms/CustomDatePicker/CustomDatePicker';
+import CustomDropdown from '../../atoms/CustomDropdown/CustomDropdown';
+import apiCalls from '../../../services/api-calls/all';
+import NewEventsTable from '../../molecules/NewEventsTable/NewEventsTable';
+import RingCharts from '../../molecules/RingCharts/RingCharts';
 
 const { getRingChartValues } = apiCalls();
 
@@ -34,15 +34,8 @@ const Dashboard = () => {
         <h2>Dashboard</h2>
       </div>
       <div className="contentSectionContainer">
-        <CustomDatePicker
-          changeFromDate={setDateFrom}
-          changeToDate={setDateTo}
-        />
-        <CustomDropdown
-          placeholder="Operador"
-          action={setOperatorValue}
-          content={operators}
-        />
+        <CustomDatePicker changeFromDate={setDateFrom} changeToDate={setDateTo} />
+        <CustomDropdown placeholder="Operador" action={setOperatorValue} content={operators} />
         <div className="searchContainer">
           {/* TODO: make this button disabled if no dates are picked, and create a theme for that */}
           <Button onClick={handleSearch}>
@@ -51,6 +44,7 @@ const Dashboard = () => {
           </Button>
         </div>
         <RingCharts values={ringChartValues} />
+        <NewEventsTable />
       </div>
     </div>
   );
