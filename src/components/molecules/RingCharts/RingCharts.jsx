@@ -25,7 +25,7 @@ RingCharts.defaultProps = {
     fear: 0,
     neutrality: 0,
     anger: 0,
-  },
+  }
 };
 
 export default RingCharts;

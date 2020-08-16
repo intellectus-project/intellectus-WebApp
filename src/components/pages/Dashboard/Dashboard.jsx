@@ -24,6 +24,7 @@ const Dashboard = () => {
     const ringsQuery = { dateFrom, dateTo };
     if (operatorValue) ringsQuery.operatorId = operatorValue;
     const ringsValues = await getRingChartValues(ringsQuery);
+    Object.keys(ringsValues).forEach(k => (ringsValues[k] = (ringsValues[k] * 100).toFixed(2)));
     setRingChartValues(ringsValues);
   };
 
