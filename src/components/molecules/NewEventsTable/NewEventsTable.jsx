@@ -3,6 +3,7 @@ import { Table, Icon, Tooltip } from 'antd';
 import './_style.scss';
 
 const NewEventsTable = data => {
+  const pageSize = 10;
   const dataSource = [
     {
       title: 'Escándalo en España: un audio y piden seis ascensos - Olé',
@@ -94,6 +95,7 @@ const NewEventsTable = data => {
         bordered
         dataSource={dataSource}
         columns={columns}
+        pagination={{ pageSize }}
       />
     </div>
   );
