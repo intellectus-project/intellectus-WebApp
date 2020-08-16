@@ -13,7 +13,7 @@ const CustomDropdown = ({ placeholder, content, action, style }) => {
 
 CustomDropdown.propTypes = {
   placeholder: PropTypes.string.isRequired,
-  content: PropTypes.array.isRequired,
+  content: PropTypes.array,
   action: PropTypes.func.isRequired,
   style: PropTypes.object,
 };

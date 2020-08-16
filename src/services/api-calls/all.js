@@ -1,17 +1,12 @@
-import client from './http-client';
-import auth from './auth.api-calls';
-import user from './user.api-calls';
+import client from "./http-client";
+import auth from "./auth.api-calls";
+import user from "./user.api-calls";
+import reports from "./reports.api-calls";
 
 const defaultClient = client({});
 
-export default () =>
-  process.env.REACT_APP_CUSTOM_ENV === 'mocked'
-    ? {
-
-    }
-    : {
-      ...auth(defaultClient),
-      ...user(defaultClient)
-    };
-
-
+export default () => ({
+  ...auth(defaultClient),
+  ...user(defaultClient),
+  ...reports(defaultClient)
+});
