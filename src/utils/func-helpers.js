@@ -68,6 +68,6 @@ export const getNameFromUrl = url => {
   return url.substring(url.lastIndexOf('/') + 1).split(/\#|\?/)[0];
 };
 
-export const formatDate = date => moment(date, 'YYYY-MM-DD').format('DD-MM-YYYY');
+export const formatDate = date => moment(date, 'YYYY-MM-DD').format('DD/MM/YYYY');
 
 export const isNowOlderThan = date => moment() < moment(date);
