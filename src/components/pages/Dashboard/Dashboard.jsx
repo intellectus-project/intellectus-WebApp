@@ -1,13 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import './_style.scss';
 import { Button, Icon } from 'antd';
+import moment from 'moment';
 import CustomDatePicker from '../../atoms/CustomDatePicker/CustomDatePicker';
 import CustomDropdown from '../../atoms/CustomDropdown/CustomDropdown';
 import apiCalls from '../../../services/api-calls/all';
 import NewsEventsTable from '../../molecules/NewsEventsTable/NewsEventsTable';
 import RingCharts from '../../molecules/RingCharts/RingCharts';
 
-const { getRingChartValues, getNewEvents } = apiCalls();
+const { getRingChartValues, getNewEvents, getOperators } = apiCalls();
+
+const dateFormat = 'YYYY-MM-DD';
 
 const Dashboard = () => {
   const [operators, setOperators] = useState();
@@ -18,14 +21,18 @@ const Dashboard = () => {
   const [newsEvents, setNewsEvents] = useState([]);
 
   useEffect(() => {
-    // TODO: read operators and setOperators
+    const loadPage = async () => {
+      const operatorsList = await getOperators();
+      setOperators(operatorsList);
+      setDateFrom(moment.now().format(dateFormat));
+      setDateTo(moment.now().format(dateFormat));
+    };
+    loadPage();
   }, []);
 
   const handleSearch = async () => {
     const query = { dateFrom, dateTo };
-    const ringsValues = await getRingChartValues(
-      operatorId ? { ...query, operatorId } : query
-    );
+    const ringsValues = await getRingChartValues(operatorId ? { ...query, operatorId } : query);
     Object.keys(ringsValues).forEach(k => (ringsValues[k] = (ringsValues[k] * 100).toFixed(2)));
     setRingChartValues(ringsValues);
     const newsEventsValues = await getNewEvents(query);
