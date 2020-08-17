@@ -13,11 +13,7 @@ const Dashboard = () => {
   const [operators, setOperators] = useState();
   const [dateFrom, setDateFrom] = useState();
   const [dateTo, setDateTo] = useState();
-<<<<<<< HEAD
-  const [operatorValue, setOperatorValue] = useState();
-=======
-  const [operatorId, setOperatorId] = useState(1);
->>>>>>> 61125b3... feat: adding integration with backend and formate dates
+  const [operatorId, setOperatorId] = useState();
   const [ringChartValues, setRingChartValues] = useState();
   const [newsEvents, setNewsEvents] = useState([]);
 
@@ -26,17 +22,11 @@ const Dashboard = () => {
   }, []);
 
   const handleSearch = async () => {
-<<<<<<< HEAD
-    const ringsQuery = { dateFrom, dateTo };
-    if (operatorValue) ringsQuery.operatorId = operatorValue;
-    const ringsValues = await getRingChartValues(ringsQuery);
-    Object.keys(ringsValues).forEach(k => (ringsValues[k] = (ringsValues[k] * 100).toFixed(2)));
-=======
     const query = { dateFrom, dateTo };
     const ringsValues = await getRingChartValues(
       operatorId ? { ...query, operatorId } : query
     );
->>>>>>> 61125b3... feat: adding integration with backend and formate dates
+    Object.keys(ringsValues).forEach(k => (ringsValues[k] = (ringsValues[k] * 100).toFixed(2)));
     setRingChartValues(ringsValues);
     const newsEventsValues = await getNewEvents(query);
     setNewsEvents(newsEventsValues);
