@@ -4,14 +4,14 @@ const createUserRequest = makePostRequest => data => makePostRequest('users', da
 
 const findAll = makeGetRequest => () => makeGetRequest('users');
 
-const findAllUser = makeGetRequest => searchCriteria => makeGetRequest('users/filters', { searchCriteria });
+const findAllUser = makeGetRequest => searchCriteria =>
+  makeGetRequest('users/filters', { searchCriteria });
 
-const findAllUsersPaginated = makeGetRequest => (searchCriteria, page, size, filters) => makeGetRequest('users/filters', { searchCriteria, page, size, ...filters });
+const findAllUsersPaginated = makeGetRequest => (searchCriteria, page, size, filters) =>
+  makeGetRequest('users/filters', { searchCriteria, page, size, ...filters });
 
-const createUser = makePostRequest => data => {
-  console.log('data ',data);
-  makePostRequest('users', data);
-}
+const createUser = makePostRequest => data => makePostRequest('users', data);
+
 const disableUser = makeGetRequest => id => makeGetRequest(`users/disable/${id}`);
 
 const enableUser = makeGetRequest => id => makeGetRequest(`users/enable/${id}`);
@@ -21,6 +21,8 @@ const getUserById = makeGetRequest => id => makeGetRequest(`users/${id}`);
 const updateUserById = makePatchRequest => (id, data) => makePatchRequest(`users/${id}`, data);
 
 const findAllRoles = makeGetRequest => () => makeGetRequest('roles');
+
+const getOperators = makeGetRequest => () => makeGetRequest('/users/operators');
 
 export default client => {
   const { makePostRequest, makeGetRequest, makePatchRequest } = helpers(client);
@@ -34,6 +36,7 @@ export default client => {
     enableUser: enableUser(makeGetRequest),
     getUserById: getUserById(makeGetRequest),
     updateUserById: updateUserById(makePatchRequest),
-    findAllRoles: findAllRoles(makeGetRequest)
+    findAllRoles: findAllRoles(makeGetRequest),
+    getOperators: getOperators(makeGetRequest)
   };
 };

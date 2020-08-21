@@ -1,31 +1,29 @@
-import React from "react";
-import { DatePicker } from "antd";
-import PropTypes from "prop-types";
-import "./_style.scss";
+import React from 'react';
+import moment from 'moment';
+import { DatePicker } from 'antd';
+import PropTypes from 'prop-types';
+import { isNowOlderThan } from '../../../utils/func-helpers';
 
-const CustomDatePicker = ({ changeFromDate, changeToDate }) => {
-  const handleFromDateChange = (date, dateString) => changeFromDate(dateString);
-  const handleToDateChange = (date, dateString) => changeToDate(dateString);
-
+const CustomDatePicker = ({ action, placeholder, theme }) => {
+  const handleChange = (date, dateString) => action(dateString);
+  const dateFormat = 'DD/MM/YYYY';
+  const now = moment();
   return (
-    <>
-      <DatePicker
-        onChange={handleFromDateChange}
-        placeholder="Desde"
-        className="datePicker"
-      />
-      <DatePicker
-        onChange={handleToDateChange}
-        placeholder="Hasta"
-        className="datePicker"
-      />
-    </>
+    <DatePicker
+      onChange={handleChange}
+      defaultValue={now}
+      placeholder={placeholder}
+      className={theme}
+      format={dateFormat}
+      disabledDate={date => isNowOlderThan(date)}
+    />
   );
 };
 
 CustomDatePicker.propTypes = {
-  changeFromDate: PropTypes.func.isRequired,
-  changeToDate: PropTypes.func.isRequired,
+  action: PropTypes.func.isRequired,
+  placeholder: PropTypes.string.isRequired,
+  theme: PropTypes.string
 };
 
 export default CustomDatePicker;
