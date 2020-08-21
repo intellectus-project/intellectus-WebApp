@@ -3,13 +3,14 @@ import { Select } from 'antd';
 import PropTypes from 'prop-types';
 
 const CustomDropdown = ({ placeholder, content, action, style }) => {
-  // TODO: parse content to Select.Option
   return (
-    <Select placeholder={placeholder} style={style} onChange={action}>
-      {content.map((c, index) => (
-        <Select.Option key={index}>{c}</Select.Option>
-      ))}
-    </Select>
+    <>
+      <Select placeholder={placeholder} style={style} onChange={action} allowClear>
+        {content.map(c => (
+          <Select.Option key={c.id}>{`${c.name} ${c.lastName}`}</Select.Option>
+        ))}
+      </Select>
+    </>
   );
 };
 
@@ -21,7 +22,7 @@ CustomDropdown.propTypes = {
 };
 
 CustomDropdown.defaultProps = {
-  style: { width: 120 }
+  style: { width: 150 }
 };
 
 export default CustomDropdown;

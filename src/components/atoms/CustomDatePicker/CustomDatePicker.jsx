@@ -2,40 +2,28 @@ import React from 'react';
 import moment from 'moment';
 import { DatePicker } from 'antd';
 import PropTypes from 'prop-types';
-import './_style.scss';
 import { isNowOlderThan } from '../../../utils/func-helpers';
 
-const CustomDatePicker = ({ changeFromDate, changeToDate }) => {
-  const handleFromDateChange = (date, dateString) => changeFromDate(dateString);
-  const handleToDateChange = (date, dateString) => changeToDate(dateString);
+const CustomDatePicker = ({ action, placeholder, theme }) => {
+  const handleChange = (date, dateString) => action(dateString);
   const dateFormat = 'DD/MM/YYYY';
   const now = moment();
-  // TODO: modularize more this component
   return (
-    <>
-      <DatePicker
-        onChange={handleFromDateChange}
-        defaultValue={now}
-        placeholder="Desde"
-        className="datePicker"
-        format={dateFormat}
-        disabledDate={date => isNowOlderThan(date)}
-      />
-      <DatePicker
-        onChange={handleToDateChange}
-        defaultValue={moment()}
-        placeholder="Hasta"
-        className="datePicker"
-        format={dateFormat}
-        disabledDate={date => isNowOlderThan(date)}
-      />
-    </>
+    <DatePicker
+      onChange={handleChange}
+      defaultValue={now}
+      placeholder={placeholder}
+      className={theme}
+      format={dateFormat}
+      disabledDate={date => isNowOlderThan(date)}
+    />
   );
 };
 
 CustomDatePicker.propTypes = {
-  changeFromDate: PropTypes.func.isRequired,
-  changeToDate: PropTypes.func.isRequired
+  action: PropTypes.func.isRequired,
+  placeholder: PropTypes.string.isRequired,
+  theme: PropTypes.string
 };
 
 export default CustomDatePicker;

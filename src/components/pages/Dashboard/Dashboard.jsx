@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './_style.scss';
 import { Button, Icon } from 'antd';
 import moment from 'moment';
-import CustomDatePicker from '../../atoms/CustomDatePicker/CustomDatePicker';
+import HomeDatePickers from '../../molecules/HomeDatePickers/HomeDatePickers';
 import CustomDropdown from '../../atoms/CustomDropdown/CustomDropdown';
 import apiCalls from '../../../services/api-calls/all';
 import NewsEventsTable from '../../molecules/NewsEventsTable/NewsEventsTable';
@@ -13,7 +13,7 @@ const { getRingChartValues, getNewEvents, getOperators } = apiCalls();
 const dateFormat = 'YYYY-MM-DD';
 
 const Dashboard = () => {
-  const [operators, setOperators] = useState();
+  const [operators, setOperators] = useState([]);
   const [dateFrom, setDateFrom] = useState();
   const [dateTo, setDateTo] = useState();
   const [operatorId, setOperatorId] = useState();
@@ -24,8 +24,9 @@ const Dashboard = () => {
     const loadPage = async () => {
       const operatorsList = await getOperators();
       setOperators(operatorsList);
-      setDateFrom(moment.now().format(dateFormat));
-      setDateTo(moment.now().format(dateFormat));
+      const actualDate = moment().format(dateFormat);
+      setDateFrom(actualDate);
+      setDateTo(actualDate);
     };
     loadPage();
   }, []);
@@ -45,11 +46,15 @@ const Dashboard = () => {
         <h2>Dashboard</h2>
       </div>
       <div className="contentSectionContainer">
-        <CustomDatePicker changeFromDate={setDateFrom} changeToDate={setDateTo} />
+        <HomeDatePickers changeFromDate={setDateFrom} changeToDate={setDateTo} />
         <CustomDropdown placeholder="Operador" action={setOperatorId} content={operators} />
         <div className="searchContainer">
-          {/* TODO: make this button disabled if no dates are picked, and create a theme for that */}
-          <Button onClick={handleSearch}>
+          <Button
+            size="medium"
+            shape="round"
+            onClick={handleSearch}
+            disabled={!dateTo || !dateFrom}
+          >
             <Icon type="search" />
             <span>Buscar</span>
           </Button>

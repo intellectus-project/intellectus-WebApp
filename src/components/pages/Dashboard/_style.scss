@@ -1,19 +1,30 @@
-@import "../../../css/general_styling";
+@import '../../../css/general_styling';
 
 .titleSection {
   text-align: center;
 }
-.ant-btn.ant-btn {
-  padding: 0 10px;
-}
+
 .searchContainer {
+  margin: 1em 0 0 0;
   button {
     background: #344086;
   }
+  button:hover {
+    background-color: #6977c5;
+  }
+  button:visited {
+    background-color: #6977c5;
+  }
+  button:focus {
+    background-color: #6977c5;
+  }
+  button::after {
+    background-color: #6977c5;
+  }
+
   span {
     color: white;
   }
-  float: right;
 }
 .contentSectionContainer {
   margin-top: 2em;
