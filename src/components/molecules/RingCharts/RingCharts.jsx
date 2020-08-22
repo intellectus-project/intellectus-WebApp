@@ -6,7 +6,7 @@ import { upTermRings, downTermRings } from '../../../utils/charts-helper/ring-ch
 const RingCharts = ({ values }) => {
   const createRings = (rings) =>
     rings.map((emotion) => (
-      <CustomRingChart key={emotion.key} emotionProps={emotion} percentage={values[emotion.id]} />
+      <CustomRingChart key={emotion.id} emotionProps={emotion} percentage={values[emotion.id]} />
     ));
   return (
     <div className="ringsContainer">

@@ -1,5 +1,4 @@
 const fear = {
-  key: 'fear',
   text: 'Miedo',
   id: 'fear',
   theme: {
@@ -13,7 +12,6 @@ const fear = {
   },
 };
 const anguish = {
-  key: 'sadness',
   text: 'Angustia',
   id: 'sadness',
   theme: {
@@ -27,7 +25,6 @@ const anguish = {
   },
 };
 const happiness = {
-  key: 'happiness',
   text: 'Felicidad',
   id: 'happiness',
   theme: { from: '#43db06', to: '#31900b', track: '#9ce599' },
@@ -37,7 +34,6 @@ const happiness = {
   },
 };
 const anger = {
-  key: 'anger',
   text: 'Enojo',
   id: 'anger',
   theme: {
@@ -51,7 +47,6 @@ const anger = {
   },
 };
 const neutrality = {
-  key: 'neutrality',
   text: 'Neutralidad',
   id: 'neutrality',
   theme: {
