@@ -4,9 +4,17 @@ import './_style.scss';
 import { upTermRings, downTermRings } from '../../../utils/charts-helper/ring-chart-helper';
 
 const RingCharts = ({ values }) => {
-  const createRings = (rings) =>
-    rings.map((emotion) => (
-      <CustomRingChart key={emotion.key} emotionProps={emotion} percentage={values[emotion.id]} />
+  const formattedValues = values;
+  Object.keys(formattedValues).forEach(
+    k => (formattedValues[k] = Math.round(formattedValues[k] * 100))
+  );
+  const createRings = rings =>
+    rings.map(emotion => (
+      <CustomRingChart
+        key={emotion.id}
+        emotionProps={emotion}
+        percentage={formattedValues[emotion.id]}
+      />
     ));
   return (
     <div className="ringsContainer">
@@ -16,15 +24,13 @@ const RingCharts = ({ values }) => {
   );
 };
 
-// TODO: this will change when we define which data will be shown as default,
-// it should be a range of time like last 15 days
 RingCharts.defaultProps = {
   values: {
     sadness: 0,
     happiness: 0,
     fear: 0,
     neutrality: 0,
-    anger: 0,
+    anger: 0
   }
 };
 
