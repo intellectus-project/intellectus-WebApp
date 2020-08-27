@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './_style.scss';
-import { Button, Icon } from 'antd';
+import { message, Button, Icon } from 'antd';
 import moment from 'moment';
 import HomeDatePickers from '../../molecules/HomeDatePickers/HomeDatePickers';
 import CustomDropdown from '../../atoms/CustomDropdown/CustomDropdown';
@@ -22,41 +22,40 @@ const Dashboard = () => {
   const [barChartValues, setBarChartValues] = useState([]);
   const [newsEvents, setNewsEvents] = useState([]);
 
+  const bringPageData = async (dateFrom, dateTo) => {
+    const query = { dateFrom, dateTo };
+    const chartsQuery = operatorId ? { ...query, operatorId } : query;
+    const ringsValues = await getRingChartValues(chartsQuery);
+    setRingChartValues(ringsValues);
+    const barChartData = await getBarChartValues(chartsQuery);
+    setBarChartValues(barChartData);
+    const newsEventsValues = await getNewEvents(query);
+    setNewsEvents(newsEventsValues);
+  };
+
   useEffect(() => {
     const loadPage = async () => {
       try {
-        // FIXME: abstraer esta logica a una funcion asi se llama en el loader y en el handleSearch
         const operatorsList = await getOperators();
         setOperators(operatorsList);
         const actualDate = moment().format(dateFormat);
         setDateFrom(actualDate);
         setDateTo(actualDate);
-        const query = { dateFrom: actualDate, dateTo: actualDate };
-        const ringsValues = await getRingChartValues(operatorId ? { ...query, operatorId } : query);
-        // FIXME: move this formatting into ringChart component
-        Object.keys(ringsValues).forEach(k => (ringsValues[k] = Math.round(ringsValues[k] * 100)));
-        setRingChartValues(ringsValues);
-        const barChartData = await getBarChartValues(operatorId ? { ...query, operatorId } : query);
-        setBarChartValues(barChartData);
-        const newsEventsValues = await getNewEvents(query);
-        setNewsEvents(newsEventsValues);
+        await bringPageData(actualDate, actualDate);
+        throw 'error';
       } catch (error) {
-        // TODO: mostrar un toggle con error generico
+        message.error('Hubo un error, por favor contacte con el administrador');
       }
     };
     loadPage();
   }, []);
 
   const handleSearch = async () => {
-    const query = { dateFrom, dateTo };
-    const ringsValues = await getRingChartValues(operatorId ? { ...query, operatorId } : query);
-    // FIXME: move this formatting into ringChart component
-    Object.keys(ringsValues).forEach(k => (ringsValues[k] = (ringsValues[k] * 100).toFixed(2)));
-    setRingChartValues(ringsValues);
-    const barChartData = await getBarChartValues(operatorId ? { ...query, operatorId } : query);
-    setBarChartValues(barChartData);
-    const newsEventsValues = await getNewEvents(query);
-    setNewsEvents(newsEventsValues);
+    try {
+      await bringPageData(dateFrom, dateTo);
+    } catch (error) {
+      message.error('Hubo un error, por favor contacte con el administrador');
+    }
   };
 
   return (
