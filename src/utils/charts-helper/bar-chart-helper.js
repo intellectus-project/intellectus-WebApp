@@ -1,5 +1,4 @@
-const getEmotionValue = (emotion, data) =>
-  data.map(d => (d.status[emotion] * 100).round().toFixed(2));
+const getEmotionValue = (emotion, data) => data.map(d => Math.round(d.stats[emotion] * 100));
 
 export const getEmotionValues = data => {
   const sadnessValues = getEmotionValue('sadness', data);

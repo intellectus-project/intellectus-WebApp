@@ -24,11 +24,25 @@ const Dashboard = () => {
 
   useEffect(() => {
     const loadPage = async () => {
-      const operatorsList = await getOperators();
-      setOperators(operatorsList);
-      const actualDate = moment().format(dateFormat);
-      setDateFrom(actualDate);
-      setDateTo(actualDate);
+      try {
+        // FIXME: abstraer esta logica a una funcion asi se llama en el loader y en el handleSearch
+        const operatorsList = await getOperators();
+        setOperators(operatorsList);
+        const actualDate = moment().format(dateFormat);
+        setDateFrom(actualDate);
+        setDateTo(actualDate);
+        const query = { dateFrom: actualDate, dateTo: actualDate };
+        const ringsValues = await getRingChartValues(operatorId ? { ...query, operatorId } : query);
+        // FIXME: move this formatting into ringChart component
+        Object.keys(ringsValues).forEach(k => (ringsValues[k] = Math.round(ringsValues[k] * 100)));
+        setRingChartValues(ringsValues);
+        const barChartData = await getBarChartValues(operatorId ? { ...query, operatorId } : query);
+        setBarChartValues(barChartData);
+        const newsEventsValues = await getNewEvents(query);
+        setNewsEvents(newsEventsValues);
+      } catch (error) {
+        // TODO: mostrar un toggle con error generico
+      }
     };
     loadPage();
   }, []);
@@ -58,7 +72,7 @@ const Dashboard = () => {
             size="medium"
             shape="round"
             onClick={handleSearch}
-            disabled={!dateTo || !dateFrom}
+            disabled={!dateTo && !dateFrom}
           >
             <Icon type="search" />
             <span>Buscar</span>
