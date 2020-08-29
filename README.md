@@ -11,3 +11,7 @@ npm install
 ```js
 npm start
 ```
+## Mocks
+```js
+npm run start:mocked
+```

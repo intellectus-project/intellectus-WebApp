@@ -4,16 +4,12 @@ import './_style.scss';
 import { upTermRings, downTermRings } from '../../../utils/charts-helper/ring-chart-helper';
 
 const RingCharts = ({ values }) => {
-  const formattedValues = values;
-  Object.keys(formattedValues).forEach(
-    k => (formattedValues[k] = Math.round(formattedValues[k] * 100))
-  );
   const createRings = rings =>
     rings.map(emotion => (
       <CustomRingChart
         key={emotion.id}
         emotionProps={emotion}
-        percentage={formattedValues[emotion.id]}
+        percentage={values[emotion.id]}
       />
     ));
   return (
