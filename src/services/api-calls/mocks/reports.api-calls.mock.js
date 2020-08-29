@@ -97,10 +97,50 @@ const getNewEvents = () => [
   }
 ];
 
+const getCalls = () => [
+  {
+    startTime: '2020-08-24T20:24:35.8787',
+    endTime: '2020-08-24T21:34:35.8787',
+    weather: {
+      description: 'nubes aisladas',
+      temperature: 17.02
+    },
+    shift: {
+      id: 1,
+      name: 'Mañana',
+      startHour: 0,
+      endHour: 8
+    },
+    operator: {
+      id: 6,
+      name: 'Lucas'
+    }
+  },
+  {
+    startTime: '2020-08-24T20:24:35.8787',
+    endTime: '2020-08-24T20:34:12.8787',
+    weather: {
+      description: 'nubes aisladas',
+      temperature: 17.02
+    },
+    shift: {
+      id: 1,
+      name: 'Mañana',
+      startHour: 0,
+      endHour: 8
+    },
+    operator: {
+      id: 6,
+      name: 'Lucas'
+    }
+  }
+];
+
 export default () => {
   return {
     getRingChartValues,
     getBarChartValues,
-    getNewEvents
+    getNewEvents,
+    getCalls
   };
 };

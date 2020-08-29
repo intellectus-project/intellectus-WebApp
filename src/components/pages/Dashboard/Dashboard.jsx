@@ -5,11 +5,12 @@ import moment from 'moment';
 import HomeDatePickers from '../../molecules/HomeDatePickers/HomeDatePickers';
 import CustomDropdown from '../../atoms/CustomDropdown/CustomDropdown';
 import apiCalls from '../../../services/api-calls/all';
+import PeriodCalls from '../../molecules/PeriodCalls/PeriodCalls';
 import NewsEventsTable from '../../molecules/NewsEventsTable/NewsEventsTable';
 import RingCharts from '../../molecules/RingCharts/RingCharts';
 import BarChart from '../../molecules/BarChart/BarChart';
 
-const { getRingChartValues, getBarChartValues, getNewEvents, getOperators } = apiCalls();
+const { getRingChartValues, getBarChartValues, getNewEvents, getOperators, getCalls } = apiCalls();
 
 const dateFormat = 'YYYY-MM-DD';
 
@@ -21,6 +22,7 @@ const Dashboard = () => {
   const [ringChartValues, setRingChartValues] = useState();
   const [barChartValues, setBarChartValues] = useState([]);
   const [newsEvents, setNewsEvents] = useState([]);
+  const [calls, setCalls] = useState([]);
 
   const bringPageData = async (dateFrom, dateTo) => {
     const query = { dateFrom, dateTo };
@@ -31,6 +33,8 @@ const Dashboard = () => {
     setBarChartValues(barChartData);
     const newsEventsValues = await getNewEvents(query);
     setNewsEvents(newsEventsValues);
+    const periodCalls = await getCalls(query);
+    setCalls(periodCalls);
   };
 
   useEffect(() => {
@@ -79,6 +83,7 @@ const Dashboard = () => {
         </div>
         <RingCharts values={ringChartValues} />
         <BarChart data={barChartValues} />
+        <PeriodCalls calls={calls} />
         <NewsEventsTable newsEvents={newsEvents} />
       </div>
     </div>
