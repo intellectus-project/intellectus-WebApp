@@ -17,8 +17,8 @@ import {
   newPassword,
   confirmNewPassword
 } from '../../../utils/form_inputs/inputs-texts';
-
 import './_style.scss';
+import SelectBox from '../../molecules/SelectBox/select-box';
 
 
 const createUserInputs = [
@@ -27,7 +27,7 @@ const createUserInputs = [
   ...inputSetUserRole
 ];
 
-const { createUser } = apiCalls();
+const { createUser, getSupervisors } = apiCalls();
 
 const CreateUser = () => {
   const formReference = useRef(null);
@@ -35,6 +35,8 @@ const CreateUser = () => {
   const [selectedKey, setSelectedKey] = useState();
   const [formInputs, setFormInputs] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [supervisors, setSupervisors] = useState([]);
+  const [selectedSupervisor, setselectedSupervisor] = useState({});
 
   const compareToFirstPassword = (rule, value, callback) => {
     if (!formReference.current)
@@ -52,7 +54,21 @@ const CreateUser = () => {
       return input;
     });
     setFormInputs(processedCreateUserInputs);
+    fetchAllSupervisors();
+
   }, []);
+
+  const fetchAllSupervisors = async () => {
+    try {
+      const response = await getSupervisors();
+      let formattedResponse = [];
+      response.forEach( supervisor => formattedResponse.push({key: supervisor.id, name: supervisor.name }));
+      setSupervisors(formattedResponse);
+    } catch (error) {
+      const errorMessage = processedErrorMessage(error);
+      message.error(errorMessage);
+    }
+  };
 
   const handleSubmit = async values => {
     if (loading) return;
@@ -60,7 +76,6 @@ const CreateUser = () => {
     const processedValues = { ...values, selectedKey, username };
     setLoading(true);
     try {
-        console.log(processedValues);
       await createUser(processedValues);
       message.success('Usuario creado con exito');
       setUrlToRedirect(USERS_URL);
@@ -70,6 +85,10 @@ const CreateUser = () => {
     }
     setLoading(false);
   };
+
+  const handleSelectChange = data => {
+    console.log(data);
+  }
 
   return (
     <div className="mainSection">
@@ -90,6 +109,7 @@ const CreateUser = () => {
             submitTheme="ThemePrimary"
             submitButtonClass="buttonSection"
           />
+          <SelectBox inputs={supervisors} onChange={handleSelectChange} />
         </div>
       </div>
     </div>
