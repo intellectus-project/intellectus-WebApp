@@ -3,7 +3,7 @@ const getRingChartValues = () => ({
   happiness: 0.15000000000000002,
   fear: 0.85,
   neutrality: 0.45,
-  anger: 5.25,
+  anger: 0.25,
   numberOfStats: 4
 });
 const getBarChartValues = () => [
@@ -14,7 +14,37 @@ const getBarChartValues = () => [
       happiness: 0.2,
       fear: 0.8999999999999999,
       neutrality: 0.5,
-      anger: 5.5
+      anger: 0.5
+    }
+  },
+  {
+    date: '2020-08-10',
+    stats: {
+      sadness: 0.3,
+      happiness: 0.7,
+      fear: 0.133333,
+      neutrality: 0.3,
+      anger: 0.1
+    }
+  },
+  {
+    date: '2020-08-11',
+    stats: {
+      sadness: 0.4,
+      happiness: 0.02,
+      fear: 0.67,
+      neutrality: 0.3,
+      anger: 0.1
+    }
+  },
+  {
+    date: '2020-08-12',
+    stats: {
+      sadness: 0.1,
+      happiness: 0.1,
+      fear: 0.1,
+      neutrality: 0.3,
+      anger: 0.4
     }
   }
 ];

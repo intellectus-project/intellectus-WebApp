@@ -23,8 +23,8 @@ const Login = () => {
   const login = async values => {
     delete Object.assign(values, { username: values.email }).email;
     try {
-      const response = await loginRequest(values);
-      setUser(response.data);
+      const { data: logInData } = await loginRequest(values);
+      setUser(logInData);
     } catch (error) {
       const errorMessage = processedErrorMessage(error);
       setErrorMessage(errorMessage);
@@ -43,11 +43,7 @@ const Login = () => {
         <div className="formImg">
           <img src="img/logo.png" alt="formImg" />
         </div>
-        <AntForm
-          inputs={loginInputs}
-          handleSubmit={login}
-          submitText={'Entrar'}
-        />
+        <AntForm inputs={loginInputs} handleSubmit={login} submitText={'Entrar'} />
         {errorMessage && <div className="error">{errorMessage}</div>}
       </div>
     </div>
