@@ -10,22 +10,14 @@ import {
   inputSetUserRole
 } from '../../../utils/form_inputs/inputs-user';
 import { useRedirect } from '../../Router/redirect';
-import { USERS_URL } from '../../../utils/constants';
+import { USERS_URL, ROLE_OPERATOR } from '../../../utils/constants';
 import { processedErrorMessage } from '../../../services/api-calls/helpers';
-import {
-  type,
-  newPassword,
-  confirmNewPassword
-} from '../../../utils/form_inputs/inputs-texts';
+import { type, newPassword, confirmNewPassword } from '../../../utils/form_inputs/inputs-texts';
 import './_style.scss';
-import SelectBox from '../../molecules/SelectBox/select-box';
+import CustomDropdown from '../../atoms/CustomDropdown/CustomDropdown';
+import { isNullOrUndefined } from 'util';
 
-
-const createUserInputs = [
-  ...inputsUserDetails,
-  ...inputsSetUserPassword,
-  ...inputSetUserRole
-];
+const createUserInputs = [...inputsUserDetails, ...inputsSetUserPassword, ...inputSetUserRole];
 
 const { createUser, getSupervisors } = apiCalls();
 
@@ -36,11 +28,13 @@ const CreateUser = () => {
   const [formInputs, setFormInputs] = useState([]);
   const [loading, setLoading] = useState(false);
   const [supervisors, setSupervisors] = useState([]);
-  const [selectedSupervisor, setselectedSupervisor] = useState({});
+  const [supervisorId, setSupervisorId] = useState();
+  const [supervisorsVisible, setSupervisorsVisible] = useState(false);
+
+  const selectStyle = { width: 250 };
 
   const compareToFirstPassword = (rule, value, callback) => {
-    if (!formReference.current)
-      return callback();
+    if (!formReference.current) return callback();
     if (!value) value = '';
     const passwordMatch = value !== formReference.current.form.getFieldValue(newPassword.name);
     passwordMatch ? callback('The passwords do not match.') : callback();
@@ -55,15 +49,12 @@ const CreateUser = () => {
     });
     setFormInputs(processedCreateUserInputs);
     fetchAllSupervisors();
-
   }, []);
 
   const fetchAllSupervisors = async () => {
     try {
       const response = await getSupervisors();
-      let formattedResponse = [];
-      response.forEach( supervisor => formattedResponse.push({key: supervisor.id, name: supervisor.name }));
-      setSupervisors(formattedResponse);
+      setSupervisors(response);
     } catch (error) {
       const errorMessage = processedErrorMessage(error);
       message.error(errorMessage);
@@ -72,8 +63,13 @@ const CreateUser = () => {
 
   const handleSubmit = async values => {
     if (loading) return;
+    if (isNullOrUndefined(supervisorId) && values.role === ROLE_OPERATOR) {
+      message.warn('Tenes que seleccionar al menos un supervisor');
+      return;
+    }
     const username = values.email;
-    const processedValues = { ...values, selectedKey, username };
+    const processedValues = { ...values, selectedKey, username, supervisorId };
+    console.log('vals', processedValues);
     setLoading(true);
     try {
       await createUser(processedValues);
@@ -86,9 +82,12 @@ const CreateUser = () => {
     setLoading(false);
   };
 
-  const handleSelectChange = data => {
-    console.log(data);
-  }
+  const handleFormItemChange = data => {
+    if (!data.target.type === 'radio') return;
+    data.target.value === 'ROLE_OPERATOR'
+      ? setSupervisorsVisible(true)
+      : setSupervisorsVisible(false);
+  };
 
   return (
     <div className="mainSection">
@@ -108,8 +107,16 @@ const CreateUser = () => {
             submitText="Crear usuario"
             submitTheme="ThemePrimary"
             submitButtonClass="buttonSection"
+            handleChange={handleFormItemChange}
           />
-          <SelectBox inputs={supervisors} onChange={handleSelectChange} />
+          {supervisorsVisible && (
+            <CustomDropdown
+              style={selectStyle}
+              placeholder="Supervisors"
+              action={setSupervisorId}
+              content={supervisors}
+            />
+          )}
         </div>
       </div>
     </div>

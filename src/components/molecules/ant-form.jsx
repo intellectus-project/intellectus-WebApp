@@ -6,6 +6,7 @@ import { inputRenderer } from '../../utils/form-helper';
 
 const AntFormInputs = React.forwardRef((p, r) => {
   const {
+    handleChange,
     handleSubmit,
     handleErrorSubmit,
     inputs,
@@ -21,7 +22,7 @@ const AntFormInputs = React.forwardRef((p, r) => {
 
   const [submittedCount, setSubmittedCount] = useState(0);
 
-  const formItems = inputRenderer(inputs, form, submittedCount);
+  const formItems = inputRenderer(inputs, form, submittedCount, handleChange);
 
   const onSubmit = toSubmitData => {
     if (resetOnSubmit) form.resetFields();
