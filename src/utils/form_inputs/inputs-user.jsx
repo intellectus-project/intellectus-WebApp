@@ -108,7 +108,7 @@ export const inputSetUserRole = [
   {
     ...defaultInputProperties(role),
     component: 'Radio',
-    initialValue: 'ROLE_OPERATOR',
+    initialValue: 'ROLE_ADMIN',
     buttonStyle: 'solid',
     size: 'large',
     radioButtons: [

@@ -12,7 +12,7 @@ const AntComponentTranslator = {
   Slider,
 };
 
-export const inputRenderer = (inputs, form, submittedCount) => {
+export const inputRenderer = (inputs, form, submittedCount, onComponentChange) => {
   const { getFieldDecorator } = form;
   return inputs.map(({ formItem, ...input }) => {
     const {
@@ -82,6 +82,7 @@ export const inputRenderer = (inputs, form, submittedCount) => {
         >
           {getFieldDecorator(name, { rules, initialValue })(
             <AntComponent
+              onChange={onComponentChange}
               {...inputProperties}
               prefix={prefix()}
               addonBefore={prefixSelector()}
