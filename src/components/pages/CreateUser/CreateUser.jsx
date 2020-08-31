@@ -64,12 +64,10 @@ const CreateUser = () => {
   const handleSubmit = async values => {
     if (loading) return;
     if (isNullOrUndefined(supervisorId) && values.role === ROLE_OPERATOR) {
-      message.warn('Tenes que seleccionar al menos un supervisor');
-      return;
+      return message.warn('Tenes que seleccionar al menos un supervisor');
     }
     const username = values.email;
     const processedValues = { ...values, selectedKey, username, supervisorId };
-    console.log('vals', processedValues);
     setLoading(true);
     try {
       await createUser(processedValues);
