@@ -19,7 +19,7 @@ import { isNullOrUndefined } from 'util';
 
 const createUserInputs = [...inputsUserDetails, ...inputsSetUserPassword, ...inputSetUserRole];
 
-const { createUser, getSupervisors } = apiCalls();
+const { createUser, getSupervisors, getShifts } = apiCalls();
 
 const CreateUser = () => {
   const formReference = useRef(null);
@@ -29,6 +29,8 @@ const CreateUser = () => {
   const [loading, setLoading] = useState(false);
   const [supervisors, setSupervisors] = useState([]);
   const [supervisorId, setSupervisorId] = useState();
+  const [shifts, setShifts] = useState([]);
+  const [shiftId, setShiftId] = useState();
   const [supervisorsVisible, setSupervisorsVisible] = useState(false);
 
   const selectStyle = { width: 250 };
@@ -49,12 +51,24 @@ const CreateUser = () => {
     });
     setFormInputs(processedCreateUserInputs);
     fetchAllSupervisors();
+    fetchShifts();
   }, []);
 
   const fetchAllSupervisors = async () => {
     try {
       const response = await getSupervisors();
       setSupervisors(response);
+    } catch (error) {
+      const errorMessage = processedErrorMessage(error);
+      message.error(errorMessage);
+    }
+  };
+
+  const fetchShifts = async () => {
+    try {
+      const response = await getShifts();
+      console.log(response);
+      setShifts(response);
     } catch (error) {
       const errorMessage = processedErrorMessage(error);
       message.error(errorMessage);
@@ -107,13 +121,23 @@ const CreateUser = () => {
             submitButtonClass="buttonSection"
             handleChange={handleFormItemChange}
           />
+          <CustomDropdown
+            label="Turno"
+            style={selectStyle}
+            placeholder="Turno"
+            action={setShiftId}
+            content={shifts}
+          />
           {supervisorsVisible && (
-            <CustomDropdown
-              style={selectStyle}
-              placeholder="Supervisors"
-              action={setSupervisorId}
-              content={supervisors}
-            />
+            <div className="dropDownSupervisores">
+              <CustomDropdown
+                label="Supervisores"
+                style={selectStyle}
+                placeholder="Supervisores"
+                action={setSupervisorId}
+                content={supervisors}
+              />
+            </div>
           )}
         </div>
       </div>

@@ -26,6 +26,8 @@ const getOperators = makeGetRequest => () => makeGetRequest('/users/operators');
 
 const getSupervisors = makeGetRequest => () => makeGetRequest('/users/supervisors');
 
+const getShifts = makeGetRequest => () => makeGetRequest('/shifts');
+
 export default client => {
   const { makePostRequest, makeGetRequest, makePatchRequest } = helpers(client);
   return {
@@ -40,6 +42,7 @@ export default client => {
     updateUserById: updateUserById(makePatchRequest),
     findAllRoles: findAllRoles(makeGetRequest),
     getOperators: getOperators(makeGetRequest),
-    getSupervisors: getSupervisors(makeGetRequest)
+    getSupervisors: getSupervisors(makeGetRequest),
+    getShifts: getShifts(makeGetRequest)
   };
 };
