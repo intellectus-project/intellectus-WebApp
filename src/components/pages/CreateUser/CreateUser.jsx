@@ -67,7 +67,6 @@ const CreateUser = () => {
   const fetchShifts = async () => {
     try {
       const response = await getShifts();
-      console.log(response);
       setShifts(response);
     } catch (error) {
       const errorMessage = processedErrorMessage(error);
