@@ -6,11 +6,14 @@ const getBarChartValues = makeGetRequest => query => makeGetRequest('/reports/ba
 
 const getNewEvents = makeGetRequest => query => makeGetRequest('/newsEvents', query);
 
+const getCalls = makeGetRequest => query => makeGetRequest('/calls', query);
+
 export default client => {
   const { makeGetRequest } = helpers(client);
   return {
     getRingChartValues: getRingChartValues(makeGetRequest),
     getBarChartValues: getBarChartValues(makeGetRequest),
-    getNewEvents: getNewEvents(makeGetRequest)
+    getNewEvents: getNewEvents(makeGetRequest),
+    getCalls: getCalls(makeGetRequest)
   };
 };
