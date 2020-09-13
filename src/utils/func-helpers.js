@@ -83,3 +83,5 @@ export const formatCall = call => {
   formattedCall.duration = `${minutes} minutos ${seconds} segundos`;
   return formattedCall;
 };
+
+export const isValidDate = date => moment(date,'DD/MM/YYYY').isValid()

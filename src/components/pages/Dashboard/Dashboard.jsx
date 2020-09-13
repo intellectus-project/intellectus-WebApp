@@ -9,6 +9,7 @@ import PeriodCalls from '../../molecules/PeriodCalls/PeriodCalls';
 import NewsEventsTable from '../../molecules/NewsEventsTable/NewsEventsTable';
 import RingCharts from '../../molecules/RingCharts/RingCharts';
 import BarChart from '../../molecules/BarChart/BarChart';
+import DayModal from '../../molecules/DayModal/DayModal';
 
 const { getRingChartValues, getBarChartValues, getNewEvents, getOperators, getCalls } = apiCalls();
 
@@ -23,6 +24,8 @@ const Dashboard = () => {
   const [barChartValues, setBarChartValues] = useState([]);
   const [newsEvents, setNewsEvents] = useState([]);
   const [calls, setCalls] = useState([]);
+  const [dayValue, setDayValue] = useState();
+  const [showDayModal, setShowDayModal] = useState(false);
 
   const bringPageData = async (dateFrom, dateTo) => {
     const query = { dateFrom, dateTo };
@@ -46,7 +49,6 @@ const Dashboard = () => {
         setDateFrom(actualDate);
         setDateTo(actualDate);
         await bringPageData(actualDate, actualDate);
-        throw 'error';
       } catch (error) {
         message.error('Hubo un error, por favor contacte con el administrador');
       }
@@ -82,8 +84,13 @@ const Dashboard = () => {
           </Button>
         </div>
         <RingCharts values={ringChartValues} />
-        <BarChart data={barChartValues} />
+        <BarChart
+          data={barChartValues}
+          showDayModal={setShowDayModal}
+          setDayModalDate={setDayValue}
+        />
         <PeriodCalls calls={calls} />
+        <DayModal visible={showDayModal} setVisible={setShowDayModal} defaultValue={dayValue} />
         <NewsEventsTable newsEvents={newsEvents} />
       </div>
     </div>

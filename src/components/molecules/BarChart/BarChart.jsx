@@ -1,9 +1,9 @@
 import React from 'react';
 import Chart from 'react-apexcharts';
 import { getEmotionValues } from '../../../utils/charts-helper/bar-chart-helper';
-import { formatDate } from '../../../utils/func-helpers';
+import { formatDate, isValidDate } from '../../../utils/func-helpers';
 
-const BarChart = ({ data }) => {
+const BarChart = ({ data, setDayModalDate, showDayModal }) => {
   const xAxis = data.map(d => formatDate(d.date));
   const {
     sadnessValues,
@@ -40,11 +40,24 @@ const BarChart = ({ data }) => {
       type: 'bar',
       height: 350,
       stacked: true,
-      stackType: '100%'
+      stackType: '100%',
+      events: {
+        click: event => {
+          const clickedElement = document.getElementById(event.target.id);
+          const date = clickedElement && clickedElement.innerHTML;
+          if (isValidDate(date)) {
+            setDayModalDate(date);
+            showDayModal(true);
+          }
+        }
+      }
     },
     colors: ['#bfc119', '#307c11', '#5c0a4b', '#146494', '#ab3619'],
     xaxis: {
-      categories: xAxis
+      categories: xAxis,
+      labels: {
+        rotate: -45
+      }
     },
     fill: {
       opacity: 1
