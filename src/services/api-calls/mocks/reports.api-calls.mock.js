@@ -136,11 +136,20 @@ const getCalls = () => [
   }
 ];
 
+const getWeathersDay = () => ({
+  description: 'Llovizna ligera',
+  currentTemperature: 5.0,
+  minTemperature: 5.0,
+  maxTemperature: 19.0,
+  image: 'lluvia.png'
+});
+
 export default () => {
   return {
     getRingChartValues,
     getBarChartValues,
     getNewEvents,
-    getCalls
+    getCalls,
+    getWeathersDay
   };
 };

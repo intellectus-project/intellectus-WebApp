@@ -6,13 +6,13 @@ import { isNowOlderThan } from '../../../utils/func-helpers';
 
 const now = moment();
 
-const CustomDatePicker = ({ action, placeholder, theme, defaultDate }) => {
+const CustomDatePicker = ({ action, placeholder, theme, dateValue }) => {
   const handleChange = (date, dateString) => action(dateString);
   const dateFormat = 'DD/MM/YYYY';
   return (
     <DatePicker
       onChange={handleChange}
-      defaultValue={defaultDate}
+      value={dateValue}
       placeholder={placeholder}
       className={theme}
       format={dateFormat}
@@ -25,12 +25,12 @@ CustomDatePicker.propTypes = {
   action: PropTypes.func.isRequired,
   placeholder: PropTypes.string,
   theme: PropTypes.string,
-  defaultDate : PropTypes.object
+  dateValue: PropTypes.object
 };
 
-CustomDatePicker.defaultProps={
- placeholder: "Fecha",
- defaultValue: now
+CustomDatePicker.defaultProps = {
+  placeholder: 'Fecha',
+  dateValue: now
 };
 
 export default CustomDatePicker;

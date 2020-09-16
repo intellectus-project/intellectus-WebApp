@@ -72,7 +72,7 @@ export const getNameFromUrl = url => {
 
 export const formatDate = date => moment(date, 'YYYY-MM-DD').format(dateFormat);
 
-export const isNowOlderThan = date => moment() < moment(date);
+export const isNowOlderThan = date => moment() < moment(date, dateFormat);
 
 export const formatCall = call => {
   const formattedCall = {};
