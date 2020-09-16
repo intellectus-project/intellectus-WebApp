@@ -13,7 +13,7 @@ const DayModal = ({ defaultValue, visible, setVisible }) => {
   const [news, setNews] = useState([]);
   const [weathersDay, setWeathersDay] = useState();
 
-  const { yesterday, tomorrow, format } = dateHandler;
+  const { sumDays, tomorrow, format } = dateHandler;
 
   useEffect(() => {
     setDay(defaultValue);
@@ -23,6 +23,8 @@ const DayModal = ({ defaultValue, visible, setVisible }) => {
     const loadData = async () => {
       const weather = await getWeathersDay({ date: day });
       setWeathersDay(weather);
+      const newsEvents = getNewEvents({ dateFrom: sumDays(day, -2), dateTo: day });
+      setNews(newsEvents);
     };
     loadData();
   }, [day]);
@@ -49,7 +51,7 @@ const DayModal = ({ defaultValue, visible, setVisible }) => {
             <CustomDatePicker action={handlePickerChange} dateValue={format(day)} />
           </div>
           <div className="currentDate">
-            <Button onClick={() => setDay(yesterday(day))} shape="circle" size="small">
+            <Button onClick={() => setDay(sumDays(day, -1))} shape="circle" size="small">
               {'<'}
             </Button>
             <span id="day">{day}</span>
@@ -84,7 +86,7 @@ const DayModal = ({ defaultValue, visible, setVisible }) => {
           </div>
         </div>
         <div className="newsTable">
-          <NewsEventsTable />
+          <NewsEventsTable newsEvents={news} />
         </div>
       </div>
     </Modal>

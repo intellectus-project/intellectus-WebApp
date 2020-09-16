@@ -93,9 +93,9 @@ export const dateHandler = {
     moment(date, dateFormat)
       .add(1, 'days')
       .format(dateFormat),
-  yesterday: date =>
+  sumDays: (date,amount) =>
     moment(date, dateFormat)
-      .add(-1, 'days')
+      .add(amount, 'days')
       .format(dateFormat),
   format: date => moment(date, dateFormat)
 };
