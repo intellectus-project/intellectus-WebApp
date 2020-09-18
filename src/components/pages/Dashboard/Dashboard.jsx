@@ -63,7 +63,6 @@ const Dashboard = () => {
       message.error('Hubo un error, por favor contacte con el administrador');
     }
   };
-
   return (
     <div className="mainSectionContainer">
       <div className="titleSection">
