@@ -7,8 +7,12 @@ import EditUser from '../pages/EditUser/EditUser';
 import CreateUser from '../pages/CreateUser/CreateUser';
 import Error404 from '../pages/Error404/Error404';
 import Operators from '../pages/Operators/Operators';
+<<<<<<< HEAD
 import PrivateRoute from "./PrivateRoute";
 import ParticularCall from "../pages/ParticularCall/ParticularCall";
+=======
+import PrivateRoute from './PrivateRoute';
+>>>>>>> 772a927... first attempt to operators page
 
 const routesConfig = [
   { path: '/login', component: Login, requireAuthentication: false },
@@ -16,9 +20,14 @@ const routesConfig = [
   { path: '/dashboard', component: Dashboard, requireAuthentication: true },
   { path: '/edit-user', component: EditUser, requireAuthentication: true },
   { path: '/create-user', component: CreateUser, requireAuthentication: true },
+<<<<<<< HEAD
   { path: '/operadores', component: Operators, requireAuthentication: true },
   { path: '/', component: Dashboard, requireAuthentication: true, exact: true },
   { path: '/call', component: ParticularCall, requireAuthentication: true },
+=======
+  { path: '/operators', component: Operators, requireAuthentication: true },
+  { path: '/', component: Dashboard, requireAuthentication: true, exact: true },
+>>>>>>> 772a927... first attempt to operators page
   { component: Error404, requireAuthentication: false }
 ];
 
