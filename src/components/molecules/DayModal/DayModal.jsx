@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { Modal, Button } from 'antd';
+import { Modal, Button, DatePicker } from 'antd';
 import './_style.scss';
-import { dateHandler, isNowOlderThan } from '../../../utils/func-helpers';
-import CustomDatePicker from '../../atoms/CustomDatePicker/CustomDatePicker';
+import { dateHandler, isNowOlderThan, dateFormat } from '../../../utils/func-helpers';
 import NewsEventsTable from '../NewsEventsTable/NewsEventsTable';
 import apiCalls from '../../../services/api-calls/all';
 
@@ -12,8 +11,9 @@ const DayModal = ({ defaultValue, visible, setVisible }) => {
   const [day, setDay] = useState();
   const [news, setNews] = useState([]);
   const [weathersDay, setWeathersDay] = useState();
+  const { sumDays, tomorrow, format, formatForApi } = dateHandler;
 
-  const { sumDays, tomorrow, format } = dateHandler;
+  const formatToApiQuery = d => formatForApi(format(d));
 
   useEffect(() => {
     setDay(defaultValue);
@@ -21,19 +21,21 @@ const DayModal = ({ defaultValue, visible, setVisible }) => {
 
   useEffect(() => {
     const loadData = async () => {
-      const weather = await getWeathersDay({ date: day });
+      const formattedDay = formatToApiQuery(day);
+      const formattedTwoDaysAgo = formatToApiQuery(sumDays(day, -2));
+      const weather = await getWeathersDay({ date: formattedDay });
       setWeathersDay(weather);
-      const newsEvents = getNewEvents({ dateFrom: sumDays(day, -2), dateTo: day });
+      const newsEvents = getNewEvents({ dateFrom: formattedTwoDaysAgo, dateTo: formattedDay });
       setNews(newsEvents);
     };
     loadData();
   }, [day]);
 
-  const handlePickerChange = value => value && setDay(value);
-
   const isNextDayDisabled = isNowOlderThan(tomorrow(day));
 
   const hide = () => setVisible(false);
+
+  const handlePickerChange = (s, d) => setDay(s);
 
   return (
     <Modal
@@ -48,7 +50,13 @@ const DayModal = ({ defaultValue, visible, setVisible }) => {
         <div className="dateComponent">
           <p className="date">Fecha</p>
           <div className="datePicker">
-            <CustomDatePicker action={handlePickerChange} dateValue={format(day)} />
+            <DatePicker
+              onChange={handlePickerChange}
+              value={format(day)}
+              format={dateFormat}
+              disabledDate={date => isNowOlderThan(date)}
+              allowClear={false}
+            />
           </div>
           <div className="currentDate">
             <Button onClick={() => setDay(sumDays(day, -1))} shape="circle" size="small">
