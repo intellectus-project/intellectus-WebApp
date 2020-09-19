@@ -1,6 +1,8 @@
 import moment from 'moment';
 import 'moment-timezone';
 
+const dateFormat = 'DD/MM/YYYY';
+
 export const scrollWindowToTop = ({ smooth }) =>
   window.scrollTo({
     top: 0,
@@ -68,6 +70,32 @@ export const getNameFromUrl = url => {
   return url.substring(url.lastIndexOf('/') + 1).split(/\#|\?/)[0];
 };
 
-export const formatDate = date => moment(date, 'YYYY-MM-DD').format('DD/MM/YYYY');
+export const formatDate = date => moment(date, 'YYYY-MM-DD').format(dateFormat);
 
-export const isNowOlderThan = date => moment() < moment(date);
+export const isNowOlderThan = date => moment() < moment(date, dateFormat);
+
+export const formatCall = call => {
+  const formattedCall = {};
+  formattedCall.shift = call.shift.name;
+  formattedCall.operator = call.operator.name;
+  formattedCall.weather = call.weather.description;
+  const diff = moment(call.endTime).diff(moment(call.startTime), 'seconds');
+  const minutes = Math.round(diff / 60);
+  const seconds = Math.round(diff % 60);
+  formattedCall.duration = `${minutes} minutos ${seconds} segundos`;
+  return formattedCall;
+};
+
+export const isValidDate = date => moment(date, dateFormat).isValid();
+
+export const dateHandler = {
+  tomorrow: date =>
+    moment(date, dateFormat)
+      .add(1, 'days')
+      .format(dateFormat),
+  sumDays: (date,amount) =>
+    moment(date, dateFormat)
+      .add(amount, 'days')
+      .format(dateFormat),
+  format: date => moment(date, dateFormat)
+};

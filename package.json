@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "homepage": ".",
   "scripts": {
-    "start": "react-scripts start"
+    "start": "react-scripts start",
+    "start:mocked": "env-cmd -f .env.mocked react-scripts start"
   },
   "eslintConfig": {
     "extends": "react-app"

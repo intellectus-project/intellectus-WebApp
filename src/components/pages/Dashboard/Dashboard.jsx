@@ -1,14 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import './_style.scss';
-import { Button, Icon } from 'antd';
+import { message, Button, Icon } from 'antd';
 import moment from 'moment';
 import HomeDatePickers from '../../molecules/HomeDatePickers/HomeDatePickers';
 import CustomDropdown from '../../atoms/CustomDropdown/CustomDropdown';
 import apiCalls from '../../../services/api-calls/all';
+import PeriodCalls from '../../molecules/PeriodCalls/PeriodCalls';
 import NewsEventsTable from '../../molecules/NewsEventsTable/NewsEventsTable';
 import RingCharts from '../../molecules/RingCharts/RingCharts';
+import BarChart from '../../molecules/BarChart/BarChart';
+import DayModal from '../../molecules/DayModal/DayModal';
 
-const { getRingChartValues, getNewEvents, getOperators } = apiCalls();
+const { getRingChartValues, getBarChartValues, getNewEvents, getOperators, getCalls } = apiCalls();
 
 const dateFormat = 'YYYY-MM-DD';
 
@@ -18,26 +21,47 @@ const Dashboard = () => {
   const [dateTo, setDateTo] = useState();
   const [operatorId, setOperatorId] = useState();
   const [ringChartValues, setRingChartValues] = useState();
+  const [barChartValues, setBarChartValues] = useState([]);
   const [newsEvents, setNewsEvents] = useState([]);
+  const [calls, setCalls] = useState([]);
+  const [dayValue, setDayValue] = useState();
+  const [showDayModal, setShowDayModal] = useState(false);
+
+  const bringPageData = async (dateFrom, dateTo) => {
+    const query = { dateFrom, dateTo };
+    const chartsQuery = operatorId ? { ...query, operatorId } : query;
+    const ringsValues = await getRingChartValues(chartsQuery);
+    setRingChartValues(ringsValues);
+    const barChartData = await getBarChartValues(chartsQuery);
+    setBarChartValues(barChartData);
+    const newsEventsValues = await getNewEvents(query);
+    setNewsEvents(newsEventsValues);
+    const periodCalls = await getCalls(query);
+    setCalls(periodCalls);
+  };
 
   useEffect(() => {
     const loadPage = async () => {
-      const operatorsList = await getOperators();
-      setOperators(operatorsList);
-      const actualDate = moment().format(dateFormat);
-      setDateFrom(actualDate);
-      setDateTo(actualDate);
+      try {
+        const operatorsList = await getOperators();
+        setOperators(operatorsList);
+        const actualDate = moment().format(dateFormat);
+        setDateFrom(actualDate);
+        setDateTo(actualDate);
+        await bringPageData(actualDate, actualDate);
+      } catch (error) {
+        message.error('Hubo un error, por favor contacte con el administrador');
+      }
     };
     loadPage();
   }, []);
 
   const handleSearch = async () => {
-    const query = { dateFrom, dateTo };
-    const ringsValues = await getRingChartValues(operatorId ? { ...query, operatorId } : query);
-    Object.keys(ringsValues).forEach(k => (ringsValues[k] = (ringsValues[k] * 100).toFixed(2)));
-    setRingChartValues(ringsValues);
-    const newsEventsValues = await getNewEvents(query);
-    setNewsEvents(newsEventsValues);
+    try {
+      await bringPageData(dateFrom, dateTo);
+    } catch (error) {
+      message.error('Hubo un error, por favor contacte con el administrador');
+    }
   };
 
   return (
@@ -53,13 +77,20 @@ const Dashboard = () => {
             size="medium"
             shape="round"
             onClick={handleSearch}
-            disabled={!dateTo || !dateFrom}
+            disabled={!dateTo && !dateFrom}
           >
             <Icon type="search" />
             <span>Buscar</span>
           </Button>
         </div>
         <RingCharts values={ringChartValues} />
+        <BarChart
+          data={barChartValues}
+          showDayModal={setShowDayModal}
+          setDayModalDate={setDayValue}
+        />
+        <PeriodCalls calls={calls} />
+        <DayModal visible={showDayModal} setVisible={setShowDayModal} defaultValue={dayValue} />
         <NewsEventsTable newsEvents={newsEvents} />
       </div>
     </div>
