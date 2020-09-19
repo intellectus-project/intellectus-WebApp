@@ -6,7 +6,6 @@ export const dateFormat = 'DD/MM/YYYY';
 const dateTimeFormat = 'DD/MM/YYYY HH:mm';
 const apiFormat = 'YYYY-MM-DD';
 
-
 export const scrollWindowToTop = ({ smooth }) =>
   window.scrollTo({
     top: 0,

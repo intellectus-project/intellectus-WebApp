@@ -7,7 +7,10 @@ import { isNowOlderThan, dateFormat } from '../../../utils/func-helpers';
 const now = moment();
 
 const CustomDatePicker = ({ action, placeholder, theme, dateValue }) => {
-  const handleChange = (date, dateString) => action(dateString);
+
+  const handleChange = (date, dateString) => {
+    action(dateString);
+  };
   return (
     <DatePicker
       onChange={handleChange}
