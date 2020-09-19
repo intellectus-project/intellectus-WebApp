@@ -1,7 +1,10 @@
 import moment from 'moment';
 import 'moment-timezone';
+import { format } from 'prettier';
 
-const dateFormat = 'DD/MM/YYYY';
+export const dateFormat = 'DD/MM/YYYY';
+
+const apiFormat = 'YYYY-MM-DD';
 
 export const scrollWindowToTop = ({ smooth }) =>
   window.scrollTo({
@@ -93,9 +96,10 @@ export const dateHandler = {
     moment(date, dateFormat)
       .add(1, 'days')
       .format(dateFormat),
-  sumDays: (date,amount) =>
+  sumDays: (date, amount) =>
     moment(date, dateFormat)
       .add(amount, 'days')
       .format(dateFormat),
-  format: date => moment(date, dateFormat)
+  format: date => moment(date, dateFormat),
+  formatForApi: date => date.format(apiFormat)
 };

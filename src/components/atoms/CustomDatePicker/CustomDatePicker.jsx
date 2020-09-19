@@ -2,17 +2,19 @@ import React from 'react';
 import moment from 'moment';
 import { DatePicker } from 'antd';
 import PropTypes from 'prop-types';
-import { isNowOlderThan } from '../../../utils/func-helpers';
+import { isNowOlderThan, dateFormat } from '../../../utils/func-helpers';
 
 const now = moment();
 
 const CustomDatePicker = ({ action, placeholder, theme, dateValue }) => {
-  const handleChange = (date, dateString) => action(dateString);
-  const dateFormat = 'DD/MM/YYYY';
+
+  const handleChange = (date, dateString) => {
+    action(dateString);
+  };
   return (
     <DatePicker
       onChange={handleChange}
-      value={dateValue}
+      defaultValue={dateValue}
       placeholder={placeholder}
       className={theme}
       format={dateFormat}
