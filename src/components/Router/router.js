@@ -6,8 +6,8 @@ import Users from "../pages/Users/Users";
 import EditUser from "../pages/EditUser/EditUser";
 import CreateUser from "../pages/CreateUser/CreateUser";
 import Error404 from '../pages/Error404/Error404';
-
 import PrivateRoute from "./PrivateRoute";
+import ParticularCall from "../pages/ParticularCall/ParticularCall";
 
 const routesConfig = [
   { path: "/login", component: Login, requireAuthentication: false },
@@ -15,6 +15,7 @@ const routesConfig = [
   { path: "/dashboard", component: Dashboard, requireAuthentication: true },
   { path: '/edit-user', component: EditUser, requireAuthentication: true },
   { path: '/create-user', component: CreateUser, requireAuthentication: true },
+  { path: '/call', component: ParticularCall, requireAuthentication: true },
   { path: '/', component: Dashboard, requireAuthentication: true, exact: true},
   { component: Error404, requireAuthentication: false }
 ];
