@@ -14,11 +14,20 @@ const loginRequest = () => ({
         {
           key: 'USERS',
           description: 'Dashboard',
-          icon: 'bar-chart',
+          icon: 'dashboard',
           items: [],
           url: 'Dashboard',
           order: 0,
           url: '/dashboard'
+        },
+        {
+          key: 'OPERATORS',
+          description: 'Operadores',
+          icon: 'team',
+          items: [],
+          url: 'Operators',
+          order: 0,
+          url: '/operadores'
         }
       ],
       permissions: ['VIEW_PROFILE', 'MODIFY_USERS'],
