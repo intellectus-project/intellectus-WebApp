@@ -2,6 +2,7 @@ import moment from 'moment';
 import 'moment-timezone';
 
 const dateFormat = 'DD/MM/YYYY';
+const dateTimeFormat = 'DD/MM/YYYY HH:mm';
 
 export const scrollWindowToTop = ({ smooth }) =>
   window.scrollTo({
@@ -71,6 +72,7 @@ export const getNameFromUrl = url => {
 };
 
 export const formatDate = date => moment(date, 'YYYY-MM-DD').format(dateFormat);
+export const formatDateWithTime = date => moment(date, 'YYYY-MM-DDTHH:mm').format(dateTimeFormat);
 
 export const isNowOlderThan = date => moment() < moment(date, dateFormat);
 
