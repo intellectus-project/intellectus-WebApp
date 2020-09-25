@@ -20,14 +20,6 @@ const Header = () => {
           <Navbar navbarEntries={menus} />
         </div>
       </div>
-      <div className="descriptionContainer">
-        {/* <div className="rapLogo">
-          <img src="img/RAP.svg" />
-        </div> */}
-        <div className="Intellectus">
-          <p>Intellectus</p>
-        </div>
-      </div>
     </div>
   );
 };

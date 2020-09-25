@@ -1,9 +1,14 @@
-.titleSection{
+.titleSection {
   text-align: center;
 }
 
-.contentSection{
- p {
+.contentSection {
+  #rendimientos {
     font-weight: bold;
- }
+  }
+}
+
+.cards-wrapper {
+  padding: 30px;
+  background: #ececec;
 }

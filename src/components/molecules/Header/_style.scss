@@ -20,26 +20,6 @@
   }
 }
 
-.descriptionContainer {
-  display: flex;
-  align-items: center;
-  .rapLogo {
-    margin-right: 1em;
-    img {
-      width: 80px;
-    }
-  }
-  .Intellectus {
-    p {
-      color: $light-black;
-      font-family: "Cabin", sans-serif;
-      font-size: 18px;
-      font-weight: lighter;
-      margin: 0.8em;
-    }
-  }
-}
-
 @media only screen and (max-width: 600px) {
   .NavBar {
     width: 20px;
