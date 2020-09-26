@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+<<<<<<< HEAD
 import { BarChart, CartesianGrid, XAxis, YAxis, Tooltip, Legend, Bar } from 'recharts'
 import './_style.scss';
 import '../../../css/app.scss';
@@ -8,6 +9,14 @@ import CallDescription from '../../molecules/CallDescription/CallDescription';
 import EmotionIcon from '../../atoms/Emotion/Emotion-icon';
 import EMOTIONS from '../../../utils/emotions';
 import ConsultantOperatorBarChart from '../../molecules/ConsultantOperatorBarChart/Consultant-operator-bar-chart';
+=======
+import './_style.scss';
+import '../../../css/app.scss';
+import apiCalls from "../../../services/api-calls/all";
+import CallDescription from '../../molecules/CallDescription/CallDescription';
+import EmotionIcon from '../../atoms/Emotion/Emotion-icon';
+import { EMOTIONS } from '../../atoms/Emotion/Emotions';
+>>>>>>> 6e5853e9e11a79881b78d1bf75b1682a8e44a069
 
 
 const { getCallById } = apiCalls();

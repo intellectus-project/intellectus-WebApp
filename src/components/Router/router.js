@@ -10,7 +10,6 @@ import Operators from '../pages/Operators/Operators';
 import PrivateRoute from "./PrivateRoute";
 import ParticularCall from "../pages/ParticularCall/ParticularCall";
 
-
 const routesConfig = [
   { path: '/login', component: Login, requireAuthentication: false },
   { path: '/administration', component: Users, requireAuthentication: true },
