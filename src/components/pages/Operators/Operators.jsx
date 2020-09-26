@@ -28,20 +28,19 @@ const Operators = () => {
         <h2>Operadores</h2>
       </div>
       <div className="contentSection">
-        <div className="cards-wrapper">
           <Row gutter={16}>
             {operators.map(o => (
-              <Col span={8}>
+              <Col span={6}>
                 <OperatorCard
                   name={o.name}
                   lastName={o.lastName}
                   primaryEmotion={o.primaryEmotion}
                   secondaryEmotion={o.secondaryEmotion}
+                  inCall={o.inCall}
                 />
               </Col>
             ))}
           </Row>
-        </div>
         <p id="rendimientos">Rendimientos durante el día</p>
         <OperatorsChart data={barChartData} />
       </div>
