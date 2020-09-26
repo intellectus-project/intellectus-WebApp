@@ -6,7 +6,7 @@ import { Row, Col } from 'antd';
 import apiCalls from "../../../services/api-calls/all";
 import CallDescription from '../../molecules/CallDescription/CallDescription';
 import EmotionIcon from '../../atoms/Emotion/Emotion-icon';
-import { EMOTIONS } from '../../atoms/Emotion/Emotions';
+import EMOTIONS from '../../../utils/emotions';
 import ConsultantOperatorBarChart from '../../molecules/ConsultantOperatorBarChart/Consultant-operator-bar-chart';
 
 
@@ -37,6 +37,7 @@ const ParticularCall = () => {
         setOperatorStats(response.operatorStats);
         setShift(response.shift);
         setWeather(response.weather);
+        console.log(response);
     }
 
     useEffect(() => {

@@ -1,11 +1,16 @@
 import React from 'react';
 import './_style.scss';
 import PropTypes from 'prop-types';
-import { EMOTIONS } from './Emotions'
+import EMOTIONS from '../../../utils/emotions'
 
-const EmotionIcon = ({ emotion }) => {
+const EmotionIcon = ({ emotion, percentage }) => {
+
     return (
-        <div> { emotion ? emotion.name : '' }</div>
+        <>
+            {emotion && emotion.icon()}
+            {percentage && <span id="percentage">{` ${Math.round(percentage * 100)}%`}</span>}
+            <p>{emotion && emotion.name}</p>
+        </>
     );
 };
 
