@@ -1,19 +1,25 @@
+import emotionIcons from './emotion-icons.jsx';
+
 const EMOTIONS = {
     EMOTION_ANGER: {
         "name": "Enojo",
-        "img_url": ""
+        "icon": emotionIcons.angerIcon
     },
     EMOTION_HAPPINESS: {
         "name": "Felicidad",
-        "img_url": ""
+        "icon": emotionIcons.happinessIcon
     },
     EMOTION_NEUTRALITY: {
         "name": "Neutralidad",
-        "img_url": ""
+        "icon": emotionIcons.neutralityIcon
     },
     EMOTION_SADNESS: {
         "name": "Tristeza",
-        "img_url": "" 
+        "icon": emotionIcons.sadnessIcon
+    },
+    EMOTION_FEAR: {
+        "name": "Tristeza",
+        "icon": emotionIcons.fearIcon
     }
 }
 
