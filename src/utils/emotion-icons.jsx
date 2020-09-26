@@ -1,4 +1,5 @@
 import React from 'react';
+import EMOTIONS from './emotions';
 import { Icon } from 'antd';
 const angerSvg = () => (
   <svg
@@ -126,7 +127,7 @@ const neutralitySvg = () => (
     xmlns="http://www.w3.org/2000/svg"
     xmlnsXlink="http://www.w3.org/1999/xlink"
     width="2em"
-	height="2em"
+    height="2em"
     fill="currentColor"
     viewBox="0 0 106.059 106.059"
     xmlSpace="preserve"
@@ -144,11 +145,19 @@ const neutralitySvg = () => (
     />
   </svg>
 );
-const angerIcon = () => <Icon component={angerSvg} style={{ color: '#d7202a' }} />;
-const sadnessIcon = () => <Icon component={sadnessSvg} style={{ color: '#bfc119' }} />;
-const fearIcon = () => <Icon component={fearSvg} style={{ color: '#5c0a4b' }} />;
-const happinessIcon = () => <Icon component={happinessSvg} style={{ color: '#307c11' }} />;
-const neutralityIcon = () => <Icon component={neutralitySvg} style={{ color: '#146494' }} />;
+const angerIcon = () => (
+  <Icon component={angerSvg} style={{ color: EMOTIONS.EMOTION_ANGER.color }} />
+);
+const sadnessIcon = () => (
+  <Icon component={sadnessSvg} style={{ color: EMOTIONS.EMOTION_SADNESS.color }} />
+);
+const fearIcon = () => <Icon component={fearSvg} style={{ color: EMOTIONS.EMOTION_FEAR.color }} />;
+const happinessIcon = () => (
+  <Icon component={happinessSvg} style={{ color: EMOTIONS.EMOTION_HAPPINESS.color }} />
+);
+const neutralityIcon = () => (
+  <Icon component={neutralitySvg} style={{ color: EMOTIONS.EMOTION_NEUTRALITY.color }} />
+);
 
 const emotionIcons = {
   angerIcon,

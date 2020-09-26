@@ -23,11 +23,11 @@ const getOperators = () => () => [
     inCall: false,
     callStartTime: null,
     primaryEmotion: {
-      emotion: 'EMOTION_ANGER',
+      emotion: 'EMOTION_HAPPINESS',
       percentage: 0.5
     },
     secondaryEmotion: {
-      emotion: 'EMOTION_SADNESS',
+      emotion: 'EMOTION_NEUTRALITY',
       percentage: 0.3
     }
   },{
@@ -42,7 +42,7 @@ const getOperators = () => () => [
       percentage: 0.6
     },
     secondaryEmotion: {
-      emotion: 'EMOTION_SADNESS',
+      emotion: 'EMOTION_FEAR',
       percentage: 0.3
     }
   },{
@@ -53,7 +53,7 @@ const getOperators = () => () => [
     inCall: false,
     callStartTime: null,
     primaryEmotion: {
-      emotion: 'EMOTION_ANGER',
+      emotion: 'EMOTION_FEAR',
       percentage: 0.9
     },
     secondaryEmotion: {
