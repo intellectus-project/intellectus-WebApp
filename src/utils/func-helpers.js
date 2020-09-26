@@ -86,12 +86,13 @@ export const formatCall = call => {
   const formattedCall = {};
   formattedCall.shift = call.shift.name;
   formattedCall.operator = call.operator.name;
-  formattedCall.weather = call.weather.description;
+  formattedCall.weather = call.weather && call.weather.description;
+  formattedCall.startTime = formatDateWithTime(call.startTime);
   const diff = moment(call.endTime).diff(moment(call.startTime), 'seconds');
   const minutes = Math.round(diff / 60);
   const seconds = Math.round(diff % 60);
   formattedCall.duration = `${minutes} minutos ${seconds} segundos`;
-  return formattedCall;
+  return { ...call, ...formattedCall };
 };
 
 export const isValidDate = date => moment(date, dateFormat).isValid();

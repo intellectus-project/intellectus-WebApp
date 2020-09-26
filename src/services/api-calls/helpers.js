@@ -20,6 +20,7 @@ const addQueryString = (url, query) => {
 };
 
 const makeGetRequest = (httpClient) => (url, parameters, queryParameters) => {
+  console.log(url)
   const completeUrl = addQueryString(url, queryParameters);
   return httpClient
     .get(completeUrl, {

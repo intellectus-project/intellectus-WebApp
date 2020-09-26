@@ -88,9 +88,18 @@ const getOperators = () => () => [
 
 const giveBreak = () => ({});
 
+const getOperatorEmotionTables = () => ({
+  EMOTION_ANGER: [0.02,0.1,0.82],
+  EMOTION_SADNESS: [1,2,3],
+  EMOTION_NEUTRALITY: [1,2,3],
+  EMOTION_HAPPINESS: [1,2,3],
+  EMOTION_FEAR: [1,2,3]
+})
+
 export default () => {
   return {
     getOperators,
-    giveBreak
+    giveBreak,
+    getOperatorEmotionTables,
   };
 };

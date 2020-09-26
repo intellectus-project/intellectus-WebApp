@@ -9,6 +9,7 @@ import Error404 from '../pages/Error404/Error404';
 import Operators from '../pages/Operators/Operators';
 import PrivateRoute from "./PrivateRoute";
 import ParticularCall from "../pages/ParticularCall/ParticularCall";
+import Operator from '../pages/Operator/Operator';
 
 const routesConfig = [
   { path: '/login', component: Login, requireAuthentication: false },
@@ -17,6 +18,7 @@ const routesConfig = [
   { path: '/edit-user', component: EditUser, requireAuthentication: true },
   { path: '/create-user', component: CreateUser, requireAuthentication: true },
   { path: '/operators', component: Operators, requireAuthentication: true },
+  { path: '/operator', component: Operator, requireAuthentication: true },
   { path: '/', component: Dashboard, requireAuthentication: true, exact: true },
   { path: '/call', component: ParticularCall, requireAuthentication: true },
   { component: Error404, requireAuthentication: false }
