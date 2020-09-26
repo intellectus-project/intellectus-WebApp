@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from 'react';
+import { BarChart, CartesianGrid, XAxis, YAxis, Tooltip, Legend, Bar } from 'recharts'
 import './_style.scss';
 import '../../../css/app.scss';
+import { Row, Col } from 'antd';
 import apiCalls from "../../../services/api-calls/all";
 import CallDescription from '../../molecules/CallDescription/CallDescription';
 import EmotionIcon from '../../atoms/Emotion/Emotion-icon';
 import { EMOTIONS } from '../../atoms/Emotion/Emotions';
+import ConsultantOperatorBarChart from '../../molecules/ConsultantOperatorBarChart/Consultant-operator-bar-chart';
 
 
 const { getCallById } = apiCalls();
@@ -42,9 +45,14 @@ const ParticularCall = () => {
 
     return (
         <div>
-            <CallDescription operatorName={operator.name} startTime={startTime} endTime={endTime} shift={shift.name} weather={weather.description} />
+            <Row>
+                <Col span={8}><CallDescription operatorName={operator.name} startTime={startTime} endTime={endTime} shift={shift.name} weather={weather.description} /></Col>
+                <Col span={12}><ConsultantOperatorBarChart /></Col>
+            </Row>
+                
+                
             <EmotionIcon emotion={EMOTIONS[emotion]} />
-        </div>
+        </div >
     );
 }
 
