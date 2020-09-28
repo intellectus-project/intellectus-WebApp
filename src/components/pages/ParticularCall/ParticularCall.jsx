@@ -1,13 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { BarChart, CartesianGrid, XAxis, YAxis, Tooltip, Legend, Bar } from 'recharts'
 import './_style.scss';
 import '../../../css/app.scss';
-import { Row, Col } from 'antd';
+import { Row, Col, Alert } from 'antd';
 import apiCalls from "../../../services/api-calls/all";
 import CallDescription from '../../molecules/CallDescription/CallDescription';
-import EmotionIcon from '../../atoms/Emotion/Emotion-icon';
-import EMOTIONS from '../../../utils/emotions';
 import ConsultantOperatorBarChart from '../../molecules/ConsultantOperatorBarChart/Consultant-operator-bar-chart';
+import { getUrlParam } from '../../../utils/func-helpers'
 
 
 const { getCallById } = apiCalls();
@@ -26,7 +24,9 @@ const ParticularCall = () => {
 
 
     const getCall = () => {
-        const response = getCallById();
+        const callId = getUrlParam("id");
+        const response = getCallById(callId);
+
         setBrekDurationMinutes(response.breakDurationMinutes);
         setBreakTaken(response.breakTaken);
         setConsultantStats(response.consultantStats);
@@ -37,7 +37,6 @@ const ParticularCall = () => {
         setOperatorStats(response.operatorStats);
         setShift(response.shift);
         setWeather(response.weather);
-        console.log(response);
     }
 
     useEffect(() => {
@@ -46,13 +45,21 @@ const ParticularCall = () => {
 
     return (
         <div>
-            <Row>
-                <Col span={8}><CallDescription operatorName={operator.name} startTime={startTime} endTime={endTime} shift={shift.name} weather={weather.description} /></Col>
-                <Col span={12}><ConsultantOperatorBarChart /></Col>
-            </Row>
-                
-                
-            <EmotionIcon emotion={EMOTIONS[emotion]} />
+            <div class="alertContainer">
+                {breakTaken &&
+                    <Alert message={`El operador se tomó un descanso de ${breakDurationMinutes} minutos en esta llamada`} type="info" showIcon />
+                }
+            </div>
+            <div class="graphContainer">
+                <Row>
+                    <Col span={8}>
+                        <CallDescription emotion={emotion} operatorName={operator.name} startTime={startTime} endTime={endTime} shift={shift.name} weather={weather.description} />
+                    </Col>
+                    <Col span={12}>
+                        <ConsultantOperatorBarChart operatorStats={operatorStats} consultantStats={consultantStats} />
+                    </Col>
+                </Row>
+            </div>
         </div >
     );
 }

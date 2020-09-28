@@ -56,6 +56,10 @@ export const parseToFilterDropDown = (entries, key, title, childs = null) => {
   });
 };
 
+export const differenceBetween = (date1 , date2) => {
+  return moment(date1).diff(date2, 'minutes');
+}
+
 export const numberFormat = (value, number) => {
   return value.toFixed(number);
 };
