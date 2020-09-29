@@ -27,14 +27,13 @@ const Operator = () => {
   };
 
   const bringPageData = async (formattedDate) => {
-    const userId = getUrlParam('id') ? getUrlParam('id') : null;
+    const userId = getUrlParam('id');
     const emotionStatusData = await getOperatorEmotionStatus(userId);
     setEmotionStatus(formatEmotionTables(emotionStatusData.status));
     setName(emotionStatusData.name)
     const emotionTablesData = await getOperatorEmotionTables(userId, formattedDate || date);
     setEmotionTables(formatEmotionTables(emotionTablesData));
     const callsData = await getOperatorCalls(userId, formattedDate || date);
-    console.log(callsData)
     setCalls(callsData)
   };
 
@@ -56,8 +55,8 @@ const Operator = () => {
       
       <div className="titleSection">
         <div className="ant-row">
-          <div class='ant-col-2'>
-            <label class='operatorPageName'>{name}</label> 
+          <div class='ant-col-4'>
+          <label class='operatorPageStatusName'>Estado actual de</label> <label class='operatorPageName'>{name}</label> 
           </div>
           <OperatorEmotionStatus emotionStatus={emotionStatus}/>
         </div>

@@ -1,10 +1,12 @@
 import React from 'react';
-import './_style.scss';
 import { Table } from 'antd';
 import PropTypes from 'prop-types';
+import { useRedirect } from "../../Router/redirect";
+import './_style.scss';
 import { formatCall } from '../../../utils/func-helpers';
 
 const OperatorCalls = ({ calls }) => {
+  const { redirect, setUrlToRedirect } = useRedirect();
   const formattedCalls = calls !== [] && calls.map(c => formatCall(c));
   const pageSize = 10;
   const columns = [
@@ -29,7 +31,15 @@ const OperatorCalls = ({ calls }) => {
   ];
   return (
     <div className="PeriodCalls">
+      {redirect()}
       <Table
+        onRow={(record) => {
+          return {
+            onClick: () => {
+              setUrlToRedirect(`/call?id=${record.id}`);
+            },
+          };
+        }}
         title={() => 'Llamadas del día'}
         bordered
         dataSource={formattedCalls}

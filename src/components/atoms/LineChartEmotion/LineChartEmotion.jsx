@@ -38,6 +38,12 @@ const LineChartEmotion = ({ values }) => {
     xaxis: {
       labels: {
         rotate: -45
+      },
+      title: {
+        text: "Llamadas",
+        style: {
+          color: "#D2CDCC"
+        }
       }
     },
     yaxis: {
