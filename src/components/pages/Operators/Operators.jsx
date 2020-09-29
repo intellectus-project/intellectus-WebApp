@@ -36,6 +36,7 @@ const Operators = () => {
                   lastName={o.lastName}
                   primaryEmotion={o.primaryEmotion}
                   secondaryEmotion={o.secondaryEmotion}
+                  atBreak={o.atBreak}
                   inCall={o.inCall}
                 />
               </Col>

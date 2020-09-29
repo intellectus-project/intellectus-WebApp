@@ -4,7 +4,8 @@ const getOperators = () => () => [
     name: "Fernanda",
     lastName: "Perez",
     username: 'operator@intellectus.com',
-    inCall: false,
+    inCall: true,
+    atBreak: true,
     callStartTime: null,
     primaryEmotion: {
       emotion: 'EMOTION_ANGER',
@@ -21,6 +22,7 @@ const getOperators = () => () => [
     lastName: "Arnualdo",
     username: 'operator@intellectus.com',
     inCall: false,
+    atBreak: true,
     callStartTime: null,
     primaryEmotion: {
       emotion: 'EMOTION_HAPPINESS',
@@ -36,6 +38,7 @@ const getOperators = () => () => [
     lastName: "Hooka",
     username: 'operator@intellectus.com',
     inCall: true,
+    atBreak: false,
     callStartTime: null,
     primaryEmotion: {
       emotion: 'EMOTION_ANGER',
@@ -50,7 +53,8 @@ const getOperators = () => () => [
     name: "Ronan",
     lastName: "Vazquez",
     username: 'operator@intellectus.com',
-    inCall: false,
+    inCall: true,
+    atBreak: false,
     callStartTime: null,
     primaryEmotion: {
       emotion: 'EMOTION_FEAR',
@@ -65,7 +69,8 @@ const getOperators = () => () => [
     name: "Ronan",
     lastName: "Vazquez",
     username: 'operator@intellectus.com',
-    inCall: false,
+    inCall: true,
+    atBreak: false,
     callStartTime: null,
     primaryEmotion: {
       emotion: 'EMOTION_FEAR',
