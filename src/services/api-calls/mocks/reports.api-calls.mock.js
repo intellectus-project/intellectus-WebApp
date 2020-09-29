@@ -144,12 +144,86 @@ const getWeathersDay = () => ({
   image: 'lluvia.png'
 });
 
+const getBarChartByOperators = () => [
+  {
+    date: null,
+    stats: {
+      sadness: 0.25,
+      happiness: 0.18,
+      fear: 0.24,
+      neutrality: 0.19,
+      anger: 0.14
+    },
+    userInfo: {
+      id: 6,
+      name: 'Lucas'
+    }
+  },
+  {
+    date: null,
+    stats: {
+      sadness: 0.2,
+      happiness: 0.2,
+      fear: 0.2,
+      neutrality: 0.2,
+      anger: 0.2
+    },
+    userInfo: {
+      id: 6,
+      name: 'Florencia'
+    }
+  },
+  {
+    date: null,
+    stats: {
+      sadness: 0.4,
+      happiness: 0.2,
+      fear: 0.2,
+      neutrality: 0.2,
+      anger: 0
+    },
+    userInfo: {
+      id: 6,
+      name: 'Esteban'
+    }
+  },
+  {
+    date: null,
+    stats: {
+      sadness: 0.18,
+      happiness: 0.25,
+      fear: 0.14,
+      neutrality: 0.19,
+      anger: 0.24
+    },
+    userInfo: {
+      id: 6,
+      name: 'Fernanda'
+    }
+  },
+  {
+    date: null,
+    stats: {
+      sadness: 0,
+      happiness: 0,
+      fear: 0.7,
+      neutrality: 0.1,
+      anger: 0.1
+    },
+    userInfo: {
+      id: 6,
+      name: 'Arnualdo'
+    }
+  }
+];
+
 export default () => {
   return {
     getRingChartValues,
     getBarChartValues,
     getNewEvents,
     getCalls,
-    getWeathersDay
+    getWeathersDay,
+    getBarChartByOperators
   };
 };

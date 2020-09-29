@@ -3,8 +3,9 @@ import 'moment-timezone';
 import { format } from 'prettier';
 
 export const dateFormat = 'DD/MM/YYYY';
-
+const dateTimeFormat = 'DD/MM/YYYY HH:mm';
 const apiFormat = 'YYYY-MM-DD';
+
 
 export const scrollWindowToTop = ({ smooth }) =>
   window.scrollTo({
@@ -58,6 +59,10 @@ export const parseToFilterDropDown = (entries, key, title, childs = null) => {
   });
 };
 
+export const differenceBetween = (date1 , date2) => {
+  return moment(date1).diff(date2, 'minutes');
+}
+
 export const numberFormat = (value, number) => {
   return value.toFixed(number);
 };
@@ -74,6 +79,7 @@ export const getNameFromUrl = url => {
 };
 
 export const formatDate = date => moment(date, 'YYYY-MM-DD').format(dateFormat);
+export const formatDateWithTime = date => moment(date, 'YYYY-MM-DDTHH:mm').format(dateTimeFormat);
 
 export const isNowOlderThan = date => moment() < moment(date, dateFormat);
 

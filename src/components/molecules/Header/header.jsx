@@ -24,9 +24,6 @@ const Header = () => {
         {/* <div className="rapLogo">
           <img src="img/RAP.svg" />
         </div> */}
-        <div className="Intellectus">
-          <p>Intellectus</p>
-        </div>
       </div>
     </div>
   );
