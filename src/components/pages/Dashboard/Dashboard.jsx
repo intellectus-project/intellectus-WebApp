@@ -11,7 +11,7 @@ import RingCharts from '../../molecules/RingCharts/RingCharts';
 import BarChart from '../../molecules/BarChart/BarChart';
 import DayModal from '../../molecules/DayModal/DayModal';
 
-const { getRingChartValues, getBarChartValues, getNewEvents, getOperators, getCalls } = apiCalls();
+const { getRingChartValues, getBarChartValues, getOperators, getCalls } = apiCalls();
 
 const dateFormat = 'YYYY-MM-DD';
 
@@ -34,8 +34,6 @@ const Dashboard = () => {
     setRingChartValues(ringsValues);
     const barChartData = await getBarChartValues(chartsQuery);
     setBarChartValues(barChartData);
-    const newsEventsValues = await getNewEvents(query);
-    setNewsEvents(newsEventsValues);
     const periodCalls = await getCalls(query);
     setCalls(periodCalls);
   };
@@ -76,7 +74,7 @@ const Dashboard = () => {
             size="medium"
             shape="round"
             onClick={handleSearch}
-            disabled={!dateTo && !dateFrom}
+            disabled={!dateTo || !dateFrom}
           >
             <Icon type="search" />
             <span>Buscar</span>
@@ -90,7 +88,6 @@ const Dashboard = () => {
         />
         <PeriodCalls calls={calls} />
         <DayModal visible={showDayModal} setVisible={setShowDayModal} defaultValue={dayValue} />
-        <NewsEventsTable newsEvents={newsEvents} />
       </div>
     </div>
   );
