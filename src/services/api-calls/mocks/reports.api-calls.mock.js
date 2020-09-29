@@ -156,7 +156,7 @@ const getBarChartByOperators = () => [
     },
     userInfo: {
       id: 6,
-      name: 'Lucas'
+      name: 'Fernanda Perez'
     }
   },
   {
@@ -170,7 +170,7 @@ const getBarChartByOperators = () => [
     },
     userInfo: {
       id: 6,
-      name: 'Florencia'
+      name: 'Lucas Arnualdo'
     }
   },
   {
@@ -184,7 +184,7 @@ const getBarChartByOperators = () => [
     },
     userInfo: {
       id: 6,
-      name: 'Esteban'
+      name: 'Eric Hooka'
     }
   },
   {
@@ -198,7 +198,7 @@ const getBarChartByOperators = () => [
     },
     userInfo: {
       id: 6,
-      name: 'Fernanda'
+      name: 'Ronan Vazquez'
     }
   },
   {
@@ -212,7 +212,7 @@ const getBarChartByOperators = () => [
     },
     userInfo: {
       id: 6,
-      name: 'Arnualdo'
+      name: 'Ronan Vazquez'
     }
   }
 ];

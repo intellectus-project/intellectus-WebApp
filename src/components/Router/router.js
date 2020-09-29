@@ -16,7 +16,7 @@ const routesConfig = [
   { path: '/dashboard', component: Dashboard, requireAuthentication: true },
   { path: '/edit-user', component: EditUser, requireAuthentication: true },
   { path: '/create-user', component: CreateUser, requireAuthentication: true },
-  { path: '/operadores', component: Operators, requireAuthentication: true },
+  { path: '/operators', component: Operators, requireAuthentication: true },
   { path: '/', component: Dashboard, requireAuthentication: true, exact: true },
   { path: '/call', component: ParticularCall, requireAuthentication: true },
   { component: Error404, requireAuthentication: false }
