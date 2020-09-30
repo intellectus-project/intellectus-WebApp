@@ -25,12 +25,10 @@ const OperatorCard = ({
   const handleConfirm = async () => {
     setLoading(true);
     try {
-      setTimeout(async () => {
-        await giveBreak({ operatorId: id });
-        SuccessMessage('Descanso otorgado con éxito.');
-        setVisible(false);
-        setLoading(false);
-      }, 3000);
+      await giveBreak({ operatorId: id });
+      SuccessMessage('Descanso otorgado con éxito.');
+      setVisible(false);
+      setLoading(false);
     } catch (error) {
       ApiErrorMessage();
       setLoading(false);
