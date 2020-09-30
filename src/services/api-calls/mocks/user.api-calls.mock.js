@@ -1,8 +1,8 @@
 const getOperators = () => () => [
   {
-    id: 3,
-    name: "Fernanda",
-    lastName: "Perez",
+    id: 1,
+    name: 'Fernanda',
+    lastName: 'Perez',
     username: 'operator@intellectus.com',
     inCall: true,
     atBreak: true,
@@ -17,9 +17,9 @@ const getOperators = () => () => [
     }
   },
   {
-    id: 4,
-    name: "Lucas",
-    lastName: "Arnualdo",
+    id: 2,
+    name: 'Lucas',
+    lastName: 'Arnualdo',
     username: 'operator@intellectus.com',
     inCall: false,
     atBreak: true,
@@ -32,10 +32,11 @@ const getOperators = () => () => [
       emotion: 'EMOTION_NEUTRALITY',
       percentage: 0.3
     }
-  },{
-    id: 4,
-    name: "Eric",
-    lastName: "Hooka",
+  },
+  {
+    id: 3,
+    name: 'Eric',
+    lastName: 'Hooka',
     username: 'operator@intellectus.com',
     inCall: true,
     atBreak: false,
@@ -48,10 +49,11 @@ const getOperators = () => () => [
       emotion: 'EMOTION_FEAR',
       percentage: 0.3
     }
-  },{
+  },
+  {
     id: 4,
-    name: "Ronan",
-    lastName: "Vazquez",
+    name: 'Ronan',
+    lastName: 'Vazquez',
     username: 'operator@intellectus.com',
     inCall: true,
     atBreak: false,
@@ -64,10 +66,11 @@ const getOperators = () => () => [
       emotion: 'EMOTION_SADNESS',
       percentage: 0.3
     }
-  },{
-    id: 4,
-    name: "Ronan",
-    lastName: "Vazquez",
+  },
+  {
+    id: 5,
+    name: 'Ronan',
+    lastName: 'Vazquez',
     username: 'operator@intellectus.com',
     inCall: true,
     atBreak: false,
@@ -83,8 +86,11 @@ const getOperators = () => () => [
   }
 ];
 
+const giveBreak = () => ({});
+
 export default () => {
   return {
-    getOperators
+    getOperators,
+    giveBreak
   };
 };

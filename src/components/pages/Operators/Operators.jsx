@@ -3,7 +3,8 @@ import './_style.scss';
 import { Col, Row } from 'antd';
 import OperatorsChart from '../../molecules/OperatorsChart/OperatorsChart';
 import apiCalls from '../../../services/api-calls/all';
-import OperatorCard from '../../atoms/OperatorCard/OperatorCard';
+import OperatorCard from '../../molecules/OperatorCard/OperatorCard';
+import { ApiErrorMessage } from '../../../services/providers/Messages';
 
 const { getBarChartByOperators, getOperators } = apiCalls();
 
@@ -18,7 +19,11 @@ const Operators = () => {
     setBarChartData(barChart);
   };
   useEffect(() => {
-    fetchData();
+    try {
+      fetchData();
+    } catch (err) {
+      ApiErrorMessage();
+    }
   }, []);
 
   // setInterval(bringOperators(),5000);
@@ -28,20 +33,21 @@ const Operators = () => {
         <h2>Operadores</h2>
       </div>
       <div className="contentSection">
-          <Row gutter={16}>
-            {operators.map(o => (
-              <Col span={6}>
-                <OperatorCard
-                  name={o.name}
-                  lastName={o.lastName}
-                  primaryEmotion={o.primaryEmotion}
-                  secondaryEmotion={o.secondaryEmotion}
-                  atBreak={o.atBreak}
-                  inCall={o.inCall}
-                />
-              </Col>
-            ))}
-          </Row>
+        <Row gutter={16}>
+          {operators.map(o => (
+            <Col span={6}>
+              <OperatorCard
+                id={o.id}
+                name={o.name}
+                lastName={o.lastName}
+                primaryEmotion={o.primaryEmotion}
+                secondaryEmotion={o.secondaryEmotion}
+                atBreak={o.atBreak}
+                inCall={o.inCall}
+              />
+            </Col>
+          ))}
+        </Row>
         <p id="rendimientos">Rendimientos durante el día</p>
         <OperatorsChart data={barChartData} />
       </div>
