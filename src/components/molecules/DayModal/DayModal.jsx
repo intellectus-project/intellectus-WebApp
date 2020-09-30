@@ -35,8 +35,10 @@ const DayModal = ({ defaultValue, visible, setVisible }) => {
 
   const hide = () => setVisible(false);
 
-  const handlePickerChange = (s, d) => setDay(s);
-
+  const handlePickerChange = (s, d) => {
+    console.log('s ',d);
+    setDay(d);
+  }
   return (
     <Modal
       title="Información del día"

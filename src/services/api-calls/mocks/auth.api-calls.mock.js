@@ -27,7 +27,7 @@ const loginRequest = () => ({
           items: [],
           url: 'Operators',
           order: 0,
-          url: '/operadores'
+          url: '/operators'
         }
       ],
       permissions: ['VIEW_PROFILE', 'MODIFY_USERS'],
