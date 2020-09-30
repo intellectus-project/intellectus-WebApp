@@ -24,6 +24,9 @@ const findAllRoles = makeGetRequest => () => makeGetRequest('roles');
 
 const getOperators = makeGetRequest => () => makeGetRequest('/users/operators');
 
+const giveBreak = makePostRequest => operatorId =>
+  makePostRequest('/breaks/createBySupervisor', operatorId);
+
 const getSupervisors = makeGetRequest => () => makeGetRequest('/users/supervisors');
 
 const getShifts = makeGetRequest => () => makeGetRequest('/shifts');
@@ -43,6 +46,7 @@ export default client => {
     findAllRoles: findAllRoles(makeGetRequest),
     getOperators: getOperators(makeGetRequest),
     getSupervisors: getSupervisors(makeGetRequest),
-    getShifts: getShifts(makeGetRequest)
+    getShifts: getShifts(makeGetRequest),
+    giveBreak: giveBreak(makePostRequest)
   };
 };
