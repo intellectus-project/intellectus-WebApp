@@ -59,7 +59,7 @@ const OperatorCard = ({
         avatar={<Avatar src="img/avatarBlack.png" />}
         title={
           <>
-            <button onClick={() => alert('hi')}>{fullName}</button>
+            {fullName}
             {inCall && (
               <>
                 <Tooltip title="El operador se encuentra en llamada.">
