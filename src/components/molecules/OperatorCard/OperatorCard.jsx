@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Card, Avatar, Icon, Tooltip, Modal, message } from 'antd';
+import { Card, Avatar, Icon, Tooltip, Modal, InputNumber } from 'antd';
 import EmotionItem from '../../atoms/EmotionItem/EmotionItem';
 import { useRedirect } from '../../Router/redirect';
 import apiCalls from '../../../services/api-calls/all';
@@ -8,6 +8,8 @@ const { info } = Modal;
 
 const { giveBreak } = apiCalls();
 
+const DEFAULT_MINUTES_DURATION = 10;
+
 const OperatorCard = ({
   id,
   name,
@@ -15,17 +17,19 @@ const OperatorCard = ({
   primaryEmotion,
   secondaryEmotion,
   atBreak,
-  inCall
+  inCall,
+  breakAssignedToActualCall
 }) => {
   const [visible, setVisible] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [minutesDuration, setMinutesDuration] = useState(DEFAULT_MINUTES_DURATION);
   const fullName = `${name} ${lastName}`;
   const { redirect, setUrlToRedirect } = useRedirect();
 
   const handleConfirm = async () => {
     setLoading(true);
     try {
-      await giveBreak({ operatorId: id });
+      await giveBreak({ operatorId: id, minutesDuration });
       SuccessMessage('Descanso otorgado con éxito.');
       setVisible(false);
       setLoading(false);
@@ -35,15 +39,26 @@ const OperatorCard = ({
     }
   };
 
-  const handleSelect = () => setUrlToRedirect(`operator/${id}`);
+  const minutesDurationOnChange = minutes => {
+    setMinutesDuration(minutes);
+  };
 
-  const infoModal = () =>
+  const handleSelect = () => setUrlToRedirect(`operator?id=${id}`);
+
+  const infoModal = content =>
     info({
       title: 'Descanso no disponible',
-      content: `${fullName} ya tiene un descanso asignado, por favor espere a que finalice el mismo para otorgar un descanso.`
+      content: `${fullName} ${content}`
     });
-  const showModal = () => (atBreak ? infoModal() : setVisible(true));
-  const isAtBreak = atBreak && !inCall;
+  const showModal = () => {
+    if (breakAssignedToActualCall)
+      return infoModal(
+        'ya tiene un descanso asignado, por favor espere a que finalice el mismo para otorgar un descanso.'
+      );
+    if (atBreak)
+      return infoModal('está actualmente descansando, no es posible asignarle un descanso');
+    setVisible(true);
+  };
   return (
     <Card
       bordered={true}
@@ -65,14 +80,14 @@ const OperatorCard = ({
                 <Tooltip title="El operador se encuentra en llamada.">
                   <Icon type="phone" style={{ color: '#79797c' }} />
                 </Tooltip>
-                {atBreak && (
+                {breakAssignedToActualCall && (
                   <Tooltip title="El operador se tomará un tiempo de descanso al finalizar la llamada.">
                     <Icon type="info-circle" style={{ marginLeft: '2em', color: '#08c' }} />
                   </Tooltip>
                 )}
               </>
             )}
-            {isAtBreak && (
+            {atBreak && (
               <Tooltip title="El operador se encuentra en tiempo de descanso.">
                 <Icon type="clock-circle" style={{ color: '#79797c' }} />
               </Tooltip>
@@ -95,7 +110,17 @@ const OperatorCard = ({
       >
         <p
           style={{ marginLeft: 15 }}
-        >{`Está seguro que desea otorgarle un descanso a ${fullName}?`}</p>
+        >{`¿Está seguro que desea otorgarle un descanso a ${fullName}?`}</p>
+        <p>
+          Duración:{' '}
+          <InputNumber
+            min={5}
+            max={20}
+            defaultValue={DEFAULT_MINUTES_DURATION}
+            onChange={minutesDurationOnChange}
+          />{' '}
+          minutos
+        </p>
       </Modal>
       <EmotionItem primaryEmotion={primaryEmotion} secondaryEmotion={secondaryEmotion} />
     </Card>

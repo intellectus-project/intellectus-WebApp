@@ -10,6 +10,8 @@ const getCalls = makeGetRequest => query => makeGetRequest('/calls', query);
 
 const getWeathersDay = makeGetRequest => query => makeGetRequest('/weathers', query);
 
+const getBarChartByOperators = makeGetRequest => query => makeGetRequest('/reports/barsChartByOperators');
+
 export default client => {
   const { makeGetRequest } = helpers(client);
   return {
@@ -17,6 +19,7 @@ export default client => {
     getBarChartValues: getBarChartValues(makeGetRequest),
     getNewEvents: getNewEvents(makeGetRequest),
     getCalls: getCalls(makeGetRequest),
-    getWeathersDay: getWeathersDay(makeGetRequest)
+    getWeathersDay: getWeathersDay(makeGetRequest),
+    getBarChartByOperators: getBarChartByOperators(makeGetRequest),
   };
 };

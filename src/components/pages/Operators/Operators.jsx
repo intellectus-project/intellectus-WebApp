@@ -44,6 +44,7 @@ const Operators = () => {
                 secondaryEmotion={o.secondaryEmotion}
                 atBreak={o.atBreak}
                 inCall={o.inCall}
+                breakAssignedToActualCall={o.breakAssignedToActualCall}
               />
             </Col>
           ))}
