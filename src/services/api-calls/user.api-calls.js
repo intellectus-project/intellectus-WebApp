@@ -24,8 +24,8 @@ const findAllRoles = makeGetRequest => () => makeGetRequest('roles');
 
 const getOperators = makeGetRequest => () => makeGetRequest('/users/operators');
 
-const giveBreak = makePostRequest => operatorId =>
-  makePostRequest('/breaks/createBySupervisor', operatorId);
+const giveBreak = makePostRequest => (data) =>
+  makePostRequest('/breaks/createBySupervisor', {}, data);
 
 const getSupervisors = makeGetRequest => () => makeGetRequest('/users/supervisors');
 
