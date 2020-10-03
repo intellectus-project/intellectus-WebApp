@@ -31,6 +31,11 @@ const getSupervisors = makeGetRequest => () => makeGetRequest('/users/supervisor
 
 const getShifts = makeGetRequest => () => makeGetRequest('/shifts');
 
+const getOperatorEmotionStatus = makeGetRequest => id => makeGetRequest(`/users/operatorEmotionStatus?${id ? 'operatorId=' + id : ''}`)
+
+const getOperatorEmotionTables = makeGetRequest => (id, date) => makeGetRequest(`/users/operatorEmotionTables?date=${date}${id ? '&operatorId=' + id : ''} `)
+
+
 export default client => {
   const { makePostRequest, makeGetRequest, makePatchRequest } = helpers(client);
   return {
@@ -47,6 +52,8 @@ export default client => {
     getOperators: getOperators(makeGetRequest),
     getSupervisors: getSupervisors(makeGetRequest),
     getShifts: getShifts(makeGetRequest),
-    giveBreak: giveBreak(makePostRequest)
+    giveBreak: giveBreak(makePostRequest),
+    getOperatorEmotionStatus: getOperatorEmotionStatus(makeGetRequest),
+    getOperatorEmotionTables: getOperatorEmotionTables(makeGetRequest),
   };
 };

@@ -5,5 +5,5 @@ module.exports = {
   EDIT_USER: "/edit-user",
   CREATE_USER_URL: "/create-user",
   PAGE_SIZE: 3,
-  ROLE_OPERATOR: "ROLE_OPERATOR"
+  ROLE_OPERATOR: "ROLE_OPERATOR",
 };

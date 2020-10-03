@@ -1,0 +1,46 @@
+@import '../../../css/general_styling';
+
+.titleSection {
+  text-align: center;
+}
+
+.searchContainer {
+  margin: 1em 0 0 0;
+  button {
+    background: #344086;
+  }
+  button:hover {
+    background-color: #6977c5;
+  }
+  button:visited {
+    background-color: #6977c5;
+  }
+  button:focus {
+    background-color: #6977c5;
+  }
+  button::after {
+    background-color: #6977c5;
+  }
+
+  span {
+    color: white;
+  }
+}
+.contentSectionContainer {
+  margin-top: 2em;
+  padding: 0 2em 0 2em;
+}
+
+.operatorPageStatusName {
+  text-align: left;
+  font-size: 22px;
+}
+.operatorPageName {
+  text-align: left;
+  font-size: 25px;
+}
+
+.marginHorizontal {
+  margin-left: 10px;
+  margin-right: 15px;
+}
