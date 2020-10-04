@@ -2,7 +2,7 @@ import React from 'react';
 import { Select } from 'antd';
 import PropTypes from 'prop-types';
 
-const CustomDropdown = ({ placeholder, content, action, style, label }) => {
+const CustomDropdown = ({ placeholder, content, action, style, label, className }) => {
   return (
     <>
       <div>
@@ -10,7 +10,7 @@ const CustomDropdown = ({ placeholder, content, action, style, label }) => {
           <strong>{label}</strong>
         </div>
         <div>
-          <Select placeholder={placeholder} style={style} onChange={action} allowClear>
+          <Select placeholder={placeholder} style={style} onChange={action} allowClear className={className}>
             {content.map(c => (
               <Select.Option key={c.id}>{`${c.name} ${c.lastName ? c.lastName : ''}` }</Select.Option>
             ))}

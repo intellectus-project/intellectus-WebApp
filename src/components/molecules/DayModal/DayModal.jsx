@@ -4,41 +4,42 @@ import './_style.scss';
 import { dateHandler, isNowOlderThan, dateFormat } from '../../../utils/func-helpers';
 import NewsEventsTable from '../NewsEventsTable/NewsEventsTable';
 import apiCalls from '../../../services/api-calls/all';
+import { ApiErrorMessage } from '../../../services/providers/Messages';
 
 const { getNewEvents, getWeathersDay } = apiCalls();
+const { sumDays, tomorrow, format, formatForApi } = dateHandler;
+const formatToApiQuery = d => formatForApi(format(d));
 
 const DayModal = ({ defaultValue, visible, setVisible }) => {
-  const [day, setDay] = useState();
+  const [day, setDay] = useState(defaultValue);
   const [news, setNews] = useState([]);
   const [weathersDay, setWeathersDay] = useState();
-  const { sumDays, tomorrow, format, formatForApi } = dateHandler;
 
-  const formatToApiQuery = d => formatForApi(format(d));
-
+  const loadData = async () => {
+    const formattedDay = formatToApiQuery(day);
+    const formattedTwoDaysAgo = formatToApiQuery(sumDays(day, -2));
+    const weather = await getWeathersDay({ date: formattedDay });
+    setWeathersDay(weather);
+    const newsEvents = getNewEvents({ dateFrom: formattedTwoDaysAgo, dateTo: formattedDay });
+    setNews(newsEvents);
+  };
   useEffect(() => {
     setDay(defaultValue);
   }, [defaultValue]);
 
   useEffect(() => {
-    const loadData = async () => {
-      const formattedDay = formatToApiQuery(day);
-      const formattedTwoDaysAgo = formatToApiQuery(sumDays(day, -2));
-      const weather = await getWeathersDay({ date: formattedDay });
-      setWeathersDay(weather);
-      const newsEvents = getNewEvents({ dateFrom: formattedTwoDaysAgo, dateTo: formattedDay });
-      setNews(newsEvents);
-    };
-    loadData();
+    try {
+      visible && loadData();
+    } catch (error) {
+      ApiErrorMessage();
+    }
   }, [day]);
 
   const isNextDayDisabled = isNowOlderThan(tomorrow(day));
 
   const hide = () => setVisible(false);
 
-  const handlePickerChange = (s, d) => {
-    console.log('s ',d);
-    setDay(d);
-  }
+  const handlePickerChange = (s, d) => setDay(d);
   return (
     <Modal
       title="Información del día"

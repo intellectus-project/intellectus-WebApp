@@ -1,28 +1,28 @@
 import React, { useState, useEffect } from 'react';
 import './_style.scss';
-import { message, Button, Icon } from 'antd';
+import { Button, Icon } from 'antd';
 import moment from 'moment';
+import { now, dateHandler } from '../../../utils/func-helpers';
 import HomeDatePickers from '../../molecules/HomeDatePickers/HomeDatePickers';
 import CustomDropdown from '../../atoms/CustomDropdown/CustomDropdown';
 import apiCalls from '../../../services/api-calls/all';
 import PeriodCalls from '../../molecules/PeriodCalls/PeriodCalls';
-import NewsEventsTable from '../../molecules/NewsEventsTable/NewsEventsTable';
+import { ApiErrorMessage } from '../../../services/providers/Messages';
 import RingCharts from '../../molecules/RingCharts/RingCharts';
 import BarChart from '../../molecules/BarChart/BarChart';
 import DayModal from '../../molecules/DayModal/DayModal';
 
 const { getRingChartValues, getBarChartValues, getOperators, getCalls } = apiCalls();
-
-const dateFormat = 'YYYY-MM-DD';
+const { formatForApi, format } = dateHandler;
+const defaultDay = formatForApi(now);
 
 const Dashboard = () => {
   const [operators, setOperators] = useState([]);
-  const [dateFrom, setDateFrom] = useState();
-  const [dateTo, setDateTo] = useState();
+  const [dateFrom, setDateFrom] = useState(defaultDay);
+  const [dateTo, setDateTo] = useState(defaultDay);
   const [operatorId, setOperatorId] = useState();
   const [ringChartValues, setRingChartValues] = useState();
   const [barChartValues, setBarChartValues] = useState([]);
-  const [newsEvents, setNewsEvents] = useState([]);
   const [calls, setCalls] = useState([]);
   const [dayValue, setDayValue] = useState();
   const [showDayModal, setShowDayModal] = useState(false);
@@ -43,22 +43,29 @@ const Dashboard = () => {
       try {
         const operatorsList = await getOperators();
         setOperators(operatorsList);
-        const actualDate = moment().format(dateFormat);
-        setDateFrom(actualDate);
-        setDateTo(actualDate);
-        await bringPageData(actualDate, actualDate);
+        await bringPageData(dateTo, dateFrom);
       } catch (error) {
-        message.error('Hubo un error, por favor contacte con el administrador');
+        ApiErrorMessage();
       }
     };
     loadPage();
   }, []);
 
+  const handleFromDateChange = date => {
+    const formattedDate = formatForApi(format(date));
+    setDateFrom(formattedDate);
+  };
+
+  const handleToDateChange = date => {
+    const formattedDate = formatForApi(format(date));
+    setDateTo(formattedDate);
+  };
+
   const handleSearch = async () => {
     try {
       await bringPageData(dateFrom, dateTo);
     } catch (error) {
-      message.error('Hubo un error, por favor contacte con el administrador');
+      ApiErrorMessage();
     }
   };
   return (
@@ -67,8 +74,13 @@ const Dashboard = () => {
         <h2>Dashboard</h2>
       </div>
       <div className="contentSectionContainer">
-        <HomeDatePickers changeFromDate={setDateFrom} changeToDate={setDateTo} />
-        <CustomDropdown placeholder="Operador" action={setOperatorId} content={operators} />
+        <HomeDatePickers changeFromDate={handleFromDateChange} changeToDate={handleToDateChange} />
+        <div className="operator">
+          <span>Atendido por </span>
+          <div className="operatorDropdown">
+            <CustomDropdown placeholder="Operador" action={setOperatorId} content={operators} />
+          </div>
+        </div>
         <div className="searchContainer">
           <Button
             size="medium"

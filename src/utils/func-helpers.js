@@ -1,10 +1,11 @@
 import moment from 'moment';
 import 'moment-timezone';
-import { format } from 'prettier';
 
 export const dateFormat = 'DD/MM/YYYY';
 const dateTimeFormat = 'DD/MM/YYYY HH:mm';
 const apiFormat = 'YYYY-MM-DD';
+
+export const now = moment();
 
 export const scrollWindowToTop = ({ smooth }) =>
   window.scrollTo({
