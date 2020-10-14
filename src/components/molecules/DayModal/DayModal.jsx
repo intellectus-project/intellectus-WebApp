@@ -20,7 +20,7 @@ const DayModal = ({ defaultValue, visible, setVisible }) => {
     const formattedTwoDaysAgo = formatToApiQuery(sumDays(day, -2));
     const weather = await getWeathersDay({ date: formattedDay });
     setWeathersDay(weather);
-    const newsEvents = getNewEvents({ dateFrom: formattedTwoDaysAgo, dateTo: formattedDay });
+    const newsEvents = await getNewEvents({ dateFrom: formattedTwoDaysAgo, dateTo: formattedDay });
     setNews(newsEvents);
   };
   useEffect(() => {
