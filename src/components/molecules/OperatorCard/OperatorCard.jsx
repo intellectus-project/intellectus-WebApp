@@ -78,7 +78,7 @@ const OperatorCard = ({
             {inCall && (
               <>
                 <Tooltip title="El operador se encuentra en llamada.">
-                  <Icon type="phone" style={{ color: '#79797c' }} />
+                  <Icon type="phone" style={{ color: '#79797c', marginLeft: '0.5em' }} />
                 </Tooltip>
                 {breakAssignedToActualCall && (
                   <Tooltip title="El operador se tomará un tiempo de descanso al finalizar la llamada.">
@@ -89,7 +89,7 @@ const OperatorCard = ({
             )}
             {atBreak && (
               <Tooltip title="El operador se encuentra en tiempo de descanso.">
-                <Icon type="clock-circle" style={{ color: '#79797c' }} />
+                <Icon type="clock-circle" style={{ color: '#79797c', marginLeft: '0.5em' }} />
               </Tooltip>
             )}
           </>

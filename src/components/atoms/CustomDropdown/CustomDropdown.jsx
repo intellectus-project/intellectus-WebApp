@@ -10,7 +10,7 @@ const CustomDropdown = ({ placeholder, content, action, style, label }) => {
           <strong>{label}</strong>
         </div>
         <div>
-          <Select placeholder={placeholder} style={style} onChange={action} allowClear>
+          <Select placeholder={placeholder} style={style} onChange={action} allowClear >
             {content.map(c => (
               <Select.Option key={c.id}>{`${c.name} ${c.lastName ? c.lastName : ''}` }</Select.Option>
             ))}
