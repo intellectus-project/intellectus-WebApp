@@ -34,9 +34,15 @@ const PeriodCalls = ({ calls }) => {
       align: 'center'
     }
   ];
+
+  const onRowClick = row => {
+    window.location = `call?id=${row.id}`;
+  }
+
   return (
     <div className="PeriodCalls">
       <Table
+        onRowClick={onRowClick}
         title={() => 'Llamadas del período'}
         bordered
         dataSource={formattedCalls}
