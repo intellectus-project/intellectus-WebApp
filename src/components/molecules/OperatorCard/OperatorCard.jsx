@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { Card, Avatar, Icon, Tooltip, Modal, InputNumber } from 'antd';
 import EmotionItem from '../../atoms/EmotionItem/EmotionItem';
-import { useRedirect } from '../../Router/redirect';
 import apiCalls from '../../../services/api-calls/all';
 import { ApiErrorMessage, SuccessMessage } from '../../../services/providers/Messages';
+import { OPERATOR } from '../../../utils/constants';
 const { info } = Modal;
 
 const { giveBreak } = apiCalls();
@@ -24,7 +24,6 @@ const OperatorCard = ({
   const [loading, setLoading] = useState(false);
   const [minutesDuration, setMinutesDuration] = useState(DEFAULT_MINUTES_DURATION);
   const fullName = `${name} ${lastName}`;
-  const { redirect, setUrlToRedirect } = useRedirect();
 
   const handleConfirm = async () => {
     setLoading(true);
@@ -42,8 +41,6 @@ const OperatorCard = ({
   const minutesDurationOnChange = minutes => {
     setMinutesDuration(minutes);
   };
-
-  const handleSelect = () => setUrlToRedirect(`operator?id=${id}`);
 
   const infoModal = content =>
     info({
@@ -65,11 +62,12 @@ const OperatorCard = ({
       style={{ marginTop: 15 }}
       size="small"
       actions={[
-        <Icon type="select" onClick={handleSelect} />,
+        <a href={`${OPERATOR}?id=${id}`}>
+          <Icon type="select" />
+        </a>,
         <Icon type="clock-circle" onClick={showModal} />
       ]}
     >
-      {redirect()}
       <Card.Meta
         avatar={<Avatar src="img/avatarBlack.png" />}
         title={

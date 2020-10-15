@@ -4,6 +4,7 @@ module.exports = {
   USERS_URL: "/administration",
   EDIT_USER: "/edit-user",
   CREATE_USER_URL: "/create-user",
+  OPERATOR: '/operator',
   PAGE_SIZE: 3,
   ROLE_OPERATOR: "ROLE_OPERATOR",
 };
