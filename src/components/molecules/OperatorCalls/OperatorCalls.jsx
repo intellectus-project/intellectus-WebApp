@@ -1,12 +1,11 @@
 import React from 'react';
-import { Table } from 'antd';
+import { Table, Icon } from 'antd';
+import { CALL } from '../../../utils/constants';
 import PropTypes from 'prop-types';
-import { useRedirect } from "../../Router/redirect";
 import './_style.scss';
 import { formatCall } from '../../../utils/func-helpers';
 
 const OperatorCalls = ({ calls }) => {
-  const { redirect, setUrlToRedirect } = useRedirect();
   const formattedCalls = calls !== [] && calls.map(c => formatCall(c));
   const pageSize = 10;
   const columns = [
@@ -28,18 +27,21 @@ const OperatorCalls = ({ calls }) => {
       key: 'weather',
       align: 'center'
     },
+    {
+      title: 'Ver',
+      dataIndex: 'id',
+      key: 'id',
+      align: 'center',
+      render: id => (
+        <a href={`${CALL}?id=${id}`}>
+          <Icon type="eye" />
+        </a>
+      )
+    }
   ];
   return (
     <div className="PeriodCalls">
-      {redirect()}
       <Table
-        onRow={(record) => {
-          return {
-            onClick: () => {
-              setUrlToRedirect(`/call?id=${record.id}`);
-            },
-          };
-        }}
         title={() => 'Llamadas del día'}
         bordered
         dataSource={formattedCalls}
@@ -52,7 +54,7 @@ const OperatorCalls = ({ calls }) => {
 };
 
 OperatorCalls.propTypes = {
-    calls: PropTypes.object.isRequired
-  };
+  calls: PropTypes.object.isRequired
+};
 
 export default OperatorCalls;
