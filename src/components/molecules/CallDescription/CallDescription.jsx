@@ -30,7 +30,7 @@ const CallDescription = ({ operatorName, startTime, endTime, weather, shift, emo
                     <strong>
                         Duración:{' '}
                     </strong>
-                    {differenceBetween(startTime, endTime) + ' ' + 'minutos'}
+                    {differenceBetween(endTime, startTime ) + ' ' + 'minutos'}
                 </p>
                 <p>
                     <strong>

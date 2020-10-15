@@ -7,7 +7,6 @@ import CallDescription from '../../molecules/CallDescription/CallDescription';
 import ConsultantOperatorBarChart from '../../molecules/ConsultantOperatorBarChart/Consultant-operator-bar-chart';
 import { getUrlParam } from '../../../utils/func-helpers'
 
-
 const { getCallById } = apiCalls();
 
 const ParticularCall = () => {
@@ -23,9 +22,10 @@ const ParticularCall = () => {
     const [weather, setWeather] = useState({});
 
 
-    const getCall = () => {
+    const getCall = async () => {
         const callId = getUrlParam("id");
-        const response = getCallById(callId);
+        const response = await getCallById(callId);
+        console.log(callId, response);
 
         setBrekDurationMinutes(response.breakDurationMinutes);
         setBreakTaken(response.breakTaken);
