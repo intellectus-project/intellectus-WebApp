@@ -1,9 +1,10 @@
 import React from 'react';
 import Chart from 'react-apexcharts';
+import { Tag } from 'antd';
 import { getEmotionValues } from '../../../utils/charts-helper/bar-chart-helper';
 import { formatDate, isValidDate } from '../../../utils/func-helpers';
 
-const BarChart = ({ data, setDayModalDate, showDayModal }) => {
+const BarChart = ({ data, setDayModalDate, showDayModal, tagDescription, tagColor }) => {
   const xAxis = data.map(d => formatDate(d.date));
   const {
     sadnessValues,
@@ -69,7 +70,12 @@ const BarChart = ({ data, setDayModalDate, showDayModal }) => {
     }
   };
 
-  return <Chart series={series} options={options} type="bar" height={350} />;
+  return (
+    <>
+      <Tag color={tagColor}>{tagDescription}</Tag>
+      <Chart series={series} options={options} type="bar" height={350} />
+    </>
+  );
 };
 
 export default BarChart;

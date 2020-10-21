@@ -29,7 +29,7 @@ const DayModal = ({ defaultValue, visible, setVisible }) => {
 
   useEffect(() => {
     try {
-      visible && loadData();
+      loadData();
     } catch (error) {
       ApiErrorMessage();
     }

@@ -94,6 +94,8 @@ const Dashboard = () => {
         </div>
         <RingCharts values={ringChartValues} />
         <BarChart
+          tagColor={'red'}
+          tagDescription={'#Consultantes'}
           data={barChartValues}
           showDayModal={setShowDayModal}
           setDayModalDate={setDayValue}
