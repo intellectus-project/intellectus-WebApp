@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './_style.scss';
-import { Button, Icon } from 'antd';
+import { Button, Icon, Row, Col } from 'antd';
 import moment from 'moment';
 import { now, dateHandler } from '../../../utils/func-helpers';
 import HomeDatePickers from '../../molecules/HomeDatePickers/HomeDatePickers';
@@ -11,6 +11,7 @@ import { ApiErrorMessage } from '../../../services/providers/Messages';
 import RingCharts from '../../molecules/RingCharts/RingCharts';
 import BarChart from '../../molecules/BarChart/BarChart';
 import DayModal from '../../molecules/DayModal/DayModal';
+import TotalCallsStatistic from '../../molecules/TotalCallsStatistic/total-calls-statistic';
 
 const { getRingChartValues, getBarChartValues, getOperators, getCalls } = apiCalls();
 const { formatForApi, format } = dateHandler;
@@ -26,6 +27,7 @@ const Dashboard = () => {
   const [calls, setCalls] = useState([]);
   const [dayValue, setDayValue] = useState();
   const [showDayModal, setShowDayModal] = useState(false);
+  const [amount, setAmount] = useState(0);
 
   const bringPageData = async (dateFrom, dateTo) => {
     const query = { dateFrom, dateTo };
@@ -36,6 +38,7 @@ const Dashboard = () => {
     setBarChartValues(barChartData);
     const periodCalls = await getCalls(query);
     setCalls(periodCalls);
+    setAmount(periodCalls.length);
   };
 
   useEffect(() => {
@@ -92,7 +95,16 @@ const Dashboard = () => {
             <span>Buscar</span>
           </Button>
         </div>
-        <RingCharts values={ringChartValues} />
+        <Row >
+          <Col span={6}>
+            <div class="totalCalls">
+              <TotalCallsStatistic amount={amount} />
+            </div>
+          </Col>
+          <Col span={12}>
+            <RingCharts values={ringChartValues} />
+          </Col>
+        </Row>
         <BarChart
           tagColor={'red'}
           tagDescription={'#Consultantes'}
