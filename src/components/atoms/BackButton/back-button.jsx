@@ -12,7 +12,7 @@ const BackButton = ({ toUrl, colorWay }) => {
         <div class="backButtonContainer">
             <Button type={colorWay} onClick={onClick}>
                 <Icon type="left" />
-                Go back
+                Volver
             </Button>
         </div>
     );
