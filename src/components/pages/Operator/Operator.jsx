@@ -11,6 +11,7 @@ import { getUrlParam, dateHandler, dateFormat } from '../../../utils/func-helper
 import { formatEmotionTables } from '../../../utils/emotion-helper'
 import OperatorEmotionStatus from '../../molecules/OperatorEmotionStatus/OperatorEmotionStatus';
 import OperatorCalls from '../../molecules/OperatorCalls/OperatorCalls';
+import BackButton from '../../atoms/BackButton/back-button';
 
 const { getOperatorEmotionStatus, getOperatorEmotionTables, getOperatorCalls } = apiCalls();
 
@@ -52,16 +53,16 @@ const Operator = () => {
 
   return (
     <div className="mainSectionContainer">
-      
+      <BackButton toUrl={'/operators'} />
       <div className="titleSection">
         <div className="ant-row">
           <div class='ant-col-4'>
-          <label class='operatorPageStatusName'>Estado actual de</label> <label class='operatorPageName'>{name}</label> 
+            <label class='operatorPageStatusName'>Estado actual de</label> <label class='operatorPageName'>{name}</label> 
           </div>
           <OperatorEmotionStatus emotionStatus={emotionStatus}/>
         </div>
       </div>
-      <div className="contentSectionContainer">
+      <div className="contentContainer">
         <div class='ant-row'>
           <div class='ant-col-12'>
             Cambiar vista

@@ -5,6 +5,7 @@ import OperatorsChart from '../../molecules/OperatorsChart/OperatorsChart';
 import apiCalls from '../../../services/api-calls/all';
 import OperatorCard from '../../molecules/OperatorCard/OperatorCard';
 import { ApiErrorMessage } from '../../../services/providers/Messages';
+import BackButton from '../../atoms/BackButton/back-button';
 
 const { getBarChartByOperators, getOperators } = apiCalls();
 
@@ -33,6 +34,7 @@ const Operators = () => {
         <h2>Operadores</h2>
       </div>
       <div className="contentSection">
+        <BackButton toUrl={'/dashboard'} />
         <Row gutter={16}>
           {operators.map(o => (
             <Col span={6}>

@@ -26,9 +26,8 @@
     color: white;
   }
 }
-.contentSectionContainer {
+.contentContainer {
   margin-top: 2em;
-  padding: 0 2em 0 2em;
 }
 
 .operatorPageStatusName {
@@ -43,4 +42,13 @@
 .marginHorizontal {
   margin-left: 10px;
   margin-right: 15px;
+}
+
+.mainSectionContainer{
+  padding: 0 2em 0 2em;
+  text-align: left;
+}
+
+.titleSection{
+  margin-top: 4em;
 }

@@ -6,6 +6,7 @@ import apiCalls from "../../../services/api-calls/all";
 import CallDescription from '../../molecules/CallDescription/CallDescription';
 import ConsultantOperatorBarChart from '../../molecules/ConsultantOperatorBarChart/Consultant-operator-bar-chart';
 import { getUrlParam } from '../../../utils/func-helpers'
+import BackButton from '../../atoms/BackButton/back-button';
 
 const { getCallById } = apiCalls();
 
@@ -45,6 +46,7 @@ const ParticularCall = () => {
 
     return (
         <div>
+            <BackButton toUrl={'/operators'} />
             <div class="alertContainer">
                 {breakTaken &&
                     <Alert message={`El operador se tomó un descanso de ${breakDurationMinutes} minutos en esta llamada`} type="info" showIcon />
