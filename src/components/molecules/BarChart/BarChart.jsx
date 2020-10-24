@@ -72,7 +72,7 @@ const BarChart = ({ data, setDayModalDate, showDayModal, tagDescription, tagColo
 
   return (
     <>
-      <Tag color={tagColor}>{tagDescription}</Tag>
+      <Tag >{tagDescription}</Tag>
       <Chart series={series} options={options} type="bar" height={350} />
     </>
   );

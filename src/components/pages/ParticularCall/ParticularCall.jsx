@@ -26,8 +26,6 @@ const ParticularCall = () => {
     const getCall = async () => {
         const callId = getUrlParam("id");
         const response = await getCallById(callId);
-        console.log(callId, response);
-
         setBrekDurationMinutes(response.breakDurationMinutes);
         setBreakTaken(response.breakTaken);
         setConsultantStats(response.consultantStats);
