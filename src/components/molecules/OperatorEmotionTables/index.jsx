@@ -1,6 +1,5 @@
 import React from 'react';
 import LineChartEmotion from '../../atoms/LineChartEmotion/LineChartEmotion';
-import Emotions from '../../../utils/emotions';
 
 const graphs = (emotionTables) => {
   return (

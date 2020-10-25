@@ -15,7 +15,6 @@ const configureAxios = ({ onError, onResponse }) => {
   instance.interceptors.request.use(config => {
     const user = JSON.parse(localStorage.getItem(USER));
     if (user && user.accessToken) {
-      console.log(user.accessToken)
       config.headers.Authorization = `Bearer ${user.accessToken}`;
     }
     return config;

@@ -11,11 +11,11 @@ const LineChartEmotion = ({ values }) => {
     colors.push(Emotions[emotionName].color);
     series.push({
       name: Emotions[emotionName].name,
-      data: value && value.map(v => Math.round(v * 100)),
+      data: value && value.map(v => Math.round(v * 100))
     });
   }
 
-  const allEmotions = series.length > 1
+  const allEmotions = series.length > 1;
 
   const options = {
     chart: {
@@ -30,9 +30,9 @@ const LineChartEmotion = ({ values }) => {
           zoomin: false,
           zoomout: false,
           pan: false,
-          reset: false,
-        },
-      },
+          reset: false
+        }
+      }
     },
     colors: colors,
     xaxis: {
@@ -40,15 +40,15 @@ const LineChartEmotion = ({ values }) => {
         rotate: -45
       },
       title: {
-        text: "Llamadas",
+        text: 'Llamadas',
         style: {
-          color: "#D2CDCC"
+          color: '#D2CDCC'
         }
       }
     },
     yaxis: {
       min: 0,
-      max: 100,
+      max: 100
     },
     fill: {
       opacity: 1
@@ -57,15 +57,21 @@ const LineChartEmotion = ({ values }) => {
       position: 'right',
       offsetX: 0,
       offsetY: 50
-    },
+    }
   };
 
   return (
     <div class="LineChartEmotion">
-      <h3 class={allEmotions ? 'allEmotionsTitle EmotionName' : 'EmotionName'} >
-        {allEmotions ? 'Emociones' : series[0].name}
+      <h3 class={allEmotions ? 'allEmotionsTitle EmotionName' : 'EmotionName'}>
+        {allEmotions || series.length === 0 ? 'Emociones' : series[0].name}
       </h3>
-      <Chart series={series} options={options} type="line" height={allEmotions ? 400 : 250} width={allEmotions ? 700 : 500} />
+      <Chart
+        series={series}
+        options={options}
+        type="line"
+        height={allEmotions ? 400 : 250}
+        width={allEmotions ? 700 : 500}
+      />
     </div>
   );
 };
