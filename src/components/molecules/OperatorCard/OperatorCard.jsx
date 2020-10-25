@@ -33,7 +33,7 @@ const OperatorCard = ({
       setVisible(false);
       setLoading(false);
     } catch (error) {
-      ApiErrorMessage();
+      ApiErrorMessage('El operador no se encuentra en llamada');
       setLoading(false);
     }
   };
