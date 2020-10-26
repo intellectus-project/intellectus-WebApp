@@ -32,7 +32,7 @@ export const compare = (element1, element2, key) => {
 
 const getUrlVars = () => {
   var vars = {};
-  var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m, key, value) {
+  var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function (m, key, value) {
     vars[key] = value;
   });
   return vars;
@@ -47,7 +47,7 @@ export const getUrlParam = (parameter, defaultvalue) => {
 };
 
 export const parseToFilterDropDown = (entries, key, title, childs = null) => {
-  return entries.map(function(entry) {
+  return entries.map(function (entry) {
     let data = { key: entry[key], title: entry[title] };
     if (childs && entry.hasOwnProperty(childs.data) && entry[childs.data].length > 0) {
       data['childs'] = entry[childs.data].map(child => ({
@@ -59,7 +59,7 @@ export const parseToFilterDropDown = (entries, key, title, childs = null) => {
   });
 };
 
-export const differenceBetween = (date1 , date2) => {
+export const differenceBetween = (date1, date2) => {
   return moment(date1).diff(date2, 'minutes');
 }
 
@@ -94,6 +94,10 @@ export const formatCall = call => {
   const seconds = Math.round(diff % 60);
   formattedCall.duration = `${minutes} minutos ${seconds} segundos`;
   return { ...call, ...formattedCall };
+};
+
+export const formatBreak = b => {
+  return { duration: b.duration, givenBySupervisor: b.givenBySupervisor };
 };
 
 export const isValidDate = date => moment(date, dateFormat).isValid();
