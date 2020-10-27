@@ -27,6 +27,7 @@ const configureAxios = ({ onError, onResponse }) => {
           localStorage.setItem(USER, null);
           window.location = LOGIN_URL;
         }
+        console.log(error.response)
         throw error;
       })
   );

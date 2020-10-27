@@ -37,6 +37,8 @@ const getOperatorEmotionTables = makeGetRequest => (id, date) => makeGetRequest(
 
 const getBreaksByOperator = makeGetRequest => query => makeGetRequest('/breaks', query);
 
+const registerWebPush = makePostRequest => data => makePostRequest('/users/registerWebPush', data)
+
 export default client => {
   const { makePostRequest, makeGetRequest, makePatchRequest } = helpers(client);
   return {
@@ -56,6 +58,7 @@ export default client => {
     giveBreak: giveBreak(makePostRequest),
     getOperatorEmotionStatus: getOperatorEmotionStatus(makeGetRequest),
     getOperatorEmotionTables: getOperatorEmotionTables(makeGetRequest),
-    getBreaksByOperator: getBreaksByOperator(makeGetRequest)
+    getBreaksByOperator: getBreaksByOperator(makeGetRequest),
+    registerWebPush: registerWebPush(makePostRequest),
   };
 };

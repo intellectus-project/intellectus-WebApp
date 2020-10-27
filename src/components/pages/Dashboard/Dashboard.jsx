@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './_style.scss';
 import { Button, Icon, Row, Col } from 'antd';
-import moment from 'moment';
 import { now, dateHandler } from '../../../utils/func-helpers';
 import HomeDatePickers from '../../molecules/HomeDatePickers/HomeDatePickers';
 import CustomDropdown from '../../atoms/CustomDropdown/CustomDropdown';
@@ -12,6 +11,7 @@ import RingCharts from '../../molecules/RingCharts/RingCharts';
 import BarChart from '../../molecules/BarChart/BarChart';
 import DayModal from '../../molecules/DayModal/DayModal';
 import TotalCallsStatistic from '../../molecules/TotalCallsStatistic/total-calls-statistic';
+import askPushNotificationPermission from '../../../webPush/askPushNotificationPermission';
 
 const { getRingChartValues, getBarChartValues, getOperators, getCalls } = apiCalls();
 const { formatForApi, format } = dateHandler;
@@ -28,6 +28,8 @@ const Dashboard = () => {
   const [dayValue, setDayValue] = useState();
   const [showDayModal, setShowDayModal] = useState(false);
   const [amount, setAmount] = useState(0);
+
+  askPushNotificationPermission();
 
   const bringPageData = async (dateFrom, dateTo) => {
     const query = { dateFrom, dateTo };
