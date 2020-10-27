@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './_style.scss';
 import { Button, Icon, Row, Col } from 'antd';
-import moment from 'moment';
 import { now, dateHandler } from '../../../utils/func-helpers';
 import HomeDatePickers from '../../molecules/HomeDatePickers/HomeDatePickers';
 import CustomDropdown from '../../atoms/CustomDropdown/CustomDropdown';

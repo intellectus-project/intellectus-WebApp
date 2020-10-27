@@ -19,6 +19,7 @@ const Operators = () => {
     setOperators(operatorsInfo);
     setBarChartData(barChart);
   };
+
   useEffect(() => {
     try {
       fetchData();
@@ -27,7 +28,17 @@ const Operators = () => {
     }
   }, []);
 
-  // setInterval(bringOperators(),5000);
+  setInterval(function() {
+    (async function() {
+      try {
+        const operatorsInfo = await getOperators();
+        setOperators(operatorsInfo);
+      } catch (err) {
+        ApiErrorMessage();
+      }
+    })();
+  }, 10000);
+
   return (
     <>
       <div className="titleSection">

@@ -76,6 +76,7 @@ const DayModal = ({ defaultValue, visible, setVisible }) => {
             </Button>
           </div>
           <div className="weather">
+            {console.log(weathersDay)}
             {weathersDay && (
               <>
                 <img
