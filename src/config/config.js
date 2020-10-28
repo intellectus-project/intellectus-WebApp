@@ -16,6 +16,7 @@ const configs = {
 };
 
 let environment = process.env.ENVIRONMENT  || 'development';
+console.log("env", process.env);
 
 export const setEnvironment = customEnvironment => (environment = customEnvironment);
 
