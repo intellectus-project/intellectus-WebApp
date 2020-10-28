@@ -54,10 +54,36 @@ const BarChart = ({ data, setDayModalDate, showDayModal, tagDescription, tagColo
       }
     },
     colors: ['#bfc119', '#307c11', '#5c0a4b', '#146494', '#ab3619'],
-    xaxis: {
+    yaxis:{
+      title: {
+        text: 'Consultantes',
+        style: {
+            color: undefined,
+            fontSize: '12px',
+            fontFamily: 'Helvetica, Arial, sans-serif',
+            fontWeight: 600,
+            cssClass: 'apexcharts-xaxis-title',
+        },
+    }
+    },
+    xaxis: { 
+      title: {
+      text: 'Seleccione la fecha de la cual desea obtener información',
+      align: 'right',
+      style: {
+          color: '#aaaaaa',
+          fontSize: '12px',
+          fontFamily: 'Helvetica, Arial, sans-serif',
+          fontWeight: 300,
+          cssClass: 'apexcharts-xaxis-title',
+      },
+  },
       categories: xAxis,
       labels: {
         rotate: -45
+      },
+      axisBorder: {
+        show: false
       }
     },
     fill: {
@@ -72,7 +98,7 @@ const BarChart = ({ data, setDayModalDate, showDayModal, tagDescription, tagColo
 
   return (
     <>
-      <Tag >{tagDescription}</Tag>
+      {/*<Tag>{tagDescription}</Tag>*/}
       <Chart series={series} options={options} type="bar" height={350} />
     </>
   );

@@ -1,3 +1,10 @@
-.backButtonContainer{
-    margin-bottom: 20px;
+@import '../../../css/general_styling';
+
+.backButtonContainer {
+  margin-bottom: 20px;
+  button {
+    color: $primary-color;
+    background-color: transparent;
+    border: none;
+  }
 }
