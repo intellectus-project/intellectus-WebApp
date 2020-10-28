@@ -15,7 +15,7 @@ const configs = {
     staging
 };
 
-let environment = window._env_.ENVIRONMENT  || 'development';
+let environment = process.env.ENVIRONMENT  || 'development';
 
 export const setEnvironment = customEnvironment => (environment = customEnvironment);
 
