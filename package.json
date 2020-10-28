@@ -2,6 +2,10 @@
   "name": "intellectus-webapp",
   "version": "1.0.0",
   "homepage": ".",
+  "engines":{
+    "node":"12.18.2",
+    "npm":"6.14.4"
+  },
   "scripts": {
     "start": "react-scripts start",
     "start:mocked": "env-cmd -f .env.mocked react-scripts start"
