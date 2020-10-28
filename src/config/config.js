@@ -4,7 +4,7 @@ const development = {
     }
 };
 
-const staging = {
+const production = {
     endpoints: {
         backend: 'https://intellectus-api.herokuapp.com/'
     }
@@ -12,11 +12,10 @@ const staging = {
 
 const configs = {
     development,
-    staging
+    production
 };
 
-let environment = process.env.ENVIRONMENT  || 'development';
-console.log("env", process.env);
+let environment = process.env.NODE_ENV;
 
 export const setEnvironment = customEnvironment => (environment = customEnvironment);
 
