@@ -4,11 +4,18 @@ const development = {
     }
 };
 
-const configs = {
-    development
+const staging = {
+    endpoints: {
+        backend: 'https://intellectus-api.herokuapp.com/'
+    }
 };
 
-let environment = window._env_ || 'development';
+const configs = {
+    development,
+    staging
+};
+
+let environment = window._env_.ENVIRONMENT  || 'development';
 
 export const setEnvironment = customEnvironment => (environment = customEnvironment);
 
