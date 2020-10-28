@@ -16,7 +16,6 @@ export default class PushCredentials {
       p256dh: clientPublicKey,
       auth: clientAuthSecret,
     };
-    console.log('va a pedir las pushhhhh', bodyEndpoint)
     registerWebPush(bodyEndpoint);
   }
 }
