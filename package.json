@@ -8,6 +8,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "build": "react-scripts build",
     "start:mocked": "env-cmd -f .env.mocked react-scripts start"
   },
   "eslintConfig": {
