@@ -1,8 +1,24 @@
+@import '../../../css/general_styling';
+
 .titleSection {
   text-align: center;
 }
-
 .contentSection {
+  .buttonsContainer {
+    .backButtonContainer {
+      float: left;
+      margin-bottom: 0px;
+      .ant-btn{
+        padding: 0 15px 0 0;
+      }
+    }
+    .updateButton {
+      float: left;
+      border: none;
+    }
+    height: 3em;
+  }
+
   #rendimientos {
     margin-top: 1em;
     font-size: 1.25em;
