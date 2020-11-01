@@ -54,6 +54,7 @@ const OperatorCard = ({
       );
     if (atBreak)
       return infoModal('está actualmente descansando, no es posible asignarle un descanso');
+    if (!inCall) return infoModal('no se encuentra en llamada. Por favor intente en otro momento.');
     setVisible(true);
   };
   return (
