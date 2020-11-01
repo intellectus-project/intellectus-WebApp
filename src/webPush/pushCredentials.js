@@ -1,3 +1,4 @@
+import localIpUrl from 'local-ip-url';
 import apiCalls from '../../src/services/api-calls/all'
 
 const { registerWebPush } = apiCalls();
@@ -11,7 +12,7 @@ export default class PushCredentials {
     const clientAuthSecret = btoa(String.fromCharCode.apply(null, new Uint8Array(auth)));
 
     const bodyEndpoint = {
-      user: { empty: 1 },
+      ip: localIpUrl('public'),
       endpoint: sub.endpoint,
       p256dh: clientPublicKey,
       auth: clientAuthSecret,

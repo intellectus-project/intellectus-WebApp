@@ -1,4 +1,4 @@
-const version = '0.0.1';
+const version = '0.0.2';
 
 
 self.addEventListener('install', (event) => {
@@ -15,11 +15,10 @@ self.addEventListener('push', (event) => {
   const payload = event.data.json();
   const text = payload.text;
 
-  event.waitUntil(self.registration.showNotification(text, {
+  event.waitUntil(self.registration.showNotification('Intellectus', {
     body: text,
-    //tag: notification_id,
-    icon: 'img/logo.png',
-    badge: 'img/logo.png',
+    icon: 'http://intellectus-web.herokuapp.com/favicon.ico',
+    badge: 'http://intellectus-web.herokuapp.com/favicon.ico',
   }));
 });
 

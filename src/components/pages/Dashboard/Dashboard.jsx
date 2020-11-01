@@ -29,8 +29,6 @@ const Dashboard = () => {
   const [showDayModal, setShowDayModal] = useState(false);
   const [amount, setAmount] = useState(0);
 
-  askPushNotificationPermission();
-
   const bringPageData = async (dateFrom, dateTo) => {
     const query = { dateFrom, dateTo };
     const chartsQuery = operatorId ? { ...query, operatorId } : query;
@@ -46,6 +44,7 @@ const Dashboard = () => {
   useEffect(() => {
     const loadPage = async () => {
       try {
+        askPushNotificationPermission();
         const operatorsList = await getOperators();
         setOperators(operatorsList);
         await bringPageData(dateTo, dateFrom);
