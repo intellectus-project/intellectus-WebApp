@@ -1,4 +1,23 @@
 {
   "name": "Intellectus",
-  "gcm_sender_id": "528978006357"
+  "gcm_sender_id": "528978006357",
+  "icons": [
+    {
+      "src": "favicon.ico",
+      "sizes": "16x16"
+    },
+    {
+      "src": "http://intellectus-web.herokuapp.com/favicon.ico",
+      "sizes": "16x16"
+    },
+    {
+      "src": "img/logo.png",
+      "sizes": "152x43",
+      "type": "image/png"
+    },
+    {
+      "src": "http://intellectus-web.herokuapp.com/img/logo.png",
+      "sizes": "152x43",
+      "type": "image/png"
+    }
 }

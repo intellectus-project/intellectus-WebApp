@@ -58,7 +58,7 @@ const getOperators = () => () => [
     name: 'Ronan',
     lastName: 'Vazquez',
     username: 'operator@intellectus.com',
-    inCall: true,
+    inCall: false,
     breakAssignedToActualCall: false,
     atBreak: false,
     callStartTime: null,
