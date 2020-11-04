@@ -8,4 +8,6 @@ module.exports = {
   CALL: '/call',
   PAGE_SIZE: 3,
   ROLE_OPERATOR: "ROLE_OPERATOR",
+  ROLE_VIEWER: "Viewer",
+  ROLE_ADMIN: "Administrator"
 };
