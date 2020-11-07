@@ -1,4 +1,4 @@
-const version = '0.0.4';
+const version = '0.0.3';
 
 self.addEventListener('install', (event) => {
   console.log('Service Worker installing.');
@@ -16,8 +16,8 @@ self.addEventListener('push', (event) => {
 
   event.waitUntil(self.registration.showNotification('Intellectus', {
     body: text,
-    icon: 'http://intellectus-web.herokuapp.com/img/logo-256x256.png',
-    badge: 'http://intellectus-web.herokuapp.com/img/logo-256x256.png',
+    icon: 'img/logo-256x256.png',
+    badge: 'img/logo-256x256.png',
   }));
 });
 
