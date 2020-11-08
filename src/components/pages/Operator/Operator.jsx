@@ -20,7 +20,7 @@ const Operator = () => {
   const [date, setDate] = useState(moment().format(dateFormat));
   const [calls, setCalls] = useState([]);
   const [name, setName] = useState();
-  const [switchOn, setSwitchOn] = useState(true);
+  const [switchOn, setSwitchOn] = useState(false);
   const [breaks, setBreaks] = useState([]);
 
   const switchOnClick = () => {
