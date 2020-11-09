@@ -4,6 +4,7 @@ import 'moment-timezone';
 export const dateFormat = 'DD/MM/YYYY';
 const dateTimeFormat = 'DD/MM/YYYY HH:mm';
 const apiFormat = 'YYYY-MM-DD';
+const dateTimeFormate2 = 'HH:mm DD/MM/YYYY';
 
 export const now = moment();
 
@@ -112,5 +113,6 @@ export const dateHandler = {
       .add(amount, 'days')
       .format(dateFormat),
   format: date => moment(date, dateFormat),
-  formatForApi: date => date.format(apiFormat)
+  formatForApi: date => date.format(apiFormat),
+  currentTime: () => moment().format(dateTimeFormate2)
 };

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './_style.scss';
-import { Col, Row, Button, Icon, Tooltip } from 'antd';
+import { dateHandler } from '../../../utils/func-helpers';
+import { Col, Row, Button, Tooltip } from 'antd';
 import OperatorsChart from '../../molecules/OperatorsChart/OperatorsChart';
 import apiCalls from '../../../services/api-calls/all';
 import OperatorCard from '../../molecules/OperatorCard/OperatorCard';
@@ -10,9 +11,11 @@ import BackButton from '../../atoms/BackButton/back-button';
 const { getBarChartByOperators, getOperators } = apiCalls();
 
 const Operators = () => {
+  const { currentTime } = dateHandler;
   const [barChartData, setBarChartData] = useState([]);
   const [operators, setOperators] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [lastUpdate, setLastUpdate] = useState(currentTime());
 
   const fetchData = async () => {
     const barChart = await getBarChartByOperators();
@@ -34,6 +37,7 @@ const Operators = () => {
       setLoading(true);
       const operatorsInfo = await getOperators();
       setOperators(operatorsInfo);
+      setLastUpdate(currentTime());
       setLoading(false);
     } catch (err) {
       ApiErrorMessage();
@@ -49,15 +53,17 @@ const Operators = () => {
       <div className="contentSection">
         <div className="headerButtons">
           <div className="buttonsContainer">
-          <BackButton toUrl={'/dashboard'} />
-          <Tooltip title="Actualizar"><Button
-            className="updateButton"
-            icon="sync"
-            shape="circle"
-            onClick={handleUpdate}
-            loading={loading}
-          />
-          </Tooltip>
+            <BackButton toUrl={'/dashboard'} />
+            <Tooltip title="Actualizar">
+              <Button
+                className="updateButton"
+                icon="sync"
+                shape="circle"
+                onClick={handleUpdate}
+                loading={loading}
+              />
+            </Tooltip>
+            <span id ="lastUpdate">{`Última actualización ${lastUpdate}`}</span>
           </div>
         </div>
         <Row gutter={16}>
