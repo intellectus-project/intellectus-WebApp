@@ -114,5 +114,6 @@ export const dateHandler = {
       .format(dateFormat),
   format: date => moment(date, dateFormat),
   formatForApi: date => date.format(apiFormat),
-  currentTime: () => moment().format(dateTimeFormate2)
+  currentTime: () => moment().format(dateTimeFormate2),
+  formatDateToShow: date => moment(date).format(dateFormat)
 };
