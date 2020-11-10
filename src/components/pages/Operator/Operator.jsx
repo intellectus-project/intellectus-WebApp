@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import './_style.scss';
-import { message, Button, Icon, Switch } from 'antd';
+import { message, Switch } from 'antd';
 import moment from 'moment';
+import { UserContext } from '../../../services/providers/user-context.jsx';
 import CustomDatePicker from '../../atoms/CustomDatePicker/CustomDatePicker';
 import apiCalls from '../../../services/api-calls/all';
 import OperatorEmotionTables from '../../molecules/OperatorEmotionTables';
@@ -11,8 +12,14 @@ import OperatorEmotionStatus from '../../molecules/OperatorEmotionStatus/Operato
 import OperatorCalls from '../../molecules/OperatorCalls/OperatorCalls';
 import BackButton from '../../atoms/BackButton/back-button';
 import BreaksTable from '../../molecules/BreaksTable/breaks-table';
+import { ROLE_VIEWER } from '../../../utils/constants';
 
-const { getOperatorEmotionStatus, getOperatorEmotionTables, getOperatorCalls, getBreaksByOperator } = apiCalls();
+const {
+  getOperatorEmotionStatus,
+  getOperatorEmotionTables,
+  getOperatorCalls,
+  getBreaksByOperator
+} = apiCalls();
 
 const Operator = () => {
   const [emotionStatus, setEmotionStatus] = useState({});
@@ -22,6 +29,8 @@ const Operator = () => {
   const [name, setName] = useState();
   const [switchOn, setSwitchOn] = useState(false);
   const [breaks, setBreaks] = useState([]);
+
+  const { user } = useContext(UserContext);
 
   const switchOnClick = () => {
     setSwitchOn(!switchOn);
@@ -39,11 +48,15 @@ const Operator = () => {
     fetchBreaks(userId);
   };
 
-  const fetchBreaks = async (userId) => {
+  const fetchBreaks = async userId => {
     const today = dateHandler.formatForApi(moment());
-    const todayBreaks = await getBreaksByOperator({ dateFrom: today, dateTo: today, operatorId: userId });
+    const todayBreaks = await getBreaksByOperator({
+      dateFrom: today,
+      dateTo: today,
+      operatorId: userId
+    });
     setBreaks(todayBreaks);
-  }
+  };
 
   useEffect(() => {
     const loadPage = async () => {
@@ -59,11 +72,12 @@ const Operator = () => {
 
   return (
     <div className="mainSectionContainer">
-      <BackButton toUrl={'/operators'} />
+      {user.role !== ROLE_VIEWER && <BackButton toUrl={'/operators'} />}
       <div className="titleSection">
         <div className="ant-row">
-          <div class='ant-col-4'>
-            <label class='operatorPageStatusName'>Estado actual de</label> <label class='operatorPageName'>{name}</label>
+          <div class="ant-col-4">
+            <label class="operatorPageStatusName">Estado actual de</label>{' '}
+            <label class="operatorPageName">{name}</label>
           </div>
           <OperatorEmotionStatus emotionStatus={emotionStatus} />
         </div>
@@ -72,14 +86,15 @@ const Operator = () => {
         <div class="ant-row">
           <div class="ant-col-12">
             Cambiar vista
-            <Switch onClick={switchOnClick} className='marginHorizontal' />
+            <Switch onClick={switchOnClick} className="marginHorizontal" />
             <CustomDatePicker action={setDate} placeholder="Fecha" theme="datePicker" />
           </div>
-          <br /><br />
+          <br />
+          <br />
         </div>
         <OperatorEmotionTables emotionTables={emotionTables} switchOn={switchOn} />
         <OperatorCalls calls={calls} />
-        <BreaksTable breaks={breaks}/>
+        <BreaksTable breaks={breaks} />
       </div>
     </div>
   );
