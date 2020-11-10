@@ -13,7 +13,7 @@ const OperatorsChart = ({ data }) => {
   } = getEmotionValues(data);
   const series = [
     {
-      name: 'Angustia',
+      name: 'Tristeza',
       data: sadnessValues
     },
     {

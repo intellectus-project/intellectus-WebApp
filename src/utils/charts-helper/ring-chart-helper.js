@@ -12,7 +12,7 @@ const fear = {
   },
 };
 const anguish = {
-  text: 'Angustia',
+  text: 'Tristeza',
   id: 'sadness',
   theme: {
     from: '#eaec17',

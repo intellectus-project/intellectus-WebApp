@@ -12,11 +12,11 @@ const ConsultantOperatorBarChart = ({ operatorStats, consultantStats }) => {
 
     const formatInput = () => {
         let arr = [];
-        const anger = { name: "Enojo", Operador: operatorStats.anger, Consultante: consultantStats.anger };
-        const happiness = { name: "Felicidad", Operador: operatorStats.happiness, Consultante: consultantStats.happiness };
-        const neutrality = { name: "Neutralidad", Operador: operatorStats.neutrality, Consultante: consultantStats.neutrality };
-        const sadness = { name: "Tristeza", Operador: operatorStats.sadness, Consultante: consultantStats.sadness };
-        const fear = { name: "Miedo", Operador: operatorStats.fear, Consultante: consultantStats.fear };
+        const anger = { name: "Enojo", Operador: operatorStats.anger * 100, Consultante: consultantStats.anger  * 100};
+        const happiness = { name: "Felicidad", Operador: operatorStats.happiness * 100, Consultante: consultantStats.happiness  * 100};
+        const neutrality = { name: "Neutralidad", Operador: operatorStats.neutrality * 100, Consultante: consultantStats.neutrality * 100 };
+        const sadness = { name: "Tristeza", Operador: operatorStats.sadness * 100, Consultante: consultantStats.sadness * 100 };
+        const fear = { name: "Miedo", Operador: operatorStats.fear * 100, Consultante: consultantStats.fear * 100 };
         arr.push(anger, happiness, neutrality, sadness, fear);
         return arr;
     }
