@@ -19,6 +19,14 @@
       "src": "http://intellectus-web.herokuapp.com/img/logo.png",
       "sizes": "152x43",
       "type": "image/png"
+    },
+    {
+      "src": "img/logo-256x256.png",
+      "sizes": "256x256"
+    },
+    {
+      "src": "http://intellectus-web.herokuapp.comimg/logo-256x256.png",
+      "sizes": "256x256"
     }
   ]
 }

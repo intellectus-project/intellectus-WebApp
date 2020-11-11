@@ -17,8 +17,8 @@ self.addEventListener('push', (event) => {
 
   event.waitUntil(self.registration.showNotification('Intellectus', {
     body: text,
-    icon: 'http://intellectus-web.herokuapp.com/favicon.ico',
-    badge: 'http://intellectus-web.herokuapp.com/favicon.ico',
+    icon: 'img/logo-256x256.png',
+    badge: 'img/logo-256x256.png',
   }));
 });
 

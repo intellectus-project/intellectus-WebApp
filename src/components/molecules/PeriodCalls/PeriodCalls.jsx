@@ -2,18 +2,18 @@ import React from 'react';
 import './_style.scss';
 import { Table } from 'antd';
 import PropTypes from 'prop-types';
-import { formatCall } from '../../../utils/func-helpers';
+import { formatCall, dateHandler } from '../../../utils/func-helpers';
 
 const PeriodCalls = ({ calls }) => {
   const formattedCalls = calls.map(c => formatCall(c));
   const pageSize = 10;
   const columns = [
     {
-      title: 'Operador',
-      dataIndex: 'operator',
-      key: 'operator',
-      width: '20%',
-      align: 'center'
+      title: 'Fecha',
+      dataIndex: 'endTime',
+      key: 'endTime',
+      align: 'center',
+      render: time => dateHandler.formatDateToShow(time)
     },
     {
       title: 'Duracion',
@@ -22,22 +22,17 @@ const PeriodCalls = ({ calls }) => {
       align: 'center'
     },
     {
-      title: 'Clima',
-      dataIndex: 'weather',
-      key: 'weather',
-      align: 'center'
-    },
-    {
-      title: 'Turno',
-      dataIndex: 'shift',
-      key: 'shift',
+      title: 'Operador',
+      dataIndex: 'operator',
+      key: 'operator',
+      width: '20%',
       align: 'center'
     }
   ];
 
   const onRowClick = row => {
     window.location = `call?id=${row.id}`;
-  }
+  };
 
   return (
     <div className="PeriodCalls">
@@ -55,7 +50,7 @@ const PeriodCalls = ({ calls }) => {
 };
 
 PeriodCalls.propTypes = {
-    calls: PropTypes.object.isRequired
-  };
+  calls: PropTypes.object.isRequired
+};
 
 export default PeriodCalls;
