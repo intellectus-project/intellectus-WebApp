@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './app';
-import askPushNotificationPermission from './webPush/askPushNotificationPermission';
 
 const askInstallPermissions = () => {
   if (navigator && navigator.serviceWorker) {

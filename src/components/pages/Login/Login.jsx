@@ -34,7 +34,6 @@ const Login = props => {
     delete Object.assign(values, { username: values.email }).email;
     try {
       const { data: logInData } = await loginRequest(values);
-      console.log('loginData ', logInData);
       setUser(logInData);
     } catch (error) {
       const errorMessage = processedErrorMessage(error);

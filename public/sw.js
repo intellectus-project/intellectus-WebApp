@@ -1,7 +1,8 @@
-const version = '0.0.3';
+const version = '0.0.5';
 
 self.addEventListener('install', (event) => {
   console.log('Service Worker installing.');
+  self.skipWaiting();
 });
 
 self.addEventListener('activate', (event) => {
@@ -37,4 +38,10 @@ self.addEventListener('notificationclick', (event) => {
       return clients.openWindow('/');
     }
   }));
+});
+
+self.addEventListener('message', event => {
+  if (event.data === 'skipWaiting') {
+    self.skipWaiting();
+  }
 });

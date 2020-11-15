@@ -15,7 +15,7 @@ const BarChart = ({ data, setDayModalDate, showDayModal, tagDescription, tagColo
   } = getEmotionValues(data);
   const series = [
     {
-      name: 'Angustia',
+      name: 'Tristeza',
       data: sadnessValues
     },
     {
