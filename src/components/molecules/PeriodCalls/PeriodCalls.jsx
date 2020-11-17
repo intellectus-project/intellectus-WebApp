@@ -16,7 +16,7 @@ const PeriodCalls = ({ calls }) => {
       render: time => dateHandler.formatDateToShow(time)
     },
     {
-      title: 'Duracion',
+      title: 'Duración',
       dataIndex: 'duration',
       key: 'duration',
       align: 'center'
