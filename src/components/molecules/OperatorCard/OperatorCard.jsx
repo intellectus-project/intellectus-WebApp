@@ -9,7 +9,19 @@ const { info } = Modal;
 const { giveBreak } = apiCalls();
 
 const DEFAULT_MINUTES_DURATION = 10;
+const ERROR_NOT_AT_CALL = 409;
+const ERROR_ASSIGNED_BREAK = 417;
 
+const getErrorMessage = code =>{
+  switch (code){
+    case ERROR_NOT_AT_CALL:
+      return 'El operador no se encuentra en llamada';
+    case ERROR_ASSIGNED_BREAK:
+      return 'El operador ya tiene un descanso asignado';
+    default:
+      return 'No se ha podido otorgar el descando';
+  }
+}
 const OperatorCard = ({
   id,
   name,
@@ -30,10 +42,11 @@ const OperatorCard = ({
     try {
       await giveBreak({ operatorId: id, minutesDuration });
       SuccessMessage('Descanso otorgado con éxito.');
-      setVisible(false);
+      setVisible(false)
       setLoading(false);
     } catch (error) {
-      ApiErrorMessage('El operador no se encuentra en llamada');
+      const msg = getErrorMessage(error.response.status);
+      ApiErrorMessage(msg);
       setLoading(false);
     }
   };
