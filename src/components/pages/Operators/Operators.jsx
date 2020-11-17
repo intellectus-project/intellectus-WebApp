@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+import { LinkContext } from '../../../services/providers/prev-link';
 import './_style.scss';
 import { dateHandler } from '../../../utils/func-helpers';
 import { Col, Row, Button, Tooltip } from 'antd';
@@ -7,11 +8,13 @@ import apiCalls from '../../../services/api-calls/all';
 import OperatorCard from '../../molecules/OperatorCard/OperatorCard';
 import { ApiErrorMessage } from '../../../services/providers/Messages';
 import BackButton from '../../atoms/BackButton/back-button';
+import { OPERATORS_URL } from '../../../utils/constants';
 
 const { getBarChartByOperators, getOperators } = apiCalls();
 
 const Operators = () => {
   const { currentTime } = dateHandler;
+  const { prevLink, setPrevLink } = useContext(LinkContext);
   const [barChartData, setBarChartData] = useState([]);
   const [operators, setOperators] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -45,6 +48,8 @@ const Operators = () => {
     }
   };
 
+  const handleCardClick = () => setPrevLink({ prevLink: OPERATORS_URL });
+
   return (
     <>
       <div className="titleSection">
@@ -53,7 +58,7 @@ const Operators = () => {
       <div className="contentSection">
         <div className="headerButtons">
           <div className="buttonsContainer">
-            <BackButton toUrl={'/dashboard'} />
+            <BackButton toUrl={prevLink.prevLink} />
             <Tooltip title="Actualizar">
               <Button
                 className="updateButton"
@@ -63,7 +68,7 @@ const Operators = () => {
                 loading={loading}
               />
             </Tooltip>
-            <span id ="lastUpdate">{`Última actualización ${lastUpdate}`}</span>
+            <span id="lastUpdate">{`Última actualización ${lastUpdate}`}</span>
           </div>
         </div>
         <Row gutter={16}>
@@ -78,6 +83,7 @@ const Operators = () => {
                 atBreak={o.atBreak}
                 inCall={o.inCall}
                 breakAssignedToActualCall={o.breakAssignedToActualCall}
+                handleOperatorClick={handleCardClick}
               />
             </Col>
           ))}

@@ -1,10 +1,12 @@
 import React, { useState, useContext } from 'react';
+import { useHistory } from 'react-router-dom';
 import { Menu, Icon, message } from 'antd';
 import './_style.scss';
 import PropTypes from 'prop-types';
 import { UserContext } from '../../../services/providers/user-context';
+import { LinkContext } from '../../../services/providers/prev-link';
 import { compare } from '../../../utils/func-helpers';
-import { LOGIN_URL } from '../../../utils/constants';
+import { LOGIN_URL, HOME_URL } from '../../../utils/constants';
 import { useRedirect } from '../../Router/redirect';
 import { processedErrorMessage } from '../../../services/api-calls/helpers';
 import apiCalls from '../../../services/api-calls/all';
@@ -16,7 +18,9 @@ const { SubMenu } = Menu;
 const Navbar = ({ navbarEntries }) => {
   const [current, setCurrent] = useState('');
   const { setUser } = useContext(UserContext);
+  const { setPrevLink } = useContext(LinkContext);
   const { redirect, setUrlToRedirect } = useRedirect();
+  let history = useHistory();
 
   const signOut = async () => {
     try {
@@ -30,8 +34,15 @@ const Navbar = ({ navbarEntries }) => {
   };
 
   const itemClick = (path) => {
-    if (path === LOGIN_URL) signOut();
-    else setUrlToRedirect(path);
+    if (path === LOGIN_URL) {
+      setPrevLink(HOME_URL);
+      signOut();
+    }
+    else {
+      console.log('prev valu ',history.location.pathname);
+    setPrevLink(history.location.pathname);
+      setUrlToRedirect(path);
+    }
   };
 
   const menuItemsRenderer = (items) =>

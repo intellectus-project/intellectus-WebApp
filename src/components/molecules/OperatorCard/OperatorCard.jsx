@@ -30,11 +30,13 @@ const OperatorCard = ({
   secondaryEmotion,
   atBreak,
   inCall,
-  breakAssignedToActualCall
+  breakAssignedToActualCall,
+  handleOperatorClick
 }) => {
   const [visible, setVisible] = useState(false);
   const [loading, setLoading] = useState(false);
   const [minutesDuration, setMinutesDuration] = useState(DEFAULT_MINUTES_DURATION);
+
   const fullName = `${name} ${lastName}`;
 
   const handleConfirm = async () => {
@@ -77,7 +79,7 @@ const OperatorCard = ({
       style={{ marginTop: 15 }}
       size="small"
       actions={[
-        <a href={`${OPERATOR}?id=${id}`}>
+        <a href={`${OPERATOR}?id=${id}`} onClick={handleOperatorClick}>
           <Icon type="select" />
         </a>,
         <Icon type="clock-circle" onClick={showModal} />

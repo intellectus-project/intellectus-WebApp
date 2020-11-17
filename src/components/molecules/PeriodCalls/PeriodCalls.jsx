@@ -1,11 +1,15 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { LinkContext } from '../../../services/providers/prev-link';
 import './_style.scss';
 import { Table, Icon } from 'antd';
 import { CALL } from '../../../utils/constants';
 import PropTypes from 'prop-types';
 import { formatCall, dateHandler } from '../../../utils/func-helpers';
+import { HOME_URL } from '../../../utils/constants';
 
 const PeriodCalls = ({ calls }) => {
+  const { setPrevLink } = useContext(LinkContext);
+
   const formattedCalls = calls.map(c => formatCall(c));
   const pageSize = 10;
   const columns = [
