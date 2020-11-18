@@ -1,6 +1,7 @@
 import React from 'react';
 import './_style.scss';
-import { Table } from 'antd';
+import { Table, Icon } from 'antd';
+import { CALL } from '../../../utils/constants';
 import PropTypes from 'prop-types';
 import { formatCall, dateHandler } from '../../../utils/func-helpers';
 
@@ -27,17 +28,23 @@ const PeriodCalls = ({ calls }) => {
       key: 'operator',
       width: '20%',
       align: 'center'
+    },
+    {
+      title: 'Ver',
+      dataIndex: 'id',
+      key: 'id',
+      align: 'center',
+      render: id => (
+        <a href={`${CALL}?id=${id}`}>
+          <Icon type="eye" />
+        </a>
+      )
     }
   ];
-
-  const onRowClick = row => {
-    window.location = `call?id=${row.id}`;
-  };
 
   return (
     <div className="PeriodCalls">
       <Table
-        onRowClick={onRowClick}
         title={() => 'Llamadas del período'}
         bordered
         dataSource={formattedCalls}
