@@ -56,12 +56,12 @@ const Dashboard = () => {
   }, []);
 
   const handleFromDateChange = date => {
-    const formattedDate = formatForApi(format(date));
+    const formattedDate = date ? formatForApi(format(date)) : date;
     setDateFrom(formattedDate);
   };
 
   const handleToDateChange = date => {
-    const formattedDate = formatForApi(format(date));
+    const formattedDate = date ? formatForApi(format(date)) : date;
     setDateTo(formattedDate);
   };
 
