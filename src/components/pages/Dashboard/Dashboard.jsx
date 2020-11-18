@@ -39,7 +39,7 @@ const Dashboard = () => {
     setRingChartValues(ringsValues);
     const barChartData = await getBarChartValues(chartsQuery);
     setBarChartValues(barChartData);
-    const periodCalls = await getCalls(query);
+    const periodCalls = await getCalls(chartsQuery);
     setCalls(periodCalls);
     setAmount(periodCalls.length);
   };
