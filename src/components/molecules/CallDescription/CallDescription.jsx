@@ -10,6 +10,9 @@ import DayModal from '../DayModal/DayModal';
 
 const CallDescription = ({ operatorName, startTime, endTime, weather, shift, emotion }) => {
   const [visible, setVisible] = useState(false);
+  const minutesDuration = differenceBetween(endTime, startTime, 'minutes');
+  console.log(startTime, endTime);
+  const secondsRemaining = differenceBetween(endTime, startTime, 'seconds') - minutesDuration*60;
 
   return (
     <>
@@ -34,7 +37,7 @@ const CallDescription = ({ operatorName, startTime, endTime, weather, shift, emo
         </p>
         <p>
           <strong>Duración: </strong>
-          {differenceBetween(endTime, startTime) + ' ' + 'minutos'}
+          {minutesDuration + ' ' + 'minutos' + ' y ' + secondsRemaining + ' segundos'}
         </p>
         <p>
           <strong>Clima: </strong>
