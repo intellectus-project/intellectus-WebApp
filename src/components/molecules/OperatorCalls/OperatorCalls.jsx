@@ -7,7 +7,7 @@ import { formatCall } from '../../../utils/func-helpers';
 
 const OperatorCalls = ({ calls, handleCallClick }) => {
   const formattedCalls = calls !== [] && calls.map(c => formatCall(c));
-  const pageSize = 10;
+  const pageSize = 5;
   const columns = [
     {
       title: 'Comienzo',
