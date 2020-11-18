@@ -58,7 +58,7 @@ const Operators = () => {
       <div className="contentSection">
         <div className="headerButtons">
           <div className="buttonsContainer">
-            <BackButton toUrl={prevLink.prevLink} />
+            <BackButton toUrl={'/dashboard'} text={'Ir a Dashboard'}/>
             <Tooltip title="Actualizar">
               <Button
                 className="updateButton"

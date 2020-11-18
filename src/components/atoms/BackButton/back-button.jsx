@@ -6,7 +6,7 @@ import defaultPreviousUrls from '../../../utils/backUrls-helper';
 import PropTypes from 'prop-types';
 import './_style.scss';
 
-const BackButton = ({ toUrl, colorWay, id }) => {
+const BackButton = ({ toUrl, text, colorWay, id }) => {
   let history = useHistory();
   const { setPrevLink } = useContext(LinkContext);
 
@@ -14,9 +14,8 @@ const BackButton = ({ toUrl, colorWay, id }) => {
 
   const onClick = () => {
     const idUrl = id ? `?id=${id}` : '';
-    console.log('idUrl ', idUrl);
     let nextUrl = `${toUrl}${idUrl}`;
-    if (toUrl === currentPath) {
+    if( !toUrl || toUrl === currentPath  ) {
       nextUrl = defaultPreviousUrls[currentPath];
       setPrevLink(nextUrl);
     }
@@ -27,7 +26,7 @@ const BackButton = ({ toUrl, colorWay, id }) => {
     <div class="backButtonContainer">
       <Button type={colorWay} onClick={onClick}>
         <Icon type="left" />
-        Volver
+        {text || 'Volver'}
       </Button>
     </div>
   );
@@ -35,6 +34,7 @@ const BackButton = ({ toUrl, colorWay, id }) => {
 
 BackButton.propTypes = {
   toUrl: PropTypes.string,
+  text: PropTypes.string,
   colorWay: PropTypes.string,
   id: PropTypes.string
 };

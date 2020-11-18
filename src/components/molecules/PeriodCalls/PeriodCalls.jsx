@@ -1,14 +1,11 @@
-import React, { useContext } from 'react';
-import { LinkContext } from '../../../services/providers/prev-link';
+import React from 'react';
 import './_style.scss';
 import { Table, Icon } from 'antd';
 import { CALL } from '../../../utils/constants';
 import PropTypes from 'prop-types';
 import { formatCall, dateHandler } from '../../../utils/func-helpers';
-import { HOME_URL } from '../../../utils/constants';
 
-const PeriodCalls = ({ calls }) => {
-  const { setPrevLink } = useContext(LinkContext);
+const PeriodCalls = ({ calls, handleCallClick }) => {
 
   const formattedCalls = calls.map(c => formatCall(c));
   const pageSize = 10;
@@ -39,7 +36,7 @@ const PeriodCalls = ({ calls }) => {
       key: 'id',
       align: 'center',
       render: id => (
-        <a href={`${CALL}?id=${id}`}>
+        <a href={`${CALL}?id=${id}`} onClick={handleCallClick}>
           <Icon type="eye" />
         </a>
       )

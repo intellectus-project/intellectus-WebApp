@@ -1,6 +1,7 @@
 const defaultPreviousUrls = {
     '/operator': '/operators',
-    '/operators': '/dashboard'
+    '/operators': '/dashboard',
+    '/call': '/operators'
   };
   
 export default defaultPreviousUrls;

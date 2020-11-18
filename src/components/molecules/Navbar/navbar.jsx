@@ -5,7 +5,7 @@ import './_style.scss';
 import PropTypes from 'prop-types';
 import { UserContext } from '../../../services/providers/user-context';
 import { LinkContext } from '../../../services/providers/prev-link';
-import { compare } from '../../../utils/func-helpers';
+import { compare, getPrevUrlParam } from '../../../utils/func-helpers';
 import { LOGIN_URL, HOME_URL } from '../../../utils/constants';
 import { useRedirect } from '../../Router/redirect';
 import { processedErrorMessage } from '../../../services/api-calls/helpers';
@@ -33,22 +33,23 @@ const Navbar = ({ navbarEntries }) => {
     setUrlToRedirect(LOGIN_URL);
   };
 
-  const itemClick = (path) => {
+  const itemClick = path => {
     if (path === LOGIN_URL) {
       setPrevLink(HOME_URL);
       signOut();
-    }
-    else {
-      console.log('prev valu ',history.location.pathname);
-    setPrevLink(history.location.pathname);
+    } else {
+      const params = getPrevUrlParam(history.location.search);
+      const prevLinkObj = { prevLink: history.location.pathname };
+      if (Object.keys(params).includes('id')) prevLinkObj.id = params.id;
+      setPrevLink(prevLinkObj);
       setUrlToRedirect(path);
     }
   };
 
-  const menuItemsRenderer = (items) =>
+  const menuItemsRenderer = items =>
     items
       .sort((a, b) => compare(a, b, 'order'))
-      .map((item) => (
+      .map(item => (
         <Menu.Item key={item.key}>
           <button onClick={() => itemClick(item.url)}>
             {item.icon && <Icon type={item.icon} />}
@@ -59,7 +60,7 @@ const Navbar = ({ navbarEntries }) => {
 
   const menuItems = navbarEntries
     .sort((a, b) => compare(a, b, 'order'))
-    .map((entry) =>
+    .map(entry =>
       entry.items ? (
         <SubMenu
           key={entry.key}
@@ -95,7 +96,7 @@ const Navbar = ({ navbarEntries }) => {
 };
 
 Navbar.propTypes = {
-  navbarEntries: PropTypes.any,
+  navbarEntries: PropTypes.any
 };
 
 export default Navbar;
