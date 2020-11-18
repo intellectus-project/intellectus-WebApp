@@ -22,12 +22,6 @@ const OperatorCalls = ({ calls, handleCallClick }) => {
       align: 'center'
     },
     {
-      title: 'Clima',
-      dataIndex: 'weather',
-      key: 'weather',
-      align: 'center'
-    },
-    {
       title: 'Ver',
       dataIndex: 'id',
       key: 'id',

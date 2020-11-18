@@ -49,17 +49,16 @@ const Operator = () => {
     setEmotionTables(formatEmotionTables(emotionTablesData));
     const callsData = await getOperatorCalls(userId, formattedDate || date);
     setCalls(callsData);
-    fetchBreaks(userId);
+    fetchBreaks(userId, formattedDate || date);
   };
 
-  const fetchBreaks = async userId => {
-    const today = dateHandler.formatForApi(moment());
-    const todayBreaks = await getBreaksByOperator({
-      dateFrom: today,
-      dateTo: today,
+  const fetchBreaks = async (userId, date) => {
+    const dayBreaks = await getBreaksByOperator({
+      dateFrom: date,
+      dateTo: date,
       operatorId: userId
     });
-    setBreaks(todayBreaks);
+    setBreaks(dayBreaks);
   };
 
   useEffect(() => {

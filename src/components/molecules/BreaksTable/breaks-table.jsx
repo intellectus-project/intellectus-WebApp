@@ -3,7 +3,7 @@ import { Table, Icon, Tag } from 'antd';
 import { CALL } from '../../../utils/constants';
 import PropTypes from 'prop-types';
 import './_style.scss';
-import { formatBreak } from '../../../utils/func-helpers';
+import { formatBreak, formatDateWithTime } from '../../../utils/func-helpers';
 
 /* {
   title: 'Tomado por',
@@ -31,6 +31,13 @@ const BreaksTable = ({ breaks }) => {
   const pageSize = 10;
   const columns = [
     {
+      title: 'Comienzo',
+      dataIndex: 'updated',
+      key: 'updated',
+      align: 'center',
+      render: date => formatDateWithTime(date),
+    },
+    {
       title: 'Duración (en minutos)',
       dataIndex: 'duration',
       key: 'duration',
@@ -48,7 +55,7 @@ const BreaksTable = ({ breaks }) => {
 
         </span>
       ),
-    }
+    },
   ];
   return (
     <div className="BreaksTable">

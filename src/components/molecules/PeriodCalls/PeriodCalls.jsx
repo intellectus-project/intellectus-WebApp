@@ -3,19 +3,19 @@ import './_style.scss';
 import { Table, Icon } from 'antd';
 import { CALL } from '../../../utils/constants';
 import PropTypes from 'prop-types';
-import { formatCall, dateHandler } from '../../../utils/func-helpers';
+import { formatCall, dateHandler, formatDateTime } from '../../../utils/func-helpers';
 
 const PeriodCalls = ({ calls, handleCallClick }) => {
 
   const formattedCalls = calls.map(c => formatCall(c));
+  console.log(formattedCalls)
   const pageSize = 10;
   const columns = [
     {
-      title: 'Fecha',
-      dataIndex: 'endTime',
-      key: 'endTime',
+      title: 'Comienzo',
+      dataIndex: 'startTime',
+      key: 'startTime',
       align: 'center',
-      render: time => dateHandler.formatDateToShow(time)
     },
     {
       title: 'Duración',
