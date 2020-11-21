@@ -9,58 +9,63 @@ import EMOTIONS from '../../../utils/emotions';
 import DayModal from '../DayModal/DayModal';
 
 const CallDescription = ({ operatorName, startTime, endTime, weather, shift, emotion }) => {
-    const [visible, setVisible] = useState(false);
+  const [visible, setVisible] = useState(false);
+  const minutesDuration = differenceBetween(endTime, startTime, 'minutes');
+  console.log(startTime, endTime);
+  const secondsRemaining = differenceBetween(endTime, startTime, 'seconds') - minutesDuration*60;
 
-    return (
-        <>
-            <Card size="medium" title="Información de la llamada" extra={<button onClick={() => setVisible(true)}> <strong>Ver información dia</strong></button>} style={{ width: 400 }}>
-                <p>
-                    <strong>
-                        Operador:{' '}
-                    </strong>
-                    {operatorName}
-                </p>
-                <p>
-                    <strong>
-                        Fecha:{' '}
-                    </strong>
-                    {formatDateWithTime(startTime)}
-                </p>
-                <p>
-                    <strong>
-                        Duración:{' '}
-                    </strong>
-                    {differenceBetween(endTime, startTime ) + ' ' + 'minutos'}
-                </p>
-                <p>
-                    <strong>
-                        Clima:{' '}
-                    </strong>
-                    {weather}
-                </p>
-                <p>
-                    <strong>
-                        Turno:{' '}
-                    </strong>
-                    {shift}
-                </p>
-                <p>
-                    <EmotionIcon emotion={EMOTIONS[emotion]} />
-                </p>
-
-            </Card>
-            <DayModal defaultValue={formatDate(startTime)} setVisible={setVisible} visible={visible} />
-        </>
-    );
-}
-
+  return (
+    <>
+      <Card
+        size="medium"
+        title="Información de la llamada"
+        extra={
+          <button onClick={() => setVisible(true)}>
+            {' '}
+            <strong>Ver información dia</strong>
+          </button>
+        }
+        style={{ width: 400 }}
+      >
+        <p>
+          <strong>Operador: </strong>
+          {operatorName}
+        </p>
+        <p>
+          <strong>Fecha: </strong>
+          {formatDateWithTime(startTime)}
+        </p>
+        <p>
+          <strong>Duración: </strong>
+          {minutesDuration + ' ' + 'minutos' + ' y ' + secondsRemaining + ' segundos'}
+        </p>
+        <p>
+          <strong>Clima: </strong>
+          {weather}
+        </p>
+        <p>
+          <strong>Turno: </strong>
+          {shift}
+        </p>
+        <p>
+          <EmotionIcon emotion={EMOTIONS[emotion]} />
+        </p>
+      </Card>
+      <DayModal
+        defaultValue={startTime ? formatDate(startTime) : startTime}
+        setVisible={setVisible}
+        visible={visible}
+      />
+    </>
+  );
+};
 
 CallDescription.propTypes = {
-    operatorName: PropTypes.string.isRequired,
-    startTime: PropTypes.instanceOf(Date),
-    endTime: PropTypes.instanceOf(Date),
-    weather: PropTypes.string.isRequired,
-    shift: PropTypes.string.isRequired
+  operatorName: PropTypes.string.isRequired,
+  startTime: PropTypes.instanceOf(Date),
+  endTime: PropTypes.instanceOf(Date),
+  weather: PropTypes.string.isRequired,
+  shift: PropTypes.string.isRequired
 };
 
 export default CallDescription;

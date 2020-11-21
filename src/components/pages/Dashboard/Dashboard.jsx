@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+import { LinkContext } from '../../../services/providers/prev-link';
 import './_style.scss';
 import { Button, Icon, Row, Col } from 'antd';
 import { now, dateHandler } from '../../../utils/func-helpers';
@@ -12,12 +13,14 @@ import BarChart from '../../molecules/BarChart/BarChart';
 import DayModal from '../../molecules/DayModal/DayModal';
 import TotalCallsStatistic from '../../molecules/TotalCallsStatistic/total-calls-statistic';
 import askPushNotificationPermission from '../../../webPush/askPushNotificationPermission';
+import { HOME_URL } from '../../../utils/constants';
 
 const { getRingChartValues, getBarChartValues, getOperators, getCalls } = apiCalls();
 const { formatForApi, format } = dateHandler;
 const defaultDay = formatForApi(now);
 
 const Dashboard = () => {
+  const { setPrevLink } = useContext(LinkContext);
   const [operators, setOperators] = useState([]);
   const [dateFrom, setDateFrom] = useState(defaultDay);
   const [dateTo, setDateTo] = useState(defaultDay);
@@ -36,7 +39,7 @@ const Dashboard = () => {
     setRingChartValues(ringsValues);
     const barChartData = await getBarChartValues(chartsQuery);
     setBarChartValues(barChartData);
-    const periodCalls = await getCalls(query);
+    const periodCalls = await getCalls(chartsQuery);
     setCalls(periodCalls);
     setAmount(periodCalls.length);
   };
@@ -56,12 +59,12 @@ const Dashboard = () => {
   }, []);
 
   const handleFromDateChange = date => {
-    const formattedDate = formatForApi(format(date));
+    const formattedDate = date ? formatForApi(format(date)) : date;
     setDateFrom(formattedDate);
   };
 
   const handleToDateChange = date => {
-    const formattedDate = formatForApi(format(date));
+    const formattedDate = date ? formatForApi(format(date)) : date;
     setDateTo(formattedDate);
   };
 
@@ -72,6 +75,9 @@ const Dashboard = () => {
       ApiErrorMessage();
     }
   };
+
+  const handleCallClick = () => setPrevLink({ prevLink: HOME_URL, id: undefined});
+
   return (
     <div className="mainSectionContainer">
       <div className="titleSection">
@@ -113,7 +119,7 @@ const Dashboard = () => {
           showDayModal={setShowDayModal}
           setDayModalDate={setDayValue}
         />
-        <PeriodCalls calls={calls} />
+        <PeriodCalls calls={calls} handleCallClick={handleCallClick}/>
         <DayModal visible={showDayModal} setVisible={setShowDayModal} defaultValue={dayValue} />
       </div>
     </div>

@@ -1,10 +1,12 @@
 import React, { useState, useContext } from 'react';
+import { useHistory } from 'react-router-dom';
 import { Menu, Icon, message } from 'antd';
 import './_style.scss';
 import PropTypes from 'prop-types';
 import { UserContext } from '../../../services/providers/user-context';
-import { compare } from '../../../utils/func-helpers';
-import { LOGIN_URL } from '../../../utils/constants';
+import { LinkContext } from '../../../services/providers/prev-link';
+import { compare, getPrevUrlParam } from '../../../utils/func-helpers';
+import { LOGIN_URL, HOME_URL } from '../../../utils/constants';
 import { useRedirect } from '../../Router/redirect';
 import { processedErrorMessage } from '../../../services/api-calls/helpers';
 import apiCalls from '../../../services/api-calls/all';
@@ -16,7 +18,9 @@ const { SubMenu } = Menu;
 const Navbar = ({ navbarEntries }) => {
   const [current, setCurrent] = useState('');
   const { setUser } = useContext(UserContext);
+  const { setPrevLink } = useContext(LinkContext);
   const { redirect, setUrlToRedirect } = useRedirect();
+  let history = useHistory();
 
   const signOut = async () => {
     try {
@@ -29,15 +33,23 @@ const Navbar = ({ navbarEntries }) => {
     setUrlToRedirect(LOGIN_URL);
   };
 
-  const itemClick = (path) => {
-    if (path === LOGIN_URL) signOut();
-    else setUrlToRedirect(path);
+  const itemClick = path => {
+    if (path === LOGIN_URL) {
+      setPrevLink(HOME_URL);
+      signOut();
+    } else {
+      const params = getPrevUrlParam(history.location.search);
+      const prevLinkObj = { prevLink: history.location.pathname };
+      if (Object.keys(params).includes('id')) prevLinkObj.id = params.id;
+      setPrevLink(prevLinkObj);
+      setUrlToRedirect(path);
+    }
   };
 
-  const menuItemsRenderer = (items) =>
+  const menuItemsRenderer = items =>
     items
       .sort((a, b) => compare(a, b, 'order'))
-      .map((item) => (
+      .map(item => (
         <Menu.Item key={item.key}>
           <button onClick={() => itemClick(item.url)}>
             {item.icon && <Icon type={item.icon} />}
@@ -48,7 +60,7 @@ const Navbar = ({ navbarEntries }) => {
 
   const menuItems = navbarEntries
     .sort((a, b) => compare(a, b, 'order'))
-    .map((entry) =>
+    .map(entry =>
       entry.items ? (
         <SubMenu
           key={entry.key}
@@ -84,7 +96,7 @@ const Navbar = ({ navbarEntries }) => {
 };
 
 Navbar.propTypes = {
-  navbarEntries: PropTypes.any,
+  navbarEntries: PropTypes.any
 };
 
 export default Navbar;

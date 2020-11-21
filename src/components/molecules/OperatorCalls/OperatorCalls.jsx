@@ -5,9 +5,9 @@ import PropTypes from 'prop-types';
 import './_style.scss';
 import { formatCall } from '../../../utils/func-helpers';
 
-const OperatorCalls = ({ calls }) => {
+const OperatorCalls = ({ calls, handleCallClick }) => {
   const formattedCalls = calls !== [] && calls.map(c => formatCall(c));
-  const pageSize = 10;
+  const pageSize = 5;
   const columns = [
     {
       title: 'Comienzo',
@@ -22,18 +22,12 @@ const OperatorCalls = ({ calls }) => {
       align: 'center'
     },
     {
-      title: 'Clima',
-      dataIndex: 'weather',
-      key: 'weather',
-      align: 'center'
-    },
-    {
       title: 'Ver',
       dataIndex: 'id',
       key: 'id',
       align: 'center',
       render: id => (
-        <a href={`${CALL}?id=${id}`}>
+        <a href={`${CALL}?id=${id}`} onClick={handleCallClick}>
           <Icon type="eye" />
         </a>
       )
@@ -54,7 +48,8 @@ const OperatorCalls = ({ calls }) => {
 };
 
 OperatorCalls.propTypes = {
-  calls: PropTypes.object.isRequired
+  calls: PropTypes.object.isRequired,
+  handleCallClick: PropTypes.func.isRequired
 };
 
 export default OperatorCalls;

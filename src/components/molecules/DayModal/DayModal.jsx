@@ -16,12 +16,14 @@ const DayModal = ({ defaultValue, visible, setVisible }) => {
   const [weathersDay, setWeathersDay] = useState();
 
   const loadData = async () => {
-    const formattedDay = formatToApiQuery(day);
-    const formattedTwoDaysAgo = formatToApiQuery(sumDays(day, -2));
-    const weather = await getWeathersDay({ date: formattedDay });
-    setWeathersDay(weather);
-    const newsEvents = await getNewEvents({ dateFrom: formattedTwoDaysAgo, dateTo: formattedDay });
-    setNews(newsEvents);
+    if(day){
+      const formattedDay = formatToApiQuery(day);
+      const formattedTwoDaysAgo = formatToApiQuery(sumDays(day, -2));
+      const weather = await getWeathersDay({ date: formattedDay });
+      setWeathersDay(weather);
+      const newsEvents = await getNewEvents({ dateFrom: formattedTwoDaysAgo, dateTo: formattedDay });
+      setNews(newsEvents);
+    }
   };
   useEffect(() => {
     setDay(defaultValue);

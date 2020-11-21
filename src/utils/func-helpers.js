@@ -33,7 +33,7 @@ export const compare = (element1, element2, key) => {
 
 const getUrlVars = () => {
   var vars = {};
-  var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function (m, key, value) {
+  var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m, key, value) {
     vars[key] = value;
   });
   return vars;
@@ -47,8 +47,16 @@ export const getUrlParam = (parameter, defaultvalue) => {
   return urlparameter;
 };
 
+export const getPrevUrlParam = url => {
+  var objURL = {};
+  url.replace(new RegExp('([^?=&]+)(=([^&]*))?', 'g'), function($0, $1, $2, $3) {
+    objURL[$1] = $3;
+  });
+  return objURL;
+};
+
 export const parseToFilterDropDown = (entries, key, title, childs = null) => {
-  return entries.map(function (entry) {
+  return entries.map(function(entry) {
     let data = { key: entry[key], title: entry[title] };
     if (childs && entry.hasOwnProperty(childs.data) && entry[childs.data].length > 0) {
       data['childs'] = entry[childs.data].map(child => ({
@@ -60,9 +68,9 @@ export const parseToFilterDropDown = (entries, key, title, childs = null) => {
   });
 };
 
-export const differenceBetween = (date1, date2) => {
-  return moment(date1).diff(date2, 'minutes');
-}
+export const differenceBetween = (date1, date2, type) => {
+  return moment(date1).diff(date2, type);
+};
 
 export const numberFormat = (value, number) => {
   return value.toFixed(number);

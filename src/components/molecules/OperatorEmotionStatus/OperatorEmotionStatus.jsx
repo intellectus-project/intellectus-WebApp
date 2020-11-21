@@ -5,7 +5,9 @@ const mapEmotions = emotionStatus => {
   return EMOTION_NAMES.map(e => (
     <div class="ant-col-2">
       {EMOTIONS[e].icon()}
-      <span id="percentage">{emotionStatus[e] && ` ${Math.round(emotionStatus[e] * 100)}%`}</span>
+      <span id="percentage">
+        {emotionStatus[e] ? ` ${Math.round(emotionStatus[e] * 100)}%` : ' 0%'}
+      </span>
       <p>{EMOTIONS[e].name}</p>
     </div>
   ));

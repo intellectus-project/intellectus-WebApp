@@ -1,17 +1,17 @@
 const getCallById = () => ({
     "operatorStats": {
       "sadness": 0.09,
-      "happiness": 0.25,
-      "fear": 0.28,
-      "neutrality": 0.19,
-      "anger": 0.19
+      "happiness": 0.252323,
+      "fear": 0.282323,
+      "neutrality": 0.192323,
+      "anger": 0.192323
     },
     "consultantStats": {
-      "sadness": 0.35,
+      "sadness": 0.3523232,
       "happiness": 0.0,
-      "fear": 0.36,
+      "fear": 0.3623232,
       "neutrality": 0.0,
-      "anger": 0.29
+      "anger": 0.293232
     },
     "emotion": "EMOTION_NEUTRALITY",
     "startTime": "2020-09-17T18:00:15.073706",

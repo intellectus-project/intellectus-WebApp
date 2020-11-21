@@ -9,7 +9,19 @@ const { info } = Modal;
 const { giveBreak } = apiCalls();
 
 const DEFAULT_MINUTES_DURATION = 10;
+const ERROR_NOT_AT_CALL = 409;
+const ERROR_ASSIGNED_BREAK = 417;
 
+const getErrorMessage = code => {
+  switch (code) {
+    case ERROR_NOT_AT_CALL:
+      return 'El operador no se encuentra en llamada';
+    case ERROR_ASSIGNED_BREAK:
+      return 'El operador ya tiene un descanso asignado';
+    default:
+      return 'No se ha podido otorgar el descando';
+  }
+};
 const OperatorCard = ({
   id,
   name,
@@ -18,11 +30,13 @@ const OperatorCard = ({
   secondaryEmotion,
   atBreak,
   inCall,
-  breakAssignedToActualCall
+  breakAssignedToActualCall,
+  handleOperatorClick
 }) => {
   const [visible, setVisible] = useState(false);
   const [loading, setLoading] = useState(false);
   const [minutesDuration, setMinutesDuration] = useState(DEFAULT_MINUTES_DURATION);
+
   const fullName = `${name} ${lastName}`;
 
   const handleConfirm = async () => {
@@ -33,7 +47,9 @@ const OperatorCard = ({
       setVisible(false);
       setLoading(false);
     } catch (error) {
-      ApiErrorMessage('El operador no se encuentra en llamada');
+      const code = error.response ? error.response.status : 400;
+      const msg = getErrorMessage(code);
+      ApiErrorMessage(msg);
       setLoading(false);
     }
   };
@@ -63,7 +79,7 @@ const OperatorCard = ({
       style={{ marginTop: 15 }}
       size="small"
       actions={[
-        <a href={`${OPERATOR}?id=${id}`}>
+        <a href={`${OPERATOR}?id=${id}`} onClick={handleOperatorClick}>
           <Icon type="select" />
         </a>,
         <Icon type="clock-circle" onClick={showModal} />

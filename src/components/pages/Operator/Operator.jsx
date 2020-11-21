@@ -3,6 +3,7 @@ import './_style.scss';
 import { message, Switch } from 'antd';
 import moment from 'moment';
 import { UserContext } from '../../../services/providers/user-context.jsx';
+import { LinkContext } from '../../../services/providers/prev-link';
 import CustomDatePicker from '../../atoms/CustomDatePicker/CustomDatePicker';
 import apiCalls from '../../../services/api-calls/all';
 import OperatorEmotionTables from '../../molecules/OperatorEmotionTables';
@@ -22,6 +23,7 @@ const {
 } = apiCalls();
 
 const Operator = () => {
+  const [id, setId] = useState();
   const [emotionStatus, setEmotionStatus] = useState({});
   const [emotionTables, setEmotionTables] = useState({});
   const [date, setDate] = useState(moment().format(dateFormat));
@@ -31,6 +33,7 @@ const Operator = () => {
   const [breaks, setBreaks] = useState([]);
 
   const { user } = useContext(UserContext);
+  const { prevLink, setPrevLink } = useContext(LinkContext);
 
   const switchOnClick = () => {
     setSwitchOn(!switchOn);
@@ -38,6 +41,7 @@ const Operator = () => {
 
   const bringPageData = async formattedDate => {
     const userId = getUrlParam('id');
+    setId(userId);
     const emotionStatusData = await getOperatorEmotionStatus(userId);
     setEmotionStatus(formatEmotionTables(emotionStatusData.status));
     setName(emotionStatusData.name);
@@ -45,17 +49,16 @@ const Operator = () => {
     setEmotionTables(formatEmotionTables(emotionTablesData));
     const callsData = await getOperatorCalls(userId, formattedDate || date);
     setCalls(callsData);
-    fetchBreaks(userId);
+    fetchBreaks(userId, formattedDate || date);
   };
 
-  const fetchBreaks = async userId => {
-    const today = dateHandler.formatForApi(moment());
-    const todayBreaks = await getBreaksByOperator({
-      dateFrom: today,
-      dateTo: today,
+  const fetchBreaks = async (userId, date) => {
+    const dayBreaks = await getBreaksByOperator({
+      dateFrom: date,
+      dateTo: date,
       operatorId: userId
     });
-    setBreaks(todayBreaks);
+    setBreaks(dayBreaks);
   };
 
   useEffect(() => {
@@ -70,9 +73,11 @@ const Operator = () => {
     loadPage();
   }, [date]);
 
+  const handleCallClick = () => setPrevLink({ prevLink: '/operator', id });
+
   return (
     <div className="mainSectionContainer">
-      {user.role !== ROLE_VIEWER && <BackButton toUrl={'/operators'} />}
+      {user.role !== ROLE_VIEWER && <BackButton toUrl={prevLink.prevLink} />}
       <div className="titleSection">
         <div className="ant-row">
           <div class="ant-col-4">
@@ -93,7 +98,7 @@ const Operator = () => {
           <br />
         </div>
         <OperatorEmotionTables emotionTables={emotionTables} switchOn={switchOn} />
-        <OperatorCalls calls={calls} />
+        <OperatorCalls calls={calls} handleCallClick={handleCallClick} />
         <BreaksTable breaks={breaks} />
       </div>
     </div>
