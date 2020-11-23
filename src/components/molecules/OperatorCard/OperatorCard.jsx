@@ -36,6 +36,7 @@ const OperatorCard = ({
   const [visible, setVisible] = useState(false);
   const [loading, setLoading] = useState(false);
   const [minutesDuration, setMinutesDuration] = useState(DEFAULT_MINUTES_DURATION);
+  const [isBreakForCall, setIsBreakForCall] = useState(breakAssignedToActualCall);
 
   const fullName = `${name} ${lastName}`;
 
@@ -44,6 +45,7 @@ const OperatorCard = ({
     try {
       await giveBreak({ operatorId: id, minutesDuration });
       SuccessMessage('Descanso otorgado con éxito.');
+      if(inCall) setIsBreakForCall(true);
       setVisible(false);
       setLoading(false);
     } catch (error) {
@@ -64,7 +66,7 @@ const OperatorCard = ({
       content: `${fullName} ${content}`
     });
   const showModal = () => {
-    if (breakAssignedToActualCall)
+    if (isBreakForCall)
       return infoModal(
         'ya tiene un descanso asignado, por favor espere a que finalice el mismo para otorgar un descanso.'
       );
@@ -95,7 +97,7 @@ const OperatorCard = ({
                 <Tooltip title="El operador se encuentra en llamada.">
                   <Icon type="phone" style={{ color: '#79797c', marginLeft: '0.5em' }} />
                 </Tooltip>
-                {breakAssignedToActualCall && (
+                {isBreakForCall && (
                   <Tooltip title="El operador se tomará un tiempo de descanso al finalizar la llamada.">
                     <Icon type="info-circle" style={{ marginLeft: '2em', color: '#08c' }} />
                   </Tooltip>
