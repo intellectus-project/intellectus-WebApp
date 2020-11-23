@@ -55,6 +55,7 @@ const BreaksTable = ({ breaks }) => {
 
         </span>
       ),
+      align: 'center'
     },
   ];
   return (
