@@ -99,7 +99,7 @@ export const formatCall = call => {
   formattedCall.weather = call.weather && call.weather.description;
   formattedCall.startTime = formatDateWithTime(call.startTime);
   const diff = moment(call.endTime).diff(moment(call.startTime), 'seconds');
-  const minutes = Math.round(diff / 60);
+  const minutes = Math.floor(diff / 60);
   const seconds = Math.round(diff % 60);
   formattedCall.duration = `${minutes} minutos ${seconds} segundos`;
   return { ...call, ...formattedCall };

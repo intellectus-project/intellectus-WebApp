@@ -45,7 +45,6 @@ const ParticularCall = () => {
 
   return (
     <div>
-        {console.log('prevlink ',prevLink)}
       <BackButton toUrl={prevLink.prevLink} id={prevLink.id}/>
       <div class="alertContainer">
         {breakTaken && (

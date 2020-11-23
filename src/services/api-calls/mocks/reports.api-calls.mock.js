@@ -133,6 +133,24 @@ const getCalls = () => [
       id: 6,
       name: 'Lucas'
     }
+  },
+  {
+    startTime: '2020-08-26T20:24:00.8787',
+    endTime: '2020-08-26T20:24:37.8787',
+    weather: {
+      description: 'nubes aisladas',
+      temperature: 17.02
+    },
+    shift: {
+      id: 1,
+      name: 'Mañana',
+      startHour: 0,
+      endHour: 8
+    },
+    operator: {
+      id: 6,
+      name: 'Lucas'
+    }
   }
 ];
 
