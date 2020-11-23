@@ -5,6 +5,7 @@ import { Button, Icon, Row, Col } from 'antd';
 import { now, dateHandler } from '../../../utils/func-helpers';
 import HomeDatePickers from '../../molecules/HomeDatePickers/HomeDatePickers';
 import CustomDropdown from '../../atoms/CustomDropdown/CustomDropdown';
+import LoadingSpinner from '../../atoms/LoadingSpinner/LoadingSpinner';
 import apiCalls from '../../../services/api-calls/all';
 import PeriodCalls from '../../molecules/PeriodCalls/PeriodCalls';
 import { ApiErrorMessage } from '../../../services/providers/Messages';
@@ -31,6 +32,7 @@ const Dashboard = () => {
   const [dayValue, setDayValue] = useState();
   const [showDayModal, setShowDayModal] = useState(false);
   const [amount, setAmount] = useState(0);
+  const [loading, setLoading] = useState(false);
 
   const bringPageData = async (dateFrom, dateTo) => {
     const query = { dateFrom, dateTo };
@@ -46,13 +48,16 @@ const Dashboard = () => {
 
   useEffect(() => {
     const loadPage = async () => {
+      setLoading(true);
       try {
         askPushNotificationPermission();
         const operatorsList = await getOperators();
         setOperators(operatorsList);
         await bringPageData(dateTo, dateFrom);
+        setLoading(false);
       } catch (error) {
         ApiErrorMessage();
+        setLoading(false);
       }
     };
     loadPage();
@@ -69,14 +74,19 @@ const Dashboard = () => {
   };
 
   const handleSearch = async () => {
+    setLoading(true);
     try {
+      new Promise(function(resolve) {
+        setTimeout(resolve, 3000);
+      });
       await bringPageData(dateFrom, dateTo);
+      setLoading(false);
     } catch (error) {
       ApiErrorMessage();
     }
   };
 
-  const handleCallClick = () => setPrevLink({ prevLink: HOME_URL, id: undefined});
+  const handleCallClick = () => setPrevLink({ prevLink: HOME_URL, id: undefined });
 
   return (
     <div className="mainSectionContainer">
@@ -102,24 +112,30 @@ const Dashboard = () => {
             <span>Buscar</span>
           </Button>
         </div>
-        <Row >
-          <Col span={6}>
-            <div class="totalCalls">
-              <TotalCallsStatistic amount={amount} />
-            </div>
-          </Col>
-          <Col span={12}>
-            <RingCharts values={ringChartValues} />
-          </Col>
-        </Row>
-        <BarChart
-          tagColor={'red'}
-          tagDescription={'#Consultantes'}
-          data={barChartValues}
-          showDayModal={setShowDayModal}
-          setDayModalDate={setDayValue}
-        />
-        <PeriodCalls calls={calls} handleCallClick={handleCallClick}/>
+        {loading ? (
+          <LoadingSpinner />
+        ) : (
+          <>
+            <Row>
+              <Col span={6}>
+                <div class="totalCalls">
+                  <TotalCallsStatistic amount={amount} />
+                </div>
+              </Col>
+              <Col span={12}>
+                <RingCharts values={ringChartValues} />
+              </Col>
+            </Row>
+            <BarChart
+              tagColor={'red'}
+              tagDescription={'#Consultantes'}
+              data={barChartValues}
+              showDayModal={setShowDayModal}
+              setDayModalDate={setDayValue}
+            />
+            <PeriodCalls calls={calls} handleCallClick={handleCallClick} />{' '}
+          </>
+        )}
         <DayModal visible={showDayModal} setVisible={setShowDayModal} defaultValue={dayValue} />
       </div>
     </div>
