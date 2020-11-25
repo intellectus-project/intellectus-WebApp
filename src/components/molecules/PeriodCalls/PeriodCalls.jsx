@@ -8,7 +8,6 @@ import { formatCall, dateHandler, formatDateTime } from '../../../utils/func-hel
 const PeriodCalls = ({ calls, handleCallClick }) => {
 
   const formattedCalls = calls.map(c => formatCall(c));
-  console.log(formattedCalls)
   const pageSize = 10;
   const columns = [
     {

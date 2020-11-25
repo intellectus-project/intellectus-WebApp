@@ -4,7 +4,7 @@
   text-align: center;
 }
 
-.totalCalls{
+.totalCalls {
   margin-top: 6em;
   margin-left: 20em;
 }
@@ -34,18 +34,22 @@
 .contentSectionContainer {
   margin-top: 2em;
   padding: 0 2em 0 2em;
-  .operator{
+  .operator {
     .operatorDropdown {
       display: inline-block;
       margin-left: 0.5em;
     }
-  } 
+  }
 }
 
-.apexcharts-xaxis-title{
+.apexcharts-xaxis-title {
   font-style: italic;
 }
 
 .ant-table-tbody > tr:hover:not(.ant-table-expanded-row):not(.ant-table-row-selected) > td {
   background: transparent !important;
+}
+
+.loading{
+  margin-top: 4em;
 }
