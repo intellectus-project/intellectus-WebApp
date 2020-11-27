@@ -93,7 +93,12 @@ const Operator = () => {
           <div class="ant-col-12">
             Cambiar vista
             <Switch onClick={switchOnClick} className="marginHorizontal" />
-            <CustomDatePicker action={setDate} placeholder="Fecha" theme="operatorDatePicker" />
+            <CustomDatePicker
+              action={setDate}
+              placeholder="Fecha"
+              theme="operatorDatePicker"
+              allowClear={false}
+            />
           </div>
           <br />
           <br />
