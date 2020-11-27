@@ -2,6 +2,7 @@
 
 .titleSection {
   text-align: center;
+  margin-top: 4em;
 }
 
 .searchContainer {
@@ -12,6 +13,7 @@
   button:hover {
     background-color: #6977c5;
   }
+
   button:visited {
     background-color: #6977c5;
   }
@@ -29,7 +31,10 @@
 .contentContainer {
   margin-top: 2em;
 }
-
+.actualState {
+  font-size: 20px;
+  margin-bottom: 0.5em;
+}
 .operatorPageStatusName {
   text-align: left;
   font-size: 22px;
@@ -44,7 +49,7 @@
   margin-right: 15px;
 }
 
-.mainSectionContainer{
+.mainSectionContainer {
   padding: 0 2em 0 2em;
   text-align: left;
 }
@@ -54,4 +59,17 @@
 }
 .ant-btn{
   padding: 0 15px 0 0;
+}
+.contentSection {
+    .backButtonContainer {
+      margin-bottom: 0px;
+      .ant-btn {
+        padding: 0 15px 0 0;
+      }
+    }
+}
+.operatorDatePicker{
+  float: left;
+  margin-right: 1em;
+  margin-left: 10em;
 }

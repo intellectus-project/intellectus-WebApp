@@ -80,23 +80,20 @@ const Operator = () => {
   const handleCallClick = () => setPrevLink({ prevLink: '/operator', id });
 
   return (
-    <div className="mainSectionContainer">
-      {user.role !== ROLE_VIEWER && <BackButton toUrl={prevLink.prevLink} />}
+    <>
       <div className="titleSection">
-        <div className="ant-row">
-          <div class="ant-col-4">
-            <label class="operatorPageStatusName">Estado actual de</label>{' '}
-            <label class="operatorPageName">{name}</label>
-          </div>
-          <OperatorEmotionStatus emotionStatus={emotionStatus} />
-        </div>
+        <h2>{name ? name : 'Operador'}</h2>
       </div>
-      <div className="contentContainer">
+      <div className="contentSection">
+        {user.role !== ROLE_VIEWER && <BackButton toUrl={prevLink.prevLink} />}
+
         <div class="ant-row">
+          <div className="actualState">Estado actual</div>
+          <OperatorEmotionStatus emotionStatus={emotionStatus} />
           <div class="ant-col-12">
             Cambiar vista
             <Switch onClick={switchOnClick} className="marginHorizontal" />
-            <CustomDatePicker action={setDate} placeholder="Fecha" theme="datePicker" />
+            <CustomDatePicker action={setDate} placeholder="Fecha" theme="operatorDatePicker" />
           </div>
           <br />
           <br />
@@ -111,7 +108,7 @@ const Operator = () => {
           </>
         )}
       </div>
-    </div>
+    </>
   );
 };
 export default Operator;
