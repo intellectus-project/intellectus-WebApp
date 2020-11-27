@@ -5,7 +5,7 @@ const CustomRingChart = ({ emotionProps, percentage }) => {
   const { text, position, theme, id } = emotionProps;
   const { offsetY, offsetX } = position;
   const formattedPercentage = Math.round(percentage * 100);
-  const series = [formattedPercentage];
+  const series = [Math.min(100, formattedPercentage)];
   const options = {
     chart: {
       height: 100,
