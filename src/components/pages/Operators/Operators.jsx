@@ -5,6 +5,7 @@ import { dateHandler } from '../../../utils/func-helpers';
 import { Col, Row, Button, Tooltip } from 'antd';
 import OperatorsChart from '../../molecules/OperatorsChart/OperatorsChart';
 import apiCalls from '../../../services/api-calls/all';
+import LoadingSpinner from '../../atoms/LoadingSpinner/LoadingSpinner';
 import OperatorCard from '../../molecules/OperatorCard/OperatorCard';
 import { ApiErrorMessage } from '../../../services/providers/Messages';
 import BackButton from '../../atoms/BackButton/back-button';
@@ -14,11 +15,12 @@ const { getBarChartByOperators, getOperators } = apiCalls();
 
 const Operators = () => {
   const { currentTime } = dateHandler;
-  const { prevLink, setPrevLink } = useContext(LinkContext);
+  const { setPrevLink } = useContext(LinkContext);
   const [barChartData, setBarChartData] = useState([]);
   const [operators, setOperators] = useState([]);
   const [loading, setLoading] = useState(false);
   const [lastUpdate, setLastUpdate] = useState(currentTime());
+  const [pageLoading, setPageLoading] = useState(false);
 
   const fetchData = async () => {
     const barChart = await getBarChartByOperators();
@@ -29,9 +31,12 @@ const Operators = () => {
 
   useEffect(() => {
     try {
+      setPageLoading(true);
       fetchData();
+      setPageLoading(false);
     } catch (err) {
       ApiErrorMessage();
+      setPageLoading(false);
     }
   }, []);
 
@@ -58,7 +63,7 @@ const Operators = () => {
       <div className="contentSection">
         <div className="headerButtons">
           <div className="buttonsContainer">
-            <BackButton toUrl={'/dashboard'} text={'Ir a Dashboard'}/>
+            <BackButton toUrl={'/dashboard'} text={'Ir a Dashboard'} />
             <Tooltip title="Actualizar">
               <Button
                 className="updateButton"
@@ -66,30 +71,37 @@ const Operators = () => {
                 shape="circle"
                 onClick={handleUpdate}
                 loading={loading}
+                disabled={pageLoading}
               />
             </Tooltip>
-            <span id="lastUpdate">{`Última actualización ${lastUpdate}`}</span>
+            {!pageLoading && <span id="lastUpdate">{`Última actualización ${lastUpdate}`}</span>}
           </div>
         </div>
-        <Row gutter={16}>
-          {operators.map(o => (
-            <Col span={6}>
-              <OperatorCard
-                id={o.id}
-                name={o.name}
-                lastName={o.lastName}
-                primaryEmotion={o.primaryEmotion}
-                secondaryEmotion={o.secondaryEmotion}
-                atBreak={o.atBreak}
-                inCall={o.inCall}
-                breakAssignedToActualCall={o.breakAssignedToActualCall}
-                handleOperatorClick={handleCardClick}
-              />
-            </Col>
-          ))}
-        </Row>
-        <p id="rendimientos">Rendimientos durante el día</p>
-        <OperatorsChart data={barChartData} />
+        {pageLoading ? (
+          <LoadingSpinner />
+        ) : (
+          <>
+            <Row gutter={16}>
+              {operators.map(o => (
+                <Col span={6}>
+                  <OperatorCard
+                    id={o.id}
+                    name={o.name}
+                    lastName={o.lastName}
+                    primaryEmotion={o.primaryEmotion}
+                    secondaryEmotion={o.secondaryEmotion}
+                    atBreak={o.atBreak}
+                    inCall={o.inCall}
+                    breakAssignedToActualCall={o.breakAssignedToActualCall}
+                    handleOperatorClick={handleCardClick}
+                  />
+                </Col>
+              ))}
+            </Row>
+            <p id="rendimientos">Rendimientos durante el día</p>
+            <OperatorsChart data={barChartData} />
+          </>
+        )}
       </div>
     </>
   );
