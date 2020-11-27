@@ -5,6 +5,7 @@ import moment from 'moment';
 import { UserContext } from '../../../services/providers/user-context.jsx';
 import { LinkContext } from '../../../services/providers/prev-link';
 import CustomDatePicker from '../../atoms/CustomDatePicker/CustomDatePicker';
+import LoadingSpinner from '../../atoms/LoadingSpinner/LoadingSpinner';
 import apiCalls from '../../../services/api-calls/all';
 import OperatorEmotionTables from '../../molecules/OperatorEmotionTables';
 import { getUrlParam, dateHandler, dateFormat } from '../../../utils/func-helpers';
@@ -31,7 +32,7 @@ const Operator = () => {
   const [name, setName] = useState();
   const [switchOn, setSwitchOn] = useState(false);
   const [breaks, setBreaks] = useState([]);
-
+  const [loading, setLoading] = useState(false);
   const { user } = useContext(UserContext);
   const { prevLink, setPrevLink } = useContext(LinkContext);
 
@@ -64,10 +65,13 @@ const Operator = () => {
   useEffect(() => {
     const loadPage = async () => {
       try {
+        setLoading(true);
         const momentDate = dateHandler.format(date);
         await bringPageData(dateHandler.formatForApi(momentDate));
+        setLoading(false);
       } catch (error) {
         message.error('Hubo un error, por favor contacte con el administrador');
+        setLoading(false);
       }
     };
     loadPage();
@@ -97,9 +101,15 @@ const Operator = () => {
           <br />
           <br />
         </div>
-        <OperatorEmotionTables emotionTables={emotionTables} switchOn={switchOn} />
-        <OperatorCalls calls={calls} handleCallClick={handleCallClick} />
-        <BreaksTable breaks={breaks} />
+        {loading ? (
+          <LoadingSpinner />
+        ) : (
+          <>
+            <OperatorEmotionTables emotionTables={emotionTables} switchOn={switchOn} />
+            <OperatorCalls calls={calls} handleCallClick={handleCallClick} />
+            <BreaksTable breaks={breaks} />
+          </>
+        )}
       </div>
     </div>
   );
