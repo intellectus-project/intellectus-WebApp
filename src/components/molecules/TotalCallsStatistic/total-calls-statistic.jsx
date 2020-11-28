@@ -1,11 +1,12 @@
 import React from 'react';
 import { Statistic, Icon, Card } from 'antd';
 import PropTypes from 'prop-types';
+import './_style.scss';
 
 const TotalCallsStatistic = ({ amount }) => {
     return (
         <Card>
-            <Statistic title="Llamadas totales" value={amount} prefix={<Icon type="phone" />} />
+            <Statistic title="Llamadas totales" value={amount} prefix={<Icon type="phone" />} className="totalCallsCount" />
         </Card>
     );
 };
