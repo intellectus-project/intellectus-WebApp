@@ -6,7 +6,7 @@ import { isNowOlderThan, dateFormat } from '../../../utils/func-helpers';
 
 const now = moment();
 
-const CustomDatePicker = ({ action, placeholder, theme, dateValue }) => {
+const CustomDatePicker = ({ action, placeholder, theme, dateValue, allowClear }) => {
 
   const handleChange = (date, dateString) => {
     action(dateString);
@@ -19,6 +19,7 @@ const CustomDatePicker = ({ action, placeholder, theme, dateValue }) => {
       className={theme}
       format={dateFormat}
       disabledDate={date => isNowOlderThan(date)}
+      allowClear={allowClear}
     />
   );
 };
@@ -32,7 +33,8 @@ CustomDatePicker.propTypes = {
 
 CustomDatePicker.defaultProps = {
   placeholder: 'Fecha',
-  dateValue: now
+  dateValue: now,
+  allowClear: true
 };
 
 export default CustomDatePicker;

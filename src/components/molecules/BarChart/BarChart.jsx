@@ -54,18 +54,6 @@ const BarChart = ({ data, setDayModalDate, showDayModal, tagDescription, tagColo
       }
     },
     colors: ['#bfc119', '#307c11', '#5c0a4b', '#146494', '#ab3619'],
-    yaxis:{
-      title: {
-        text: 'Consultantes',
-        style: {
-            color: undefined,
-            fontSize: '12px',
-            fontFamily: 'Helvetica, Arial, sans-serif',
-            fontWeight: 600,
-            cssClass: 'apexcharts-xaxis-title',
-        },
-    }
-    },
     xaxis: { 
       title: {
       text: 'Seleccione la fecha de la cual desea obtener información',
