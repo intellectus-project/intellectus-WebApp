@@ -65,7 +65,7 @@ const DayModal = ({ defaultValue, visible, setVisible }) => {
           </div>
           <div className="currentDate">
             <Button onClick={() => setDay(sumDays(day, -1))} shape="circle" size="small">
-              <span className= "changeDayButton">{'<'}</span>
+              <span>{'<'}</span>
             </Button>
             <span id="day">{day}</span>
             <Button
@@ -74,7 +74,7 @@ const DayModal = ({ defaultValue, visible, setVisible }) => {
               shape="circle"
               size="small"
             >
-              <span className= "changeDayButton">{'>'}</span>
+              <span>{'>'}</span>
             </Button>
           </div>
           <div className="weather">
