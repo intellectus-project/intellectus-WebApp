@@ -118,7 +118,7 @@ const Dashboard = () => {
           <>
             <Row>
               <Col span={6}>
-                <Col span={6} offset={18}>
+                <Col span={8} offset={16}>
                   <div class="totalCalls">
                     <TotalCallsStatistic amount={amount} />
                   </div>
