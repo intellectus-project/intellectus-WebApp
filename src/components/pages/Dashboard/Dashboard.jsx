@@ -118,9 +118,11 @@ const Dashboard = () => {
           <>
             <Row>
               <Col span={6}>
-                <div class="totalCalls">
-                  <TotalCallsStatistic amount={amount} />
-                </div>
+                <Col span={8} offset={16}>
+                  <div class="totalCalls">
+                    <TotalCallsStatistic amount={amount} />
+                  </div>
+                </Col>  
               </Col>
               <Col span={12}>
                 <RingCharts values={ringChartValues} />

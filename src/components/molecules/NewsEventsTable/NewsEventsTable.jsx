@@ -34,7 +34,7 @@ const NewsEventsTable = ({ newsEvents }) => {
       width: '20%',
       render: link => (
         <>
-          <a href={link}>
+          <a href={link} target="_blank">
             <Icon type="eye" />
           </a>{' '}
         </>
