@@ -45,6 +45,7 @@ const OperatorCard = ({
     try {
       await giveBreak({ operatorId: id, minutesDuration });
       SuccessMessage('Descanso otorgado con éxito.');
+      if (inCall) setIsBreakForCall(true);
       setVisible(false);
       setLoading(false);
     } catch (error) {
@@ -136,6 +137,9 @@ const OperatorCard = ({
             onChange={minutesDurationOnChange}
           />{' '}
           minutos
+          <Tooltip title={'El rango de minutos que se puede otorgar para un descanso es entre 5 y 20.'}>
+            <Icon type="exclamation-circle" style={{ color: '#176FC8', marginLeft: '0.5em' }} />
+          </Tooltip>
         </p>
       </Modal>
       <EmotionItem primaryEmotion={primaryEmotion} secondaryEmotion={secondaryEmotion} />
