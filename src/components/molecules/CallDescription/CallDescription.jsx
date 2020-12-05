@@ -8,7 +8,7 @@ import EmotionIcon from '../../atoms/Emotion/Emotion-icon';
 import EMOTIONS from '../../../utils/emotions';
 import DayModal from '../DayModal/DayModal';
 
-const CallDescription = ({ operatorName, startTime, endTime, weather, shift, emotion }) => {
+const CallDescription = ({ operatorName, startTime, endTime, weatherImage, shift, emotion }) => {
   const [visible, setVisible] = useState(false);
   const minutesDuration = differenceBetween(endTime, startTime, 'minutes');
   const secondsRemaining = differenceBetween(endTime, startTime, 'seconds') - minutesDuration*60;
@@ -40,7 +40,13 @@ const CallDescription = ({ operatorName, startTime, endTime, weather, shift, emo
         </p>
         <p>
           <strong>Clima: </strong>
-          {weather}
+          {console.log(weatherImage)}
+          <img
+            src={`img/${weatherImage.image}`}
+            width="40"
+            height="40"
+            alt={weatherImage.description}
+          />
         </p>
         <p>
           <strong>Turno: </strong>

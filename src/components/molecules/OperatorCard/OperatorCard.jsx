@@ -19,7 +19,7 @@ const getErrorMessage = code => {
     case ERROR_ASSIGNED_BREAK:
       return 'El operador ya tiene un descanso asignado';
     default:
-      return 'No se ha podido otorgar el descando';
+      return 'No se ha podido otorgar el descanso';
   }
 };
 const OperatorCard = ({

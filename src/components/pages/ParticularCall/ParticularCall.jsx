@@ -22,7 +22,7 @@ const ParticularCall = () => {
   const [operator, setOperator] = useState({});
   const [operatorStats, setOperatorStats] = useState({});
   const [shift, setShift] = useState({});
-  const [weather, setWeather] = useState({});
+  const [weatherImage, setWeather] = useState({});
 
   const getCall = async () => {
     const callId = getUrlParam('id');
@@ -36,7 +36,7 @@ const ParticularCall = () => {
     setOperator(response.operator);
     setOperatorStats(response.operatorStats);
     setShift(response.shift);
-    setWeather(response.weather);
+    setWeather(response.weatherImage);
   };
 
   useEffect(() => {
@@ -64,7 +64,7 @@ const ParticularCall = () => {
               startTime={startTime}
               endTime={endTime}
               shift={shift.name}
-              weather={weather.description}
+              weatherImage={weatherImage}
             />
           </Col>
           <Col span={12}>
