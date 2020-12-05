@@ -45,7 +45,6 @@ const OperatorCard = ({
     try {
       await giveBreak({ operatorId: id, minutesDuration });
       SuccessMessage('Descanso otorgado con éxito.');
-      if(inCall) setIsBreakForCall(true);
       setVisible(false);
       setLoading(false);
     } catch (error) {
