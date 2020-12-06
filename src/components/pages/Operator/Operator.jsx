@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import './_style.scss';
-import { message, Switch } from 'antd';
+import { message, Switch, Col, Typography } from 'antd';
 import moment from 'moment';
 import { UserContext } from '../../../services/providers/user-context.jsx';
 import { LinkContext } from '../../../services/providers/prev-link';
@@ -15,6 +15,8 @@ import OperatorCalls from '../../molecules/OperatorCalls/OperatorCalls';
 import BackButton from '../../atoms/BackButton/back-button';
 import BreaksTable from '../../molecules/BreaksTable/breaks-table';
 import { ROLE_VIEWER } from '../../../utils/constants';
+
+const { Text } = Typography;
 
 const {
   getOperatorEmotionStatus,
@@ -81,15 +83,16 @@ const Operator = () => {
 
   return (
     <>
-      <div className="titleSection">
-        <h2>{name ? name : 'Operador'}</h2>
-      </div>
       <div className="contentSection">
         {user.role !== ROLE_VIEWER && <BackButton toUrl={prevLink.prevLink} />}
-
+        <br></br>
         <div class="ant-row">
-          <div className="actualState">Estado actual</div>
+          <Col span={2} className="actualState"><Text strong>{name ? name : 'Operador'}</Text></Col>
           <OperatorEmotionStatus emotionStatus={emotionStatus} />
+        </div>
+        <br />
+        <br />
+        <div class="ant-row">
           <div class="ant-col-12">
             Cambiar vista
             <Switch onClick={switchOnClick} className="marginHorizontal" />
@@ -100,9 +103,8 @@ const Operator = () => {
               allowClear={false}
             />
           </div>
-          <br />
-          <br />
         </div>
+        <br />
         {loading ? (
           <LoadingSpinner />
         ) : (
