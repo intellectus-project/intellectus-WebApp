@@ -7,7 +7,7 @@ module.exports = {
   CREATE_USER_URL: '/create-user',
   OPERATOR: '/operator',
   CALL: '/call',
-  PAGE_SIZE: 3,
+  PAGE_SIZE: 10,
   ROLE_OPERATOR: 'ROLE_OPERATOR',
   ROLE_VIEWER: 'Viewer',
   ROLE_ADMIN: 'Administrator'
