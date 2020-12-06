@@ -8,14 +8,14 @@ const EmotionItem = ({ primaryEmotion, secondaryEmotion }) => (
   >
     <br />
     <div className="primaryEmotion" style={{ marginRight: 20 }}>
-      {EMOTIONS[primaryEmotion.emotion].icon()}
-      <strong>{` ${Math.round(primaryEmotion.percentage * 100)}%`}</strong>
-      <p>{EMOTIONS[primaryEmotion.emotion].name}</p>
+      {primaryEmotion && EMOTIONS[primaryEmotion.emotion].icon()}
+      <strong>{primaryEmotion && ` ${Math.round(primaryEmotion.percentage * 100)}%`}</strong>
+      <p>{primaryEmotion && EMOTIONS[primaryEmotion.emotion].name}</p>
     </div>
     <div className="secondaryEmotion">
-      {EMOTIONS[secondaryEmotion.emotion].icon()}
-      <strong>{` ${Math.round(secondaryEmotion.percentage * 100)}%`}</strong>
-      <p>{EMOTIONS[secondaryEmotion.emotion].name}</p>
+      {secondaryEmotion && EMOTIONS[secondaryEmotion.emotion].icon()}
+      <strong>{secondaryEmotion && ` ${Math.round(secondaryEmotion.percentage * 100)}%`}</strong>
+      <p>{secondaryEmotion && EMOTIONS[secondaryEmotion.emotion].name}</p>
     </div>
   </div>
 );
