@@ -23,8 +23,6 @@ const ConsultantOperatorBarChart = ({ operatorStats, consultantStats }) => {
 
     const data = formatInput();
 
-    console.log()
-
     return (
         <>
             <BarChart width={730} height={250} data={data}>
