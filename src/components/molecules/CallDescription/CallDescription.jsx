@@ -8,7 +8,7 @@ import EmotionIcon from '../../atoms/Emotion/Emotion-icon';
 import EMOTIONS from '../../../utils/emotions';
 import DayModal from '../DayModal/DayModal';
 
-const CallDescription = ({ operatorName, startTime, endTime, weatherImage, shift, emotion }) => {
+const CallDescription = ({ operatorName, startTime, endTime, weatherImage, emotion }) => {
   const [visible, setVisible] = useState(false);
   const minutesDuration = differenceBetween(endTime, startTime, 'minutes');
   const secondsRemaining = differenceBetween(endTime, startTime, 'seconds') - minutesDuration*60;
@@ -48,10 +48,6 @@ const CallDescription = ({ operatorName, startTime, endTime, weatherImage, shift
           />
         </p>
         <p>
-          <strong>Turno: </strong>
-          {shift}
-        </p>
-        <p>
           <EmotionIcon emotion={EMOTIONS[emotion]} />
         </p>
       </Card>
@@ -68,8 +64,7 @@ CallDescription.propTypes = {
   operatorName: PropTypes.string.isRequired,
   startTime: PropTypes.instanceOf(Date),
   endTime: PropTypes.instanceOf(Date),
-  weather: PropTypes.string.isRequired,
-  shift: PropTypes.string.isRequired
+  weather: PropTypes.string.isRequired
 };
 
 export default CallDescription;
