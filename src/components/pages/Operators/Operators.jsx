@@ -30,14 +30,17 @@ const Operators = () => {
   };
 
   useEffect(() => {
-    try {
+    const loadPage = async () => {
       setPageLoading(true);
-      fetchData();
-      setPageLoading(false);
-    } catch (err) {
-      ApiErrorMessage();
-      setPageLoading(false);
-    }
+      try {
+        await fetchData();
+        setPageLoading(false);
+      } catch (err) {
+        ApiErrorMessage();
+        setPageLoading(false);
+      }
+    };
+    loadPage();
   }, []);
 
   const handleUpdate = async () => {
@@ -77,6 +80,7 @@ const Operators = () => {
             {!pageLoading && <span id="lastUpdate">{`Última actualización ${lastUpdate}`}</span>}
           </div>
         </div>
+        {console.log('page loading ', pageLoading)}
         {pageLoading ? (
           <LoadingSpinner />
         ) : (

@@ -10,5 +10,5 @@ module.exports = {
   PAGE_SIZE: 10,
   ROLE_OPERATOR: 'Operador',
   ROLE_SUPERVISOR: 'Supervisor',
-  ROLE_ADMIN: 'Administrador'
+  ROLE_ADMIN: 'Administrator'
 };

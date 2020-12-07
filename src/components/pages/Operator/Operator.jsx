@@ -46,10 +46,10 @@ const Operator = () => {
     const userId = getUrlParam('id');
     setId(userId);
     const emotionStatusData = await getOperatorEmotionStatus(userId);
-    setEmotionStatus(formatEmotionTables(emotionStatusData.status));
+    emotionStatusData && emotionStatusData.status && setEmotionStatus(formatEmotionTables(emotionStatusData.status));
     setName(emotionStatusData.name);
     const emotionTablesData = await getOperatorEmotionTables(userId, formattedDate || date);
-    setEmotionTables(formatEmotionTables(emotionTablesData));
+    emotionTablesData && setEmotionTables(formatEmotionTables(emotionTablesData));
     const callsData = await getOperatorCalls(userId, formattedDate || date);
     setCalls(callsData);
     fetchBreaks(userId, formattedDate || date);
