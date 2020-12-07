@@ -5,7 +5,7 @@ import apiCalls from '../../../services/api-calls/all';
 import AntForm from '../../molecules/ant-form';
 import { processedErrorMessage } from '../../../services/api-calls/helpers';
 import { useRedirect } from '../../Router/redirect';
-import { HOME_URL, OPERATOR, ROLE_VIEWER, ROLE_ADMIN, USERS_URL } from '../../../utils/constants';
+import { HOME_URL, OPERATOR, ROLE_ADMIN, USERS_URL, ROLE_OPERATOR } from '../../../utils/constants';
 import './_style.scss';
 import '../../../css/app.scss';
 
@@ -19,7 +19,7 @@ const Login = props => {
   useEffect(() => {
     if (user.accessToken) {
       switch (user.role) {
-        case ROLE_VIEWER:
+        case ROLE_OPERATOR:
           props.history.push(`${OPERATOR}?id=${user.id}`);
         case ROLE_ADMIN: {
           return setUrlToRedirect(USERS_URL);

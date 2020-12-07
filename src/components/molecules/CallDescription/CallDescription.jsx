@@ -40,7 +40,6 @@ const CallDescription = ({ operatorName, startTime, endTime, weatherImage, shift
         </p>
         <p>
           <strong>Clima: </strong>
-          {console.log(weatherImage)}
           <img
             src={`img/${weatherImage.image}`}
             width="40"

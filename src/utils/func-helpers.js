@@ -94,7 +94,6 @@ export const isNowOlderThan = date => moment() < moment(date, dateFormat);
 
 export const formatCall = call => {
   const formattedCall = {};
-  formattedCall.shift = call.shift.name;
   formattedCall.operator = call.operator.name;
   formattedCall.weather = call.weather && call.weather.description;
   formattedCall.startTime = formatDateWithTime(call.startTime);

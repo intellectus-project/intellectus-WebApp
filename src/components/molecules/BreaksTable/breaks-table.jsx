@@ -3,29 +3,8 @@ import { Table, Icon, Tag } from 'antd';
 import { CALL } from '../../../utils/constants';
 import PropTypes from 'prop-types';
 import './_style.scss';
-import { formatBreak, formatDateWithTime } from '../../../utils/func-helpers';
+import { formatDateWithTime } from '../../../utils/func-helpers';
 
-/* {
-  title: 'Tomado por',
-  key: 'givenBySupervisor',
-  dataIndex: 'givenBySupervisor',
-  render: tags => (
-    <span>
-      {tags.map(tag => {
-        console.log("tag", tag);
-        let color = tag.length > 5 ? 'geekblue' : 'green';
-        if (tag === 'loser') {
-          color = 'volcano';
-        }
-        return (
-          <Tag color={color} key={tag}>
-            {tag.toUpperCase()}
-          </Tag>
-        );
-      })}
-    </span>
-  ),
-} */
 
 const BreaksTable = ({ breaks }) => {
   const pageSize = 10;

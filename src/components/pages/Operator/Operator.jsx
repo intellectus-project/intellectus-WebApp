@@ -14,7 +14,7 @@ import OperatorEmotionStatus from '../../molecules/OperatorEmotionStatus/Operato
 import OperatorCalls from '../../molecules/OperatorCalls/OperatorCalls';
 import BackButton from '../../atoms/BackButton/back-button';
 import BreaksTable from '../../molecules/BreaksTable/breaks-table';
-import { ROLE_VIEWER } from '../../../utils/constants';
+import { ROLE_OPERATOR } from '../../../utils/constants';
 
 const { Text } = Typography;
 
@@ -84,7 +84,7 @@ const Operator = () => {
   return (
     <>
       <div className="contentSection">
-        {user.role !== ROLE_VIEWER && <BackButton toUrl={prevLink.prevLink} />}
+        {user.role !== ROLE_OPERATOR && <BackButton toUrl={prevLink.prevLink} />}
         <br></br>
         <div class="ant-row">
           <Col span={2} className="actualState"><Text strong>{name ? name : 'Operador'}</Text></Col>
