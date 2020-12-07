@@ -1,5 +1,6 @@
 import React from 'react';
 import LineChartEmotion from '../../atoms/LineChartEmotion/LineChartEmotion';
+import './_style.scss'
 
 const graphs = (emotionTables) => {
   return (
@@ -30,7 +31,7 @@ const graphs = (emotionTables) => {
 const allInOne = (emotionTables) => {
   return (
     <div class='ant-row'>
-      <div class='ant-col-8 ant-col-offset-7'>
+      <div class='allEmotionsTable'>
         <LineChartEmotion values={emotionTables} /> 
       </div>
     </div>
