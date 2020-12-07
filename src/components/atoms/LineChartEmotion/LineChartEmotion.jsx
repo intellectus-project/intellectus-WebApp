@@ -70,7 +70,7 @@ const LineChartEmotion = ({ values }) => {
         options={options}
         type="line"
         height={allEmotions ? 400 : 250}
-        width={allEmotions ? 700 : 500}
+        width={allEmotions ? 1200 : 500}
       />
     </div>
   );
