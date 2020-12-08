@@ -16,9 +16,9 @@
       float: left;
       border: none;
     }
-    #lastUpdate{
-      position: absolute;
-      top: 1%;
+    .lastUpdate{
+      position: relative;
+      top: 5px;
       color: rgb(182, 178, 178);
     }
     .tooltip{
@@ -32,4 +32,8 @@
     font-size: 1.25em;
     margin-bottom: 0;
   }
+}
+
+.tooltips-info {
+  margin-left: 20px;
 }

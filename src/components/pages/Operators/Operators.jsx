@@ -77,7 +77,12 @@ const Operators = () => {
                 disabled={pageLoading}
               />
             </Tooltip>
-            {!pageLoading && <span id="lastUpdate">{`Última actualización ${lastUpdate}`}</span>}
+            {!pageLoading && <span id="lastUpdate" className='lastUpdate'>{`Última actualización ${lastUpdate}`}</span>}
+            <span className='lastUpdate tooltips-info'>
+              <Tooltip title={'El rango de minutos que se puede otorgar para un descanso es entre 5 y 20.'}>
+                <Icon type="exclamation-circle" style={{ color: '#176FC8', marginLeft: '0.5em' }} />
+              </Tooltip>
+            </span>
           </div>
         </div>
         {console.log('page loading ', pageLoading)}
