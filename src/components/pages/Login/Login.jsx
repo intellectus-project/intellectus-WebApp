@@ -18,7 +18,6 @@ const Login = props => {
 
   useEffect(() => {
     if (user.accessToken) {
-      console.log('user.role ',user.role);
       switch (user.role) {
         case ROLE_OPERATOR:
           props.history.push(`${OPERATOR}?id=${user.id}`);
