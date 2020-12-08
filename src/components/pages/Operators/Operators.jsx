@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import { LinkContext } from '../../../services/providers/prev-link';
 import './_style.scss';
 import { dateHandler } from '../../../utils/func-helpers';
-import { Col, Row, Button, Tooltip } from 'antd';
+import { Col, Row, Button, Tooltip, Icon } from 'antd';
 import OperatorsChart from '../../molecules/OperatorsChart/OperatorsChart';
 import apiCalls from '../../../services/api-calls/all';
 import LoadingSpinner from '../../atoms/LoadingSpinner/LoadingSpinner';
@@ -43,6 +43,22 @@ const Operators = () => {
     loadPage();
   }, []);
 
+  function tooltipsInfo() {
+    return (
+      <div style={{padding: '10px'}}>
+        <p>
+          <Icon type="info-circle" style={{ color: '#FFFFFF', marginRight: '10px'}} />El operador se tomará un tiempo de descanso al finalizar la llamada.
+        </p>
+        <p>
+          <Icon type="phone" style={{ color: '#FFFFFF', marginRight: '10px'}} />El operador se encuentra en llamada.
+        </p>
+        <p>
+          <Icon type="clock-circle" style={{ color: '#FFFFFF', marginRight: '10px'}} />El operador se encuentra en tiempo de descanso.
+        </p>
+      </div>
+    )
+  }
+
   const handleUpdate = async () => {
     try {
       setLoading(true);
@@ -77,35 +93,39 @@ const Operators = () => {
                 disabled={pageLoading}
               />
             </Tooltip>
-            {!pageLoading && <span id="lastUpdate">{`Última actualización ${lastUpdate}`}</span>}
+            {!pageLoading && <span id="lastUpdate" className='lastUpdate'>{`Última actualización ${lastUpdate}`}</span>}
+            <span className='lastUpdate tooltips-info'>
+              <Tooltip title={tooltipsInfo}>
+                <Icon type="exclamation-circle" style={{ color: '#0F0F0F', marginLeft: '0.5em' }} />
+              </Tooltip>
+            </span>
           </div>
         </div>
-        {console.log('page loading ', pageLoading)}
         {pageLoading ? (
           <LoadingSpinner />
         ) : (
-          <>
-            <Row gutter={16}>
-              {operators.map(o => (
-                <Col span={6}>
-                  <OperatorCard
-                    id={o.id}
-                    name={o.name}
-                    lastName={o.lastName}
-                    primaryEmotion={o.primaryEmotion}
-                    secondaryEmotion={o.secondaryEmotion}
-                    atBreak={o.atBreak}
-                    inCall={o.inCall}
-                    breakAssignedToActualCall={o.breakAssignedToActualCall}
-                    handleOperatorClick={handleCardClick}
-                  />
-                </Col>
-              ))}
-            </Row>
-            <p id="rendimientos">Rendimientos durante el día</p>
-            <OperatorsChart data={barChartData} />
-          </>
-        )}
+            <>
+              <Row gutter={16}>
+                {operators.map(o => (
+                  <Col span={6}>
+                    <OperatorCard
+                      id={o.id}
+                      name={o.name}
+                      lastName={o.lastName}
+                      primaryEmotion={o.primaryEmotion}
+                      secondaryEmotion={o.secondaryEmotion}
+                      atBreak={o.atBreak}
+                      inCall={o.inCall}
+                      breakAssignedToActualCall={o.breakAssignedToActualCall}
+                      handleOperatorClick={handleCardClick}
+                    />
+                  </Col>
+                ))}
+              </Row>
+              <p id="rendimientos">Rendimientos durante el día</p>
+              <OperatorsChart data={barChartData} />
+            </>
+          )}
       </div>
     </>
   );
