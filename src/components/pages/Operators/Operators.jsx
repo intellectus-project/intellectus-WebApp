@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import { LinkContext } from '../../../services/providers/prev-link';
 import './_style.scss';
 import { dateHandler } from '../../../utils/func-helpers';
-import { Col, Row, Button, Tooltip } from 'antd';
+import { Col, Row, Button, Tooltip, Icon } from 'antd';
 import OperatorsChart from '../../molecules/OperatorsChart/OperatorsChart';
 import apiCalls from '../../../services/api-calls/all';
 import LoadingSpinner from '../../atoms/LoadingSpinner/LoadingSpinner';
@@ -80,28 +80,28 @@ const Operators = () => {
         {pageLoading ? (
           <LoadingSpinner />
         ) : (
-          <>
-            <Row gutter={16}>
-              {operators.map(o => (
-                <Col span={6}>
-                  <OperatorCard
-                    id={o.id}
-                    name={o.name}
-                    lastName={o.lastName}
-                    primaryEmotion={o.primaryEmotion}
-                    secondaryEmotion={o.secondaryEmotion}
-                    atBreak={o.atBreak}
-                    inCall={o.inCall}
-                    breakAssignedToActualCall={o.breakAssignedToActualCall}
-                    handleOperatorClick={handleCardClick}
-                  />
-                </Col>
-              ))}
-            </Row>
-            <p id="rendimientos">Rendimientos durante el día</p>
-            <OperatorsChart data={barChartData} />
-          </>
-        )}
+            <>
+              <Row gutter={16}>
+                {operators.map(o => (
+                  <Col span={6}>
+                    <OperatorCard
+                      id={o.id}
+                      name={o.name}
+                      lastName={o.lastName}
+                      primaryEmotion={o.primaryEmotion}
+                      secondaryEmotion={o.secondaryEmotion}
+                      atBreak={o.atBreak}
+                      inCall={o.inCall}
+                      breakAssignedToActualCall={o.breakAssignedToActualCall}
+                      handleOperatorClick={handleCardClick}
+                    />
+                  </Col>
+                ))}
+              </Row>
+              <p id="rendimientos">Rendimientos durante el día</p>
+              <OperatorsChart data={barChartData} />
+            </>
+          )}
       </div>
     </>
   );
