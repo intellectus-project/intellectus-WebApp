@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import { LinkContext } from '../../../services/providers/prev-link';
 import './_style.scss';
 import { dateHandler } from '../../../utils/func-helpers';
-import { Col, Row, Button, Tooltip } from 'antd';
+import { Col, Row, Button, Tooltip, Icon } from 'antd';
 import OperatorsChart from '../../molecules/OperatorsChart/OperatorsChart';
 import apiCalls from '../../../services/api-calls/all';
 import LoadingSpinner from '../../atoms/LoadingSpinner/LoadingSpinner';
@@ -77,7 +77,12 @@ const Operators = () => {
                 disabled={pageLoading}
               />
             </Tooltip>
-            {!pageLoading && <span id="lastUpdate">{`Última actualización ${lastUpdate}`}</span>}
+            {!pageLoading && <span id="lastUpdate" className='lastUpdate'>{`Última actualización ${lastUpdate}`}</span>}
+            <span className='lastUpdate tooltips-info'>
+              <Tooltip title={'El rango de minutos que se puede otorgar para un descanso es entre 5 y 20.'}>
+                <Icon type="exclamation-circle" style={{ color: '#176FC8', marginLeft: '0.5em' }} />
+              </Tooltip>
+            </span>
           </div>
         </div>
         {console.log('page loading ', pageLoading)}
