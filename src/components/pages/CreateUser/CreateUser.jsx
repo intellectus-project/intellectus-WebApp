@@ -130,9 +130,9 @@ const CreateUser = () => {
           {supervisorsVisible && (
             <div className="dropDownSupervisores">
               <CustomDropdown
-                label="Supervisores"
+                label="Supervisor"
                 style={selectStyle}
-                placeholder="Supervisores"
+                placeholder="Supervisor"
                 action={setSupervisorId}
                 content={supervisors}
               />

@@ -38,6 +38,12 @@ const EMOTIONS = {
     icon: emotionIcons.fearIcon,
     color: '#5c0a4b',
     codeName: 'fear'
+  },
+  EMOTION_DEFAULT: {
+    name: 'Miedo',
+    icon: emotionIcons.defaultIcon,
+    color: '#817e7e',
+    codeName: 'fear'
   }
 };
 

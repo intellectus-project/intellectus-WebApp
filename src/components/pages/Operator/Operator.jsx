@@ -14,7 +14,7 @@ import OperatorEmotionStatus from '../../molecules/OperatorEmotionStatus/Operato
 import OperatorCalls from '../../molecules/OperatorCalls/OperatorCalls';
 import BackButton from '../../atoms/BackButton/back-button';
 import BreaksTable from '../../molecules/BreaksTable/breaks-table';
-import { ROLE_VIEWER } from '../../../utils/constants';
+import { ROLE_OPERATOR } from '../../../utils/constants';
 
 const { Text } = Typography;
 
@@ -46,10 +46,10 @@ const Operator = () => {
     const userId = getUrlParam('id');
     setId(userId);
     const emotionStatusData = await getOperatorEmotionStatus(userId);
-    setEmotionStatus(formatEmotionTables(emotionStatusData.status));
+    emotionStatusData && emotionStatusData.status && setEmotionStatus(formatEmotionTables(emotionStatusData.status));
     setName(emotionStatusData.name);
     const emotionTablesData = await getOperatorEmotionTables(userId, formattedDate || date);
-    setEmotionTables(formatEmotionTables(emotionTablesData));
+    emotionTablesData && setEmotionTables(formatEmotionTables(emotionTablesData));
     const callsData = await getOperatorCalls(userId, formattedDate || date);
     setCalls(callsData);
     fetchBreaks(userId, formattedDate || date);
@@ -84,7 +84,7 @@ const Operator = () => {
   return (
     <>
       <div className="contentSection">
-        {user.role !== ROLE_VIEWER && <BackButton toUrl={prevLink.prevLink} />}
+        {user.role !== ROLE_OPERATOR && <BackButton toUrl={prevLink.prevLink} />}
         <br></br>
         <div class="ant-row">
           <Col span={2} className="actualState"><Text strong>{name ? name : 'Operador'}</Text></Col>

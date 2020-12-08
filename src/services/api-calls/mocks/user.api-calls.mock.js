@@ -19,8 +19,8 @@ const getOperators = () => () => [
   },
   {
     id: 2,
-    name: 'Lucas',
-    lastName: 'Arnualdo',
+    name: 'Antonio',
+    lastName: 'Ruiz',
     username: 'operator@intellectus.com',
     inCall: false,
     breakAssignedToActualCall: false,
@@ -37,8 +37,8 @@ const getOperators = () => () => [
   },
   {
     id: 3,
-    name: 'Eric',
-    lastName: 'Hooka',
+    name: 'Ignacio',
+    lastName: 'Gomez',
     username: 'operator@intellectus.com',
     inCall: true,
     breakAssignedToActualCall: false,
@@ -55,8 +55,8 @@ const getOperators = () => () => [
   },
   {
     id: 4,
-    name: 'Ronan',
-    lastName: 'Vazquez',
+    name: 'Maria',
+    lastName: 'Gonzalez',
     username: 'operator@intellectus.com',
     inCall: false,
     breakAssignedToActualCall: false,

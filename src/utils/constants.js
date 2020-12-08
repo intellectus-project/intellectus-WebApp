@@ -8,7 +8,7 @@ module.exports = {
   OPERATOR: '/operator',
   CALL: '/call',
   PAGE_SIZE: 10,
-  ROLE_OPERATOR: 'ROLE_OPERATOR',
-  ROLE_VIEWER: 'Viewer',
-  ROLE_ADMIN: 'Administrator'
+  ROLE_OPERATOR: 'Operador',
+  ROLE_SUPERVISOR: 'Supervisor',
+  ROLE_ADMIN: 'Administrador'
 };
