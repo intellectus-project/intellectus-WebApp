@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "antd": "3.25.1",
-    "apexcharts": "3.19.3",
+    "apexcharts": "3.24.0",
     "axios": "0.19.2",
     "moment": "2.24.0",
     "moment-timezone": "0.5.28",
